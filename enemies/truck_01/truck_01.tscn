@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://4i6twcajef7o"]
+
+[ext_resource type="Script" uid="uid://5uy0prij3ijx" path="res://enemies/truck_01/enemy.gd" id="1_vqlok"]
+[ext_resource type="Script" uid="uid://1lv2acxyuxrg" path="res://components/health.gd" id="2_vqlok"]
+
+[node name="Enemy" type="PathFollow2D"]
+script = ExtResource("1_vqlok")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+sync_to_physics = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D"]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="AnimatableBody2D"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_vqlok")
+metadata/_custom_type_script = "uid://1lv2acxyuxrg"

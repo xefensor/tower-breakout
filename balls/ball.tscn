@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4ko46xi0u27d"]
+
+[ext_resource type="Script" uid="uid://dqe2rhlr6ul7l" path="res://balls/ball.gd" id="1_ht7ih"]
+[ext_resource type="Script" uid="uid://1lv2acxyuxrg" path="res://components/health.gd" id="2_5j7o3"]
+
+[node name="Ball" type="CharacterBody2D"]
+script = ExtResource("1_ht7ih")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_5j7o3")
+max_health = 10
+current_health = 10
+metadata/_custom_type_script = "uid://1lv2acxyuxrg"
