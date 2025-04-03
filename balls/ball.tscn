@@ -1,16 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://c4ko46xi0u27d"]
+[gd_scene load_steps=5 format=3 uid="uid://c4ko46xi0u27d"]
 
 [ext_resource type="Script" uid="uid://dqe2rhlr6ul7l" path="res://balls/ball.gd" id="1_ht7ih"]
 [ext_resource type="Script" uid="uid://1lv2acxyuxrg" path="res://components/health.gd" id="2_5j7o3"]
+[ext_resource type="Texture2D" uid="uid://c51g800bv4nh2" path="res://icon.svg" id="2_ota7r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dgrc4"]
 
 [node name="Ball" type="CharacterBody2D"]
 script = ExtResource("1_ht7ih")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dgrc4")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.131348, 0.131348)
+texture = ExtResource("2_ota7r")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_5j7o3")

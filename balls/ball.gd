@@ -4,12 +4,12 @@ class_name Ball
 @export var speed : float = 500
 
 @onready var _health : Health = $Health as Health
-@onready var _visible_on_screen_notifier_2D : VisibleOnScreenEnabler2D = $VisibleOnScreenNotifier2D as VisibleOnScreenEnabler2D
+@onready var _visible_on_screen_notifier_2D : VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D as VisibleOnScreenNotifier2D
 
 
 func _ready() -> void:
 	_visible_on_screen_notifier_2D.screen_exited.connect(_on_death)
-	_health.died.connect(_on_death)
+	_health.died.connect(queue_free)
 	
 	velocity = Vector2.from_angle(rotation) * speed
 
