@@ -17,7 +17,7 @@ extends PathFollow2D
 ## Emitted when the enemy reaches the base, dealing damage.
 ##
 ## Takes [param damage] as the amount of damage inflicted on the base.
-signal reached_base(damage: int)
+signal base_reached(damage: int)
 
 ## Health component of enemy
 @onready var _health : Health = $Health as Health
@@ -41,9 +41,24 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	progress += progression_speed * delta
 	if progress_ratio >= 1:
-		reached_base.emit(damage_to_base)
+		_on_base_reached()
 		queue_free()
+
+
+
+func take_damage(amount : int):
+	_health.take_damage(amount)
+	
+	
+func heal(amount : int):
+	_health.heal(amount)
+
 
 ## Called when enemy dies
 func _on_death() -> void:
+	queue_free()
+
+
+func _on_base_reached():
+	base_reached.emit(damage_to_base)
 	queue_free()
