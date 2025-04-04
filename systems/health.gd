@@ -55,3 +55,6 @@ func take_damage(amount: int):
 func heal(amount: int):
 	if is_healable:
 		current_health = min(current_health + amount, max_health)
+
+
+	

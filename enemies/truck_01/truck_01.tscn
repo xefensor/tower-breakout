@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://4i6twcajef7o"]
 
 [ext_resource type="Script" uid="uid://5uy0prij3ijx" path="res://enemies/truck_01/enemy.gd" id="1_vqlok"]
-[ext_resource type="Script" uid="uid://1lv2acxyuxrg" path="res://components/health.gd" id="2_vqlok"]
+[ext_resource type="Script" uid="uid://1lv2acxyuxrg" path="res://systems/health.gd" id="2_vqlok"]
 [ext_resource type="Texture2D" uid="uid://c51g800bv4nh2" path="res://icon.svg" id="2_we41i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2yru0"]
