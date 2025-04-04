@@ -40,20 +40,4 @@ func _physics_process(delta: float) -> void:
 			
 # Funkce pro zpracování kolize s míčem
 func _on_ball_hit(ball: Ball, position: Vector2) -> void:
-	# Určíme, kde míč narazil na paddle (vzdálenost od středu)
-	var hit_position = position.x - global_position.x
-	
-	# Velikost paddle (pro přizpůsobení)
-	var paddle_half_width = $Sprite2D.texture.get_width() * 0.2
-	
-	# Pokud narazí na levou nebo pravou část paddle
-	if hit_position < -paddle_half_width: # Levá strana paddle
-		ball.velocity = ball.velocity.reflect(Vector2(1, 0)) # Odrazíme se doprava
-	elif hit_position > paddle_half_width: # Pravá strana paddle
-		ball.velocity = ball.velocity.reflect(Vector2(-1, 0)) # Odrazíme se doleva
-	else:  # Střední část paddle
-		# Odrazíme míč vertikálně a zohledníme, jak daleko od středu paddle narazil
-		var bounce_direction = Vector2(0, -1)
-		# Čím dál od středu, tím více se změní úhel odrazu
-		var distance_from_center = hit_position / paddle_half_width
-		ball.velocity = ball.velocity.reflect(bounce_direction.rotated(distance_from_center * 45)) # Rotace úhlu odrazu
+	pass
