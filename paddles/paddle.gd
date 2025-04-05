@@ -33,11 +33,17 @@ func _physics_process(delta: float) -> void:
 	if collision_info:
 		var collider = collision_info.get_collider()
 		if collider is Ball:
-			print("Brr")
 			var ball = collider
 			_on_ball_hit(ball, collision_info.get_position())
 			
 			
 # Funkce pro zpracování kolize s míčem
 func _on_ball_hit(ball: Ball, position: Vector2) -> void:
-	pass
+	ball.heal(1)
+	
+	# Výpočet odrazu podle místa dopadu
+	var relative_hit_pos = (position.x - global_position.x) / ($CollisionShape2D.shape.extents.x * 2 / 2.0)
+	relative_hit_pos = clamp(relative_hit_pos, -1.0, 1.0)
+
+	var angle = deg_to_rad(85 * relative_hit_pos)  # -75° až 75°
+	ball.velocity = Vector2(sin(angle), -cos(angle)).normalized() * ball.speed

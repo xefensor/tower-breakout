@@ -76,12 +76,6 @@ func _physics_process(delta: float) -> void:
 	if progress_ratio >= 1:
 		_on_base_reached()
 
-	# Continue progressing along the path
-	progress += progression_speed * delta
-	if progress_ratio >= 1:
-		_on_base_reached()
-		queue_free()
-
 ## Returns the total speed multiplier considering all speed modifiers.
 ##
 ## This function multiplies all active speed modifiers to calculate the total speed multiplier.

@@ -44,6 +44,7 @@ func _physics_process(delta) -> void:
 		if collision_info.get_collider() is Paddle:
 			return
 		
+		_health.take_damage(1)
 		var normal = collision_info.get_normal()  # Get the collision normal
 		velocity = velocity.bounce(normal)  # Bounce the velocity off the surface
 
@@ -52,3 +53,11 @@ func _physics_process(delta) -> void:
 ## This function is triggered by the screen exit notifier and removes the ball from the scene.
 func _on_death() -> void:
 	queue_free()  # Removes the ball from the scene
+
+
+func take_damage(amount:int):
+	_health.take_damage(amount)
+
+
+func heal(amount:int):
+	_health.heal(amount)
