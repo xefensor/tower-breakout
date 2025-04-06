@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://4i6twcajef7o"]
 
-[ext_resource type="Script" uid="uid://cckvuf48x0pdf" path="res://enemies/truck_01/enemy_carrier.gd" id="1_opr3h"]
-[ext_resource type="Script" uid="uid://5uy0prij3ijx" path="res://enemies/truck_01/enemy.gd" id="1_vqlok"]
+[ext_resource type="Script" uid="uid://c6x0vlshg7kfq" path="res://systems/path_follow_2d/enemy_mover_2d.gd" id="1_opr3h"]
+[ext_resource type="Script" uid="uid://5uy0prij3ijx" path="res://enemies/truck_01/enemy.gd" id="2_opr3h"]
 [ext_resource type="Script" uid="uid://1lv2acxyuxrg" path="res://systems/health.gd" id="2_vqlok"]
 [ext_resource type="Texture2D" uid="uid://cmm03kanojvf" path="res://enemies/truck_01/sprites/spaceship.png" id="2_we41i"]
 [ext_resource type="Texture2D" uid="uid://cnjfe5o72rcve" path="res://enemies/truck_01/sprites/spaceship_n.png" id="3_rgy54"]
@@ -23,11 +23,14 @@ normal_texture = ExtResource("6_opr3h")
 size = Vector2(32, 16)
 
 [node name="PathFollow2D" type="PathFollow2D"]
+loop = false
 script = ExtResource("1_opr3h")
+metadata/_custom_type_script = "uid://c6x0vlshg7kfq"
 
 [node name="Enemy" type="AnimatableBody2D" parent="."]
 sync_to_physics = false
-script = ExtResource("1_vqlok")
+script = ExtResource("2_opr3h")
+metadata/_custom_type_script = "uid://5uy0prij3ijx"
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy"]
 light_mask = 3
@@ -36,7 +39,8 @@ texture = SubResource("CanvasTexture_iuxom")
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Enemy"]
 offset_left = -14.0
 offset_top = -6.0
-offset_bottom = 5.0
+offset_right = 4.0
+offset_bottom = 6.0
 value = 100.0
 nine_patch_stretch = true
 stretch_margin_left = 9
