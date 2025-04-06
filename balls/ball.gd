@@ -10,6 +10,8 @@ class_name Ball
 
 
 func _ready() -> void:
+	reset_physics_interpolation()
+	
 	_visible_on_screen_notifier_2D.screen_exited.connect(_on_death)
 	_health.died.connect(queue_free)
 	velocity = Vector2.from_angle(rotation) * speed
