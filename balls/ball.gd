@@ -43,6 +43,10 @@ func _physics_process(delta) -> void:
 	if collision_info:
 		if collision_info.get_collider() is Paddle:
 			return
+			
+		if collision_info.get_collider() is Enemy:
+			(collision_info.get_collider() as Enemy).take_damage(1)
+		
 		
 		_health.take_damage(1)
 		var normal = collision_info.get_normal()  # Get the collision normal

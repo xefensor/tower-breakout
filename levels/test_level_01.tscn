@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bhk4x0ost1vxj"]
+[gd_scene load_steps=8 format=3 uid="uid://bhk4x0ost1vxj"]
 
 [ext_resource type="PackedScene" uid="uid://c4ko46xi0u27d" path="res://balls/ball.tscn" id="1_75px5"]
 [ext_resource type="PackedScene" uid="uid://cg1nqrd1e7p1d" path="res://paddles/paddle.tscn" id="2_idgjc"]
 [ext_resource type="PackedScene" uid="uid://4i6twcajef7o" path="res://enemies/truck_01/truck_01.tscn" id="3_pdau6"]
 [ext_resource type="Texture2D" uid="uid://0esfammp2dk7" path="res://levels/background.png" id="4_oi0c6"]
+[ext_resource type="Texture2D" uid="uid://b7qelo73gdtqc" path="res://levels/light.png" id="5_op1qo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ueleu"]
 size = Vector2(760, 20)
@@ -46,15 +47,6 @@ speed = 200.0
 position = Vector2(0, 170)
 speed = 500.0
 
-[node name="Path2D" type="Path2D" parent="."]
-curve = SubResource("Curve2D_oi0c6")
-
-[node name="Enemy" parent="Path2D" instance=ExtResource("3_pdau6")]
-position = Vector2(200.07, -45.0933)
-rotation = 1.05431
-progress = 451.95
-progression_speed = 100.0
-
 [node name="Ball2" parent="." instance=ExtResource("1_75px5")]
 position = Vector2(-173, 99)
 speed = 200.0
@@ -78,3 +70,40 @@ speed = 200.0
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -1
 texture = ExtResource("4_oi0c6")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(20, -554)
+color = Color(0.97304, 1, 0.685011, 1)
+energy = 2.19
+range_item_cull_mask = 2
+texture = ExtResource("5_op1qo")
+texture_scale = 2.22
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_oi0c6")
+
+[node name="PathFollow2D" parent="Path2D" instance=ExtResource("3_pdau6")]
+position = Vector2(200.07, -45.0933)
+rotation = 1.05431
+progress = 451.95
+progression_speed = 100.0
+
+[node name="Ball7" parent="." instance=ExtResource("1_75px5")]
+position = Vector2(-210, 16)
+speed = 200.0
+
+[node name="Ball8" parent="." instance=ExtResource("1_75px5")]
+position = Vector2(-73, -77)
+speed = 200.0
+
+[node name="Ball9" parent="." instance=ExtResource("1_75px5")]
+position = Vector2(-226, -130)
+speed = 200.0
+
+[node name="Ball10" parent="." instance=ExtResource("1_75px5")]
+position = Vector2(-145, -121)
+speed = 200.0
+
+[node name="Ball11" parent="." instance=ExtResource("1_75px5")]
+position = Vector2(-89, 2)
+speed = 200.0

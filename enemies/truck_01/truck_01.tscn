@@ -1,28 +1,55 @@
-[gd_scene load_steps=5 format=3 uid="uid://4i6twcajef7o"]
+[gd_scene load_steps=12 format=3 uid="uid://4i6twcajef7o"]
 
+[ext_resource type="Script" uid="uid://cckvuf48x0pdf" path="res://enemies/truck_01/enemy_carrier.gd" id="1_opr3h"]
 [ext_resource type="Script" uid="uid://5uy0prij3ijx" path="res://enemies/truck_01/enemy.gd" id="1_vqlok"]
 [ext_resource type="Script" uid="uid://1lv2acxyuxrg" path="res://systems/health.gd" id="2_vqlok"]
-[ext_resource type="Texture2D" uid="uid://cmm03kanojvf" path="res://enemies/truck_01/spaceship.png" id="2_we41i"]
+[ext_resource type="Texture2D" uid="uid://cmm03kanojvf" path="res://enemies/truck_01/sprites/spaceship.png" id="2_we41i"]
+[ext_resource type="Texture2D" uid="uid://cnjfe5o72rcve" path="res://enemies/truck_01/sprites/spaceship_n.png" id="3_rgy54"]
+[ext_resource type="Texture2D" uid="uid://pj7150qk3id3" path="res://enemies/truck_01/sprites/spaceship_s.png" id="4_3itgp"]
+[ext_resource type="Texture2D" uid="uid://ud1y8kso1twb" path="res://enemies/truck_01/sprites/hp_bar.png" id="5_iuxom"]
+[ext_resource type="Texture2D" uid="uid://dbtwt2yode478" path="res://enemies/truck_01/sprites/hp_bar_n.png" id="6_opr3h"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_iuxom"]
+diffuse_texture = ExtResource("2_we41i")
+normal_texture = ExtResource("3_rgy54")
+specular_texture = ExtResource("4_3itgp")
+specular_shininess = 0.6
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_h743x"]
+diffuse_texture = ExtResource("5_iuxom")
+normal_texture = ExtResource("6_opr3h")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2yru0"]
 size = Vector2(32, 16)
 
-[node name="Enemy" type="PathFollow2D"]
+[node name="PathFollow2D" type="PathFollow2D"]
+script = ExtResource("1_opr3h")
+
+[node name="Enemy" type="AnimatableBody2D" parent="."]
+sync_to_physics = false
 script = ExtResource("1_vqlok")
 
-[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
-sync_to_physics = false
+[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+light_mask = 3
+texture = SubResource("CanvasTexture_iuxom")
 
-[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D"]
-texture = ExtResource("2_we41i")
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Enemy"]
+offset_left = -14.0
+offset_top = -6.0
+offset_bottom = 5.0
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 9
+stretch_margin_top = 6
+stretch_margin_right = 9
+stretch_margin_bottom = 6
+texture_progress = SubResource("CanvasTexture_h743x")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="AnimatableBody2D"]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
 shape = SubResource("RectangleShape2D_2yru0")
 
-[node name="Health" type="Node" parent="."]
+[node name="Health" type="Node" parent="Enemy"]
 script = ExtResource("2_vqlok")
+max_health = 10
+current_health = 10
 metadata/_custom_type_script = "uid://1lv2acxyuxrg"
