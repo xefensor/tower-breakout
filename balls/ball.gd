@@ -5,7 +5,7 @@ class_name Ball
 
 @export var speed : float = 500
 
-@onready var _health : Health = NodeUtils.get_child_by_class(self, Health) as Health
+@export var _health : Health
 @onready var _visible_on_screen_notifier_2D : VisibleOnScreenNotifier2D = NodeUtils.get_child_by_class(self, VisibleOnScreenNotifier2D) as VisibleOnScreenNotifier2D
 
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bhk4x0ost1vxj"]
+[gd_scene load_steps=20 format=3 uid="uid://bhk4x0ost1vxj"]
 
 [ext_resource type="PackedScene" uid="uid://c4ko46xi0u27d" path="res://balls/ball.tscn" id="1_75px5"]
 [ext_resource type="PackedScene" uid="uid://cg1nqrd1e7p1d" path="res://paddles/paddle.tscn" id="2_idgjc"]
+[ext_resource type="Script" uid="uid://1lv2acxyuxrg" path="res://systems/health.gd" id="2_jftuj"]
 [ext_resource type="PackedScene" uid="uid://4i6twcajef7o" path="res://enemies/truck_01/truck_01.tscn" id="3_pdau6"]
 [ext_resource type="Texture2D" uid="uid://0esfammp2dk7" path="res://levels/background.png" id="4_oi0c6"]
 [ext_resource type="Texture2D" uid="uid://b7qelo73gdtqc" path="res://levels/light.png" id="5_op1qo"]
@@ -9,11 +10,121 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ueleu"]
 size = Vector2(760, 20)
 
+[sub_resource type="Resource" id="Resource_jftuj"]
+resource_local_to_scene = true
+script = ExtResource("2_jftuj")
+max_health = 10
+current_health = 10
+is_damageable = true
+is_killable = true
+is_healable = true
+metadata/_custom_type_script = "uid://1lv2acxyuxrg"
+
+[sub_resource type="Resource" id="Resource_tulbc"]
+resource_local_to_scene = true
+script = ExtResource("2_jftuj")
+max_health = 10
+current_health = 10
+is_damageable = true
+is_killable = true
+is_healable = true
+metadata/_custom_type_script = "uid://1lv2acxyuxrg"
+
+[sub_resource type="Resource" id="Resource_pcgy3"]
+resource_local_to_scene = true
+script = ExtResource("2_jftuj")
+max_health = 10
+current_health = 10
+is_damageable = true
+is_killable = true
+is_healable = true
+metadata/_custom_type_script = "uid://1lv2acxyuxrg"
+
+[sub_resource type="Resource" id="Resource_nr4kx"]
+resource_local_to_scene = true
+script = ExtResource("2_jftuj")
+max_health = 10
+current_health = 10
+is_damageable = true
+is_killable = true
+is_healable = true
+metadata/_custom_type_script = "uid://1lv2acxyuxrg"
+
+[sub_resource type="Resource" id="Resource_s38kx"]
+resource_local_to_scene = true
+script = ExtResource("2_jftuj")
+max_health = 10
+current_health = 10
+is_damageable = true
+is_killable = true
+is_healable = true
+metadata/_custom_type_script = "uid://1lv2acxyuxrg"
+
+[sub_resource type="Resource" id="Resource_o3776"]
+resource_local_to_scene = true
+script = ExtResource("2_jftuj")
+max_health = 10
+current_health = 10
+is_damageable = true
+is_killable = true
+is_healable = true
+metadata/_custom_type_script = "uid://1lv2acxyuxrg"
+
 [sub_resource type="Curve2D" id="Curve2D_oi0c6"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -221, -126, 0, 0, 0, 0, -118, -126, 0, 0, 0, 0, 85, -118, 0, 0, 0, 0, 174, -91, 0, 0, 0, 0, 220, -10, 0, 0, 0, 0, 242, 41, 0, 0, 0, 0, 190, -8, 0, 0, 0, 0, 98, 6, 0, 0, 0, 0, -126, -34, 0, 0, 0, 0, -221, 57, 0, 0, 0, 0, -270, 55, 0, 0, 0, 0, -222, 25, 0, 0, 0, 0, -111, 78, 0, 0, 0, 0, 70, 85, 0, 0, 0, 0, 168, 54, 0, 0, 0, 0, 146, -25, 0, 0, 0, 0, 63, -82, 0, 0, 0, 0, -62, -72, 0, 0, 0, 0, -33, -11, 0, 0, 0, 0, -53, 27, 0, 0, 0, 0, -162, 26, 0, 0, 0, 0, -237, -25, 0, 0, 0, 0, -245, 53, 0, 0, 0, 0, -68, 50, 0, 0, 0, 0, 82, 71, 0, 0, 0, 0, -19, -37, 0, 0, 0, 0, -217, -76, 0, 0, 0, 0, -265, -116, 0, 0, 0, 0, -232, -128)
 }
 point_count = 29
+
+[sub_resource type="Resource" id="Resource_q27hf"]
+resource_local_to_scene = true
+script = ExtResource("2_jftuj")
+max_health = 10
+current_health = 10
+is_damageable = true
+is_killable = true
+is_healable = true
+metadata/_custom_type_script = "uid://1lv2acxyuxrg"
+
+[sub_resource type="Resource" id="Resource_yfto5"]
+resource_local_to_scene = true
+script = ExtResource("2_jftuj")
+max_health = 10
+current_health = 10
+is_damageable = true
+is_killable = true
+is_healable = true
+metadata/_custom_type_script = "uid://1lv2acxyuxrg"
+
+[sub_resource type="Resource" id="Resource_wro8d"]
+resource_local_to_scene = true
+script = ExtResource("2_jftuj")
+max_health = 10
+current_health = 10
+is_damageable = true
+is_killable = true
+is_healable = true
+metadata/_custom_type_script = "uid://1lv2acxyuxrg"
+
+[sub_resource type="Resource" id="Resource_r1saj"]
+resource_local_to_scene = true
+script = ExtResource("2_jftuj")
+max_health = 10
+current_health = 10
+is_damageable = true
+is_killable = true
+is_healable = true
+metadata/_custom_type_script = "uid://1lv2acxyuxrg"
+
+[sub_resource type="Resource" id="Resource_tbhd2"]
+resource_local_to_scene = true
+script = ExtResource("2_jftuj")
+max_health = 10
+current_health = 10
+is_damageable = true
+is_killable = true
+is_healable = true
+metadata/_custom_type_script = "uid://1lv2acxyuxrg"
 
 [node name="TestLevel01" type="Node2D"]
 
@@ -42,6 +153,7 @@ shape = SubResource("RectangleShape2D_ueleu")
 [node name="Ball" parent="." instance=ExtResource("1_75px5")]
 position = Vector2(-116, 16)
 speed = 200.0
+_health = SubResource("Resource_jftuj")
 
 [node name="Paddle" parent="." instance=ExtResource("2_idgjc")]
 position = Vector2(0, 170)
@@ -50,22 +162,27 @@ speed = 500.0
 [node name="Ball2" parent="." instance=ExtResource("1_75px5")]
 position = Vector2(-173, 99)
 speed = 200.0
+_health = SubResource("Resource_tulbc")
 
 [node name="Ball3" parent="." instance=ExtResource("1_75px5")]
 position = Vector2(-36, 6)
 speed = 200.0
+_health = SubResource("Resource_pcgy3")
 
 [node name="Ball4" parent="." instance=ExtResource("1_75px5")]
 position = Vector2(-189, -47)
 speed = 200.0
+_health = SubResource("Resource_nr4kx")
 
 [node name="Ball5" parent="." instance=ExtResource("1_75px5")]
 position = Vector2(-108, -38)
 speed = 200.0
+_health = SubResource("Resource_s38kx")
 
 [node name="Ball6" parent="." instance=ExtResource("1_75px5")]
 position = Vector2(-52, 85)
 speed = 200.0
+_health = SubResource("Resource_o3776")
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -1
@@ -91,19 +208,24 @@ progression_speed = 100.0
 [node name="Ball7" parent="." instance=ExtResource("1_75px5")]
 position = Vector2(-210, 16)
 speed = 200.0
+_health = SubResource("Resource_q27hf")
 
 [node name="Ball8" parent="." instance=ExtResource("1_75px5")]
 position = Vector2(-73, -77)
 speed = 200.0
+_health = SubResource("Resource_yfto5")
 
 [node name="Ball9" parent="." instance=ExtResource("1_75px5")]
 position = Vector2(-226, -130)
 speed = 200.0
+_health = SubResource("Resource_wro8d")
 
 [node name="Ball10" parent="." instance=ExtResource("1_75px5")]
 position = Vector2(-145, -121)
 speed = 200.0
+_health = SubResource("Resource_r1saj")
 
 [node name="Ball11" parent="." instance=ExtResource("1_75px5")]
 position = Vector2(-89, 2)
 speed = 200.0
+_health = SubResource("Resource_tbhd2")

@@ -5,11 +5,8 @@ extends AnimatableBody2D
 signal died()
 
 
-@onready var _health : Health = NodeUtils.get_child_by_class(self, Health) as Health
+@export var _health : Health = Health.new()
 @onready var _health_bar : TextureProgressBar = NodeUtils.get_child_by_class(self, TextureProgressBar) as TextureProgressBar
-
-@export var progression_speed: float = 10
-@export var damage_to_base: int = 5
 
 
 func _ready() -> void:

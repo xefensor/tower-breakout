@@ -1,11 +1,11 @@
 class_name Health
-extends Node
+extends Resource
 
 signal health_changed(new_health)
 signal died()
 
-@export var max_health: int = 100
-@export var current_health: int = 100:
+@export var max_health: int = 10
+@export var current_health: int = 10:
 	set(new_health):
 		current_health = new_health
 		health_changed.emit(current_health)

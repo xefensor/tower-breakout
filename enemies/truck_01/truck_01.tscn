@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://4i6twcajef7o"]
+[gd_scene load_steps=13 format=3 uid="uid://4i6twcajef7o"]
 
 [ext_resource type="Script" uid="uid://c6x0vlshg7kfq" path="res://systems/path_follow_2d/enemy_mover_2d.gd" id="1_opr3h"]
 [ext_resource type="Script" uid="uid://5uy0prij3ijx" path="res://enemies/truck_01/enemy.gd" id="2_opr3h"]
@@ -8,6 +8,16 @@
 [ext_resource type="Texture2D" uid="uid://pj7150qk3id3" path="res://enemies/truck_01/sprites/spaceship_s.png" id="4_3itgp"]
 [ext_resource type="Texture2D" uid="uid://ud1y8kso1twb" path="res://enemies/truck_01/sprites/hp_bar.png" id="5_iuxom"]
 [ext_resource type="Texture2D" uid="uid://dbtwt2yode478" path="res://enemies/truck_01/sprites/hp_bar_n.png" id="6_opr3h"]
+
+[sub_resource type="Resource" id="Resource_opr3h"]
+resource_local_to_scene = true
+script = ExtResource("2_vqlok")
+max_health = 10
+current_health = 10
+is_damageable = true
+is_killable = true
+is_healable = true
+metadata/_custom_type_script = "uid://1lv2acxyuxrg"
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_iuxom"]
 diffuse_texture = ExtResource("2_we41i")
@@ -22,7 +32,7 @@ normal_texture = ExtResource("6_opr3h")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2yru0"]
 size = Vector2(32, 16)
 
-[node name="PathFollow2D" type="PathFollow2D"]
+[node name="EnemyMover2D" type="PathFollow2D"]
 loop = false
 script = ExtResource("1_opr3h")
 metadata/_custom_type_script = "uid://c6x0vlshg7kfq"
@@ -30,6 +40,7 @@ metadata/_custom_type_script = "uid://c6x0vlshg7kfq"
 [node name="Enemy" type="AnimatableBody2D" parent="."]
 sync_to_physics = false
 script = ExtResource("2_opr3h")
+_health = SubResource("Resource_opr3h")
 metadata/_custom_type_script = "uid://5uy0prij3ijx"
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy"]
@@ -51,9 +62,3 @@ texture_progress = SubResource("CanvasTexture_h743x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
 shape = SubResource("RectangleShape2D_2yru0")
-
-[node name="Health" type="Node" parent="Enemy"]
-script = ExtResource("2_vqlok")
-max_health = 10
-current_health = 10
-metadata/_custom_type_script = "uid://1lv2acxyuxrg"

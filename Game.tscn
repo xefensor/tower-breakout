@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://8s20h4u4cdht"]
+
+[ext_resource type="PackedScene" uid="uid://bhk4x0ost1vxj" path="res://levels/test_level_01.tscn" id="1_wbfu4"]
+
+[node name="Game" type="Node"]
+
+[node name="TestLevel01" parent="." instance=ExtResource("1_wbfu4")]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="UI"]
+offset_left = 573.0
+offset_top = 330.0
+offset_right = 613.0
+offset_bottom = 353.0
+text = "30$"
