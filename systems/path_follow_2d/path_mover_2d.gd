@@ -11,7 +11,8 @@ signal end_reached
 
 func _ready() -> void:
 	end_reached.connect(_on_end_reached)
-
+	reset_physics_interpolation()
+	
 
 func _physics_process(delta: float) -> void:
 	if is_moving:

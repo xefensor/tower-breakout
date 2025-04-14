@@ -35,7 +35,7 @@ size = Vector2(32, 16)
 [node name="EnemyMover2D" type="PathFollow2D"]
 loop = false
 script = ExtResource("1_opr3h")
-progression_speed = 50.0
+progression_speed = 100.0
 metadata/_custom_type_script = "uid://c6x0vlshg7kfq"
 
 [node name="Enemy" type="AnimatableBody2D" parent="."]
