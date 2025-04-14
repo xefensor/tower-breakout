@@ -9,15 +9,10 @@ signal wave_finished
 var finished_timelines : int = 0:
 	set(new_val):
 		if new_val >= wave_timelines.size():
+			print("wave finished")
 			wave_finished.emit()
 			return
 		finished_timelines = new_val
-		
-			
-			
-func _init() -> void:
-	for timeline in wave_timelines:
-		timeline.timeline_finished.connect(_on_timeline_finished)
 
 
 func _on_timeline_finished():
@@ -26,6 +21,7 @@ func _on_timeline_finished():
 
 func start_timelines():
 	for timeline in wave_timelines:
+		timeline.timeline_finished.connect(_on_timeline_finished)
 		timeline.start_object(0)
 
 

@@ -9,17 +9,13 @@ signal timeline_finished
 var objects_index = 0:
 	set(new_val):
 		if new_val >= timeline_objects.size():
+			print("timeline finished")
 			timeline_finished.emit()
 			return
 		objects_index = new_val
 		start_object(objects_index)
-				
+
 var wave_manager : WaveManager
-			
-			
-#func _init() -> void:
-#	for object in timeline_objects:
-#		object.object_finished.connect(_on_object_finished)
 
 
 func _on_object_finished():
