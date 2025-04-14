@@ -7,5 +7,7 @@ extends PathMover2D
 
 
 func _ready() -> void:
+	reset_physics_interpolation()
+	
 	if _enemy:
 		_enemy.died.connect(queue_free)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bhk4x0ost1vxj"]
+[gd_scene load_steps=31 format=3 uid="uid://bhk4x0ost1vxj"]
 
 [ext_resource type="PackedScene" uid="uid://c4ko46xi0u27d" path="res://balls/ball.tscn" id="1_75px5"]
 [ext_resource type="PackedScene" uid="uid://cg1nqrd1e7p1d" path="res://paddles/paddle.tscn" id="2_idgjc"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://c5a4hf3tlrfbu" path="res://systems/wave_system/wave_timeline.gd" id="8_o3776"]
 [ext_resource type="Script" uid="uid://c2u61ayk03wuh" path="res://systems/wave_system/wave_object.gd" id="9_q27hf"]
 [ext_resource type="Script" uid="uid://xoen60n578bp" path="res://systems/wave_system/wave_enemy.gd" id="10_q27hf"]
+[ext_resource type="Script" uid="uid://dauubwaumm3cu" path="res://systems/wave_system/wave_timer.gd" id="11_yfto5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ueleu"]
 size = Vector2(760, 20)
@@ -130,12 +131,25 @@ script = ExtResource("10_q27hf")
 enemy = ExtResource("3_pdau6")
 amount = 5
 path = 0
-delay = 0.2
+delay = 2.0
+metadata/_custom_type_script = "uid://xoen60n578bp"
+
+[sub_resource type="Resource" id="Resource_lx6yc"]
+script = ExtResource("11_yfto5")
+time = 5.0
+metadata/_custom_type_script = "uid://dauubwaumm3cu"
+
+[sub_resource type="Resource" id="Resource_b6vke"]
+script = ExtResource("10_q27hf")
+enemy = ExtResource("3_pdau6")
+amount = 10
+path = 0
+delay = 1.0
 metadata/_custom_type_script = "uid://xoen60n578bp"
 
 [sub_resource type="Resource" id="Resource_yg266"]
 script = ExtResource("8_o3776")
-timeline_objects = Array[ExtResource("9_q27hf")]([SubResource("Resource_6e6j7")])
+timeline_objects = Array[ExtResource("9_q27hf")]([SubResource("Resource_6e6j7"), SubResource("Resource_lx6yc"), SubResource("Resource_b6vke")])
 metadata/_custom_type_script = "uid://c5a4hf3tlrfbu"
 
 [sub_resource type="Resource" id="Resource_5a3re"]

@@ -8,9 +8,11 @@ signal wave_finished
 @export var wave_timelines : Array[WaveTimeline]
 var finished_timelines : int = 0:
 	set(new_val):
-		finished_timelines = new_val
-		if finished_timelines == wave_timelines.size():
+		if new_val >= wave_timelines.size():
 			wave_finished.emit()
+			return
+		finished_timelines = new_val
+		
 			
 			
 func _init() -> void:
@@ -20,3 +22,13 @@ func _init() -> void:
 
 func _on_timeline_finished():
 	finished_timelines += 1
+
+
+func start_timelines():
+	for timeline in wave_timelines:
+		timeline.start_object(0)
+
+
+func set_wave_manager(manager: WaveManager):
+	for timeline in wave_timelines:
+		timeline.set_wave_manager(manager)

@@ -5,6 +5,4 @@ extends WaveObject
 @export var amount : int = 1
 @export var path : int = 0
 @export var delay : float = 0
-var enemy_index = 0:
-	set(new_val):
-		enemy_index = clamp(new_val, 0, amount-1)
+var enemy_index = 0
