@@ -13,7 +13,7 @@ var objects_index = 0:
 			timeline_finished.emit()
 			return
 		objects_index = new_val
-		start_object(objects_index)
+		start_object(timeline_objects[objects_index])
 
 var wave_manager : WaveManager
 
@@ -22,9 +22,10 @@ func _on_object_finished():
 	objects_index += 1
 
 
-func start_object(index : int):
-	wave_manager.do_object(self, timeline_objects[index])
+func start():
+	start_object(timeline_objects[0])
 
 
-func set_wave_manager(manager: WaveManager):
-	wave_manager = manager
+func start_object(object : WaveObject):
+	object.object_finished.connect(_on_object_finished)
+	object.start(wave_manager)

@@ -1,45 +1,43 @@
 class_name	WaveManager
 extends Node2D
 
+signal enemies_cleared
+
+
 @export var paths : Array[Path2D]
 @export var waves : Array[Wave]
 
-var waves_index = 0:
+var _current_wave_index = 0:
 	set(new_val):
-			if new_val >= waves.size():
-				print("waves finished")
-				return
-			waves_index = new_val	
-			start_wave(waves_index)
+		_current_wave_index = 	clampi(new_val, 0, waves.size()-1)
+
+var enemies_alive : int = 0:
+	set(new_val):
+		enemies_alive = maxi(0, new_val)
+		if enemies_alive == 0:
+			enemies_cleared.emit()
 
 	
 func _ready() -> void:
-	set_wave_managers()
-	start_wave(waves_index)	
+	start_wave(waves[0])	
 	
 
 func _on_wave_finished():
-	waves_index += 1
+	if waves[_current_wave_index].wave_finished.is_connected(_on_wave_finished):
+		waves[_current_wave_index].wave_finished.disconnect(_on_wave_finished)
+	start_next_wave()
 
 
-func start_wave(index : int):
-	waves[index].wave_finished.connect(_on_wave_finished)
-	waves[index].start_timelines()
+func start_wave(wave : Wave):
+	wave.wave_manager = self
+	wave.wave_finished.connect(_on_wave_finished)
+	wave.start()
 
 
-func do_object(timeline: WaveTimeline, wave_object : WaveObject):
-	if wave_object is WaveTimer:
-		await get_tree().create_timer((wave_object as WaveTimer).time, false).timeout
-	elif wave_object is WaveEnemy:
-		var object = wave_object as WaveEnemy
-		for i in object.amount:
-			var enemy = object.enemy.instantiate()
-			paths[object.path].add_child(enemy)
-			await get_tree().create_timer(object.delay, false).timeout
-			
-	timeline._on_object_finished()
+func start_next_wave():
+	_current_wave_index += 1
+	start_wave(waves[_current_wave_index])
 
 
-func set_wave_managers():
-	for wave in waves:
-		wave.set_wave_manager(self)
+func on_enemy_freed():
+	enemies_alive -= 1
