@@ -41,7 +41,6 @@ metadata/_custom_type_script = "uid://c5a4hf3tlrfbu"
 
 [sub_resource type="Resource" id="Resource_5a3re"]
 script = ExtResource("7_s38kx")
-wave_finished_delay = 5.0
 wave_timelines = Array[ExtResource("8_o3776")]([SubResource("Resource_yg266"), SubResource("Resource_b6vke")])
 metadata/_custom_type_script = "uid://cxnjwmh0faiw5"
 
@@ -60,7 +59,6 @@ metadata/_custom_type_script = "uid://c5a4hf3tlrfbu"
 
 [sub_resource type="Resource" id="Resource_xqwrv"]
 script = ExtResource("7_s38kx")
-wave_finished_delay = 5.0
 wave_timelines = Array[ExtResource("8_o3776")]([SubResource("Resource_vblia")])
 metadata/_custom_type_script = "uid://cxnjwmh0faiw5"
 
@@ -97,7 +95,6 @@ metadata/_custom_type_script = "uid://c5a4hf3tlrfbu"
 
 [sub_resource type="Resource" id="Resource_l3xee"]
 script = ExtResource("7_s38kx")
-wave_finished_delay = 5.0
 wave_timelines = Array[ExtResource("8_o3776")]([SubResource("Resource_dggbh"), SubResource("Resource_vycar")])
 metadata/_custom_type_script = "uid://cxnjwmh0faiw5"
 

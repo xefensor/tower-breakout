@@ -6,6 +6,8 @@ signal enemies_cleared
 
 @export var paths : Array[Path2D]
 @export var waves : Array[Wave]
+@export var autostart_nextwave : bool = true
+@export var waves_transition_time : float = 5.0
 
 var _current_wave_index = 0:
 	set(new_val):
@@ -22,12 +24,6 @@ func _ready() -> void:
 	start_wave(waves[0])	
 	
 
-func _on_wave_finished():
-	if waves[_current_wave_index].wave_finished.is_connected(_on_wave_finished):
-		waves[_current_wave_index].wave_finished.disconnect(_on_wave_finished)
-	start_next_wave()
-
-
 func start_wave(wave : Wave):
 	wave.wave_manager = self
 	wave.wave_finished.connect(_on_wave_finished)
@@ -35,9 +31,18 @@ func start_wave(wave : Wave):
 
 
 func start_next_wave():
+	if _current_wave_index >= waves.size()-1 or not autostart_nextwave:
+		return
 	_current_wave_index += 1
+	await get_tree().create_timer(waves_transition_time, false).timeout
 	start_wave(waves[_current_wave_index])
 
+
+func _on_wave_finished():
+	if waves[_current_wave_index].wave_finished.is_connected(_on_wave_finished):
+		waves[_current_wave_index].wave_finished.disconnect(_on_wave_finished)
+	start_next_wave()
+	
 
 func on_enemy_freed():
 	enemies_alive -= 1
