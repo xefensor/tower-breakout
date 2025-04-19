@@ -1,6 +1,5 @@
-[gd_scene load_steps=31 format=3 uid="uid://bhk4x0ost1vxj"]
+[gd_scene load_steps=28 format=3 uid="uid://bhk4x0ost1vxj"]
 
-[ext_resource type="PackedScene" uid="uid://c4ko46xi0u27d" path="res://balls/ball.tscn" id="1_75px5"]
 [ext_resource type="PackedScene" uid="uid://cg1nqrd1e7p1d" path="res://paddles/paddle.tscn" id="2_idgjc"]
 [ext_resource type="Texture2D" uid="uid://c5ar4brlhu1yh" path="res://levels/Space Background.png" id="2_yfto5"]
 [ext_resource type="PackedScene" uid="uid://4i6twcajef7o" path="res://enemies/truck_01/truck_01.tscn" id="3_pdau6"]
@@ -10,8 +9,8 @@
 [ext_resource type="Script" uid="uid://c5a4hf3tlrfbu" path="res://systems/wave_system/wave_timeline.gd" id="8_o3776"]
 [ext_resource type="Script" uid="uid://c2u61ayk03wuh" path="res://systems/wave_system/wave_objects/wave_object.gd" id="9_q27hf"]
 [ext_resource type="Script" uid="uid://xoen60n578bp" path="res://systems/wave_system/wave_objects/wave_enemy.gd" id="10_q27hf"]
+[ext_resource type="PackedScene" uid="uid://c3bi5x7hapkg6" path="res://towers/tower.tscn" id="11_o3776"]
 [ext_resource type="Script" uid="uid://dauubwaumm3cu" path="res://systems/wave_system/wave_objects/wave_timer.gd" id="11_yfto5"]
-[ext_resource type="Script" uid="uid://detnputo7h1qo" path="res://towers/tower.gd" id="13_yfto5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ueleu"]
 size = Vector2(760, 20)
@@ -104,11 +103,6 @@ _data = {
 }
 point_count = 9
 
-[sub_resource type="Gradient" id="Gradient_yfto5"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_wro8d"]
-gradient = SubResource("Gradient_yfto5")
-
 [node name="TestLevel01" type="Node2D"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -134,7 +128,7 @@ shape = SubResource("RectangleShape2D_ueleu")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Paddle" parent="." instance=ExtResource("2_idgjc")]
-position = Vector2(0, 170)
+position = Vector2(0, 132)
 speed = 500.0
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
@@ -163,18 +157,18 @@ texture = ExtResource("2_yfto5")
 region_enabled = true
 region_rect = Rect2(-5000, -5000, 10000, 10000)
 
-[node name="Tower" type="Node2D" parent="." node_paths=PackedStringArray("spawn_ball_marker")]
-position = Vector2(-172, 115)
-rotation = -0.705133
-script = ExtResource("13_yfto5")
-ball = ExtResource("1_75px5")
-spawn_ball_marker = NodePath("Marker2D")
-metadata/_custom_type_script = "uid://detnputo7h1qo"
+[node name="Tower" parent="." instance=ExtResource("11_o3776")]
+position = Vector2(-186, 170)
+rotation = 4.71239
 
-[node name="Timer" type="Timer" parent="Tower"]
-autostart = true
+[node name="Tower2" parent="." instance=ExtResource("11_o3776")]
+position = Vector2(-164, 170)
+rotation = 4.71239
 
-[node name="Marker2D" type="Marker2D" parent="Tower"]
+[node name="Tower3" parent="." instance=ExtResource("11_o3776")]
+position = Vector2(-144, 170)
+rotation = 4.71239
 
-[node name="Sprite2D" type="Sprite2D" parent="Tower"]
-texture = SubResource("GradientTexture2D_wro8d")
+[node name="Tower4" parent="." instance=ExtResource("11_o3776")]
+position = Vector2(-122, 170)
+rotation = 4.71239
