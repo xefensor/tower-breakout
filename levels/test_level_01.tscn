@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://c4ko46xi0u27d" path="res://balls/ball.tscn" id="1_75px5"]
 [ext_resource type="PackedScene" uid="uid://cg1nqrd1e7p1d" path="res://paddles/paddle.tscn" id="2_idgjc"]
 [ext_resource type="Script" uid="uid://1lv2acxyuxrg" path="res://systems/health.gd" id="2_jftuj"]
+[ext_resource type="Texture2D" uid="uid://c5ar4brlhu1yh" path="res://levels/Space Background.png" id="2_yfto5"]
 [ext_resource type="PackedScene" uid="uid://4i6twcajef7o" path="res://enemies/truck_01/truck_01.tscn" id="3_pdau6"]
-[ext_resource type="Texture2D" uid="uid://0esfammp2dk7" path="res://levels/background.png" id="4_oi0c6"]
 [ext_resource type="Texture2D" uid="uid://b7qelo73gdtqc" path="res://levels/light.png" id="5_op1qo"]
 [ext_resource type="Script" uid="uid://cr77osinysypj" path="res://systems/wave_system/wave_manager.gd" id="6_tulbc"]
 [ext_resource type="Script" uid="uid://cxnjwmh0faiw5" path="res://systems/wave_system/wave.gd" id="7_s38kx"]
@@ -212,10 +212,6 @@ shape = SubResource("RectangleShape2D_ueleu")
 position = Vector2(0, 170)
 speed = 500.0
 
-[node name="Background" type="Sprite2D" parent="."]
-z_index = -1
-texture = ExtResource("4_oi0c6")
-
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(20, -554)
 color = Color(0.97304, 1, 0.685011, 1)
@@ -266,3 +262,17 @@ _health = SubResource("Resource_ospbt")
 [node name="Ball8" parent="Balls" instance=ExtResource("1_75px5")]
 position = Vector2(72, -8)
 _health = SubResource("Resource_cifij")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="TextureRect" parent="CanvasLayer"]
+z_index = -1
+texture_repeat = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_yfto5")
+stretch_mode = 1
