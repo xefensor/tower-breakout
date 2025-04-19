@@ -1,8 +1,7 @@
-[gd_scene load_steps=37 format=3 uid="uid://bhk4x0ost1vxj"]
+[gd_scene load_steps=31 format=3 uid="uid://bhk4x0ost1vxj"]
 
 [ext_resource type="PackedScene" uid="uid://c4ko46xi0u27d" path="res://balls/ball.tscn" id="1_75px5"]
 [ext_resource type="PackedScene" uid="uid://cg1nqrd1e7p1d" path="res://paddles/paddle.tscn" id="2_idgjc"]
-[ext_resource type="Script" uid="uid://1lv2acxyuxrg" path="res://systems/health.gd" id="2_jftuj"]
 [ext_resource type="Texture2D" uid="uid://c5ar4brlhu1yh" path="res://levels/Space Background.png" id="2_yfto5"]
 [ext_resource type="PackedScene" uid="uid://4i6twcajef7o" path="res://enemies/truck_01/truck_01.tscn" id="3_pdau6"]
 [ext_resource type="Texture2D" uid="uid://b7qelo73gdtqc" path="res://levels/light.png" id="5_op1qo"]
@@ -12,6 +11,7 @@
 [ext_resource type="Script" uid="uid://c2u61ayk03wuh" path="res://systems/wave_system/wave_objects/wave_object.gd" id="9_q27hf"]
 [ext_resource type="Script" uid="uid://xoen60n578bp" path="res://systems/wave_system/wave_objects/wave_enemy.gd" id="10_q27hf"]
 [ext_resource type="Script" uid="uid://dauubwaumm3cu" path="res://systems/wave_system/wave_objects/wave_timer.gd" id="11_yfto5"]
+[ext_resource type="Script" uid="uid://detnputo7h1qo" path="res://towers/tower.gd" id="13_yfto5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ueleu"]
 size = Vector2(760, 20)
@@ -98,91 +98,16 @@ script = ExtResource("7_s38kx")
 wave_timelines = Array[ExtResource("8_o3776")]([SubResource("Resource_dggbh"), SubResource("Resource_vycar")])
 metadata/_custom_type_script = "uid://cxnjwmh0faiw5"
 
-[sub_resource type="Curve2D" id="Curve2D_oi0c6"]
+[sub_resource type="Curve2D" id="Curve2D_q27hf"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -221, -126, 0, 0, 0, 0, -118, -126, 0, 0, 0, 0, 85, -118, 0, 0, 0, 0, 174, -91, 0, 0, 0, 0, 220, -10, 0, 0, 0, 0, 242, 41, 0, 0, 0, 0, 190, -8, 0, 0, 0, 0, 98, 6, 0, 0, 0, 0, -126, -34, 0, 0, 0, 0, -221, 57, 0, 0, 0, 0, -270, 55, 0, 0, 0, 0, -222, 25, 0, 0, 0, 0, -111, 78, 0, 0, 0, 0, 70, 85, 0, 0, 0, 0, 168, 54, 0, 0, 0, 0, 146, -25, 0, 0, 0, 0, 63, -82, 0, 0, 0, 0, -62, -72, 0, 0, 0, 0, -33, -11, 0, 0, 0, 0, -53, 27, 0, 0, 0, 0, -162, 26, 0, 0, 0, 0, -237, -25, 0, 0, 0, 0, -245, 53, 0, 0, 0, 0, -68, 50, 0, 0, 0, 0, 82, 71, 0, 0, 0, 0, -19, -37, 0, 0, 0, 0, -217, -76, 0, 0, 0, 0, -265, -116, 0, 0, 0, 0, -232, -128)
+"points": PackedVector2Array(0, 0, 0, 0, -232, -242, -31.3026, -46.1842, 31.3026, 46.1842, -225, -129, -61.0658, 8.72369, 61.0658, -8.72369, -83, -103, -50.8026, -32.329, 50.8026, 32.329, 188, -98, 33.8684, -31.8158, -33.8684, 31.8158, 205, -5, 78.5132, -34.3816, -78.5132, 34.3816, -206, -51, -40.5395, -49.7763, 40.5395, 49.7763, -248, 54, -48.75, -67.7369, 48.75, 67.7369, 177, 125, 0, 0, 0, 0, 188, 251)
 }
-point_count = 29
+point_count = 9
 
-[sub_resource type="Resource" id="Resource_q27hf"]
-resource_local_to_scene = true
-script = ExtResource("2_jftuj")
-max_health = 10
-current_health = 10
-is_damageable = false
-is_killable = true
-is_healable = true
-metadata/_custom_type_script = "uid://1lv2acxyuxrg"
+[sub_resource type="Gradient" id="Gradient_yfto5"]
 
-[sub_resource type="Resource" id="Resource_yfto5"]
-resource_local_to_scene = true
-script = ExtResource("2_jftuj")
-max_health = 10
-current_health = 10
-is_damageable = false
-is_killable = true
-is_healable = true
-metadata/_custom_type_script = "uid://1lv2acxyuxrg"
-
-[sub_resource type="Resource" id="Resource_wro8d"]
-resource_local_to_scene = true
-script = ExtResource("2_jftuj")
-max_health = 10
-current_health = 10
-is_damageable = false
-is_killable = true
-is_healable = true
-metadata/_custom_type_script = "uid://1lv2acxyuxrg"
-
-[sub_resource type="Resource" id="Resource_r1saj"]
-resource_local_to_scene = true
-script = ExtResource("2_jftuj")
-max_health = 10
-current_health = 10
-is_damageable = false
-is_killable = true
-is_healable = true
-metadata/_custom_type_script = "uid://1lv2acxyuxrg"
-
-[sub_resource type="Resource" id="Resource_tbhd2"]
-resource_local_to_scene = true
-script = ExtResource("2_jftuj")
-max_health = 10
-current_health = 10
-is_damageable = false
-is_killable = true
-is_healable = true
-metadata/_custom_type_script = "uid://1lv2acxyuxrg"
-
-[sub_resource type="Resource" id="Resource_miuwn"]
-resource_local_to_scene = true
-script = ExtResource("2_jftuj")
-max_health = 10
-current_health = 10
-is_damageable = false
-is_killable = true
-is_healable = true
-metadata/_custom_type_script = "uid://1lv2acxyuxrg"
-
-[sub_resource type="Resource" id="Resource_ospbt"]
-resource_local_to_scene = true
-script = ExtResource("2_jftuj")
-max_health = 10
-current_health = 10
-is_damageable = false
-is_killable = true
-is_healable = true
-metadata/_custom_type_script = "uid://1lv2acxyuxrg"
-
-[sub_resource type="Resource" id="Resource_cifij"]
-resource_local_to_scene = true
-script = ExtResource("2_jftuj")
-max_health = 10
-current_health = 10
-is_damageable = false
-is_killable = true
-is_healable = true
-metadata/_custom_type_script = "uid://1lv2acxyuxrg"
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wro8d"]
+gradient = SubResource("Gradient_yfto5")
 
 [node name="TestLevel01" type="Node2D"]
 
@@ -227,52 +152,29 @@ waves = Array[ExtResource("7_s38kx")]([SubResource("Resource_5a3re"), SubResourc
 metadata/_custom_type_script = "uid://cr77osinysypj"
 
 [node name="Path2D" type="Path2D" parent="WaveManager"]
-curve = SubResource("Curve2D_oi0c6")
+curve = SubResource("Curve2D_q27hf")
 
 [node name="Balls" type="Node2D" parent="."]
 
-[node name="Ball" parent="Balls" instance=ExtResource("1_75px5")]
-position = Vector2(-137, -99)
-_health = SubResource("Resource_q27hf")
-
-[node name="Ball2" parent="Balls" instance=ExtResource("1_75px5")]
-position = Vector2(-62, -42)
-_health = SubResource("Resource_yfto5")
-
-[node name="Ball3" parent="Balls" instance=ExtResource("1_75px5")]
-position = Vector2(-137, -23)
-_health = SubResource("Resource_wro8d")
-
-[node name="Ball4" parent="Balls" instance=ExtResource("1_75px5")]
-position = Vector2(-210, -42)
-_health = SubResource("Resource_r1saj")
-
-[node name="Ball5" parent="Balls" instance=ExtResource("1_75px5")]
-position = Vector2(-209, 46)
-_health = SubResource("Resource_tbhd2")
-
-[node name="Ball6" parent="Balls" instance=ExtResource("1_75px5")]
-position = Vector2(-26, 57)
-_health = SubResource("Resource_miuwn")
-
-[node name="Ball7" parent="Balls" instance=ExtResource("1_75px5")]
-position = Vector2(-228, 89)
-_health = SubResource("Resource_ospbt")
-
-[node name="Ball8" parent="Balls" instance=ExtResource("1_75px5")]
-position = Vector2(72, -8)
-_health = SubResource("Resource_cifij")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -1
-
-[node name="Background" type="TextureRect" parent="CanvasLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
 texture_repeat = 2
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 texture = ExtResource("2_yfto5")
-stretch_mode = 1
+region_enabled = true
+region_rect = Rect2(-5000, -5000, 10000, 10000)
+
+[node name="Tower" type="Node2D" parent="." node_paths=PackedStringArray("spawn_ball_marker")]
+position = Vector2(-172, 115)
+rotation = -0.705133
+script = ExtResource("13_yfto5")
+ball = ExtResource("1_75px5")
+spawn_ball_marker = NodePath("Marker2D")
+metadata/_custom_type_script = "uid://detnputo7h1qo"
+
+[node name="Timer" type="Timer" parent="Tower"]
+autostart = true
+
+[node name="Marker2D" type="Marker2D" parent="Tower"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Tower"]
+texture = SubResource("GradientTexture2D_wro8d")

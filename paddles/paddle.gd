@@ -24,7 +24,7 @@ func _on_ball_hit(ball: Ball, position: Vector2) -> void:
 	relative_hit_pos = clamp(relative_hit_pos, -1.0, 1.0)
 
 	var angle = deg_to_rad(85 * relative_hit_pos)  # -85° až 85°
-	ball.velocity = Vector2(sin(angle), -cos(angle)).normalized() * ball.speed
+	ball.velocity = Vector2(sin(angle), -cos(angle)).normalized() * ball.velocity.length()
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

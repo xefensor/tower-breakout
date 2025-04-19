@@ -2,8 +2,7 @@ extends CharacterBody2D
 class_name Ball
 
 
-
-@export var speed : float = 500
+#@export var speed : float = 500
 
 @export var _health : Health
 @onready var _visible_on_screen_notifier_2D : VisibleOnScreenNotifier2D = NodeUtils.get_child_by_class(self, VisibleOnScreenNotifier2D) as VisibleOnScreenNotifier2D
@@ -14,7 +13,7 @@ func _ready() -> void:
 	
 	_visible_on_screen_notifier_2D.screen_exited.connect(_on_death)
 	_health.died.connect(queue_free)
-	velocity = Vector2.from_angle(rotation) * speed
+	#velocity = Vector2.from_angle(rotation) * speed
 
 
 func _physics_process(delta) -> void:
