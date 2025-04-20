@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bhk4x0ost1vxj"]
+[gd_scene load_steps=30 format=3 uid="uid://bhk4x0ost1vxj"]
 
 [ext_resource type="PackedScene" uid="uid://cg1nqrd1e7p1d" path="res://paddles/paddle.tscn" id="2_idgjc"]
 [ext_resource type="Texture2D" uid="uid://c5ar4brlhu1yh" path="res://levels/Space Background.png" id="2_yfto5"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://xoen60n578bp" path="res://systems/wave_system/wave_objects/wave_enemy.gd" id="10_q27hf"]
 [ext_resource type="PackedScene" uid="uid://c3bi5x7hapkg6" path="res://towers/tower.tscn" id="11_o3776"]
 [ext_resource type="Script" uid="uid://dauubwaumm3cu" path="res://systems/wave_system/wave_objects/wave_timer.gd" id="11_yfto5"]
+[ext_resource type="Script" uid="uid://ben5scgkcfflm" path="res://levels/area_2d.gd" id="12_q27hf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ueleu"]
 size = Vector2(760, 20)
@@ -103,6 +104,9 @@ _data = {
 }
 point_count = 9
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o3776"]
+size = Vector2(639, 63)
+
 [node name="TestLevel01" type="Node2D"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -172,3 +176,12 @@ rotation = 4.71239
 [node name="Tower4" parent="." instance=ExtResource("11_o3776")]
 position = Vector2(-122, 170)
 rotation = 4.71239
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("12_q27hf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, 147.5)
+shape = SubResource("RectangleShape2D_o3776")

@@ -40,6 +40,13 @@ place_turret={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Default"
+2d_physics/layer_2="Paddle"
+2d_physics/layer_3="Ball"
+2d_physics/layer_4="Ball spawn area"
+
 [physics]
 
 common/physics_jitter_fix=0.0

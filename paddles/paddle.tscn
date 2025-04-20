@@ -7,9 +7,10 @@
 size = Vector2(78, 9)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dyi0k"]
-size = Vector2(80, 12)
+size = Vector2(78, 9)
 
 [node name="Paddle" type="AnimatableBody2D"]
+collision_layer = 2
 sync_to_physics = false
 script = ExtResource("1_dmc7d")
 
@@ -21,7 +22,10 @@ scale = Vector2(0.609375, 0.0703125)
 texture = ExtResource("2_dyi0k")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_dyi0k")
