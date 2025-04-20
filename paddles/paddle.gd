@@ -12,9 +12,18 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var _direction = Input.get_axis("paddle_left", "paddle_right")
-	var _velocity = Vector2(_direction * speed, 0)
+	var _offset = _direction * speed * delta
 	
-	var _collision_info = move_and_collide(_velocity * delta)
+	if (_offset < 0 and not $LeftArea2D.has_overlapping_bodies()) or (_offset > 0 and not $RightArea2D.has_overlapping_bodies()):
+		position.x += _offset
+	
+	
+	
+	#if _area_2d.has_overlapping_bodies():
+	#	for body in _area_2d.get_overlapping_bodies():
+	#		if body is Ball:
+	#			_on_ball_hit(body, body.global_position)
+	
 			
 			
 func _on_ball_hit(ball: Ball, position: Vector2) -> void:

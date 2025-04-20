@@ -112,21 +112,17 @@ size = Vector2(639, 63)
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(19, -189)
-shape = SubResource("RectangleShape2D_ueleu")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(24, 189)
+position = Vector2(19, -190)
 shape = SubResource("RectangleShape2D_ueleu")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-327, -37)
-rotation = 1.56955
+position = Vector2(-330, -37)
+rotation = 1.5708
 shape = SubResource("RectangleShape2D_ueleu")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(323, -0.999996)
-rotation = 1.56955
+position = Vector2(330, 0)
+rotation = 1.5708
 shape = SubResource("RectangleShape2D_ueleu")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -162,20 +158,20 @@ region_enabled = true
 region_rect = Rect2(-5000, -5000, 10000, 10000)
 
 [node name="Tower" parent="." instance=ExtResource("11_o3776")]
-position = Vector2(-186, 170)
-rotation = 4.71239
+position = Vector2(-228, 170)
+rotation = 5.35816
 
 [node name="Tower2" parent="." instance=ExtResource("11_o3776")]
-position = Vector2(-164, 170)
-rotation = 4.71239
+position = Vector2(-66, 170)
+rotation = 4.45059
 
 [node name="Tower3" parent="." instance=ExtResource("11_o3776")]
-position = Vector2(-144, 170)
-rotation = 4.71239
+position = Vector2(103, 170)
+rotation = 4.38078
 
 [node name="Tower4" parent="." instance=ExtResource("11_o3776")]
-position = Vector2(-122, 170)
-rotation = 4.71239
+position = Vector2(269, 170)
+rotation = 3.9619
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0

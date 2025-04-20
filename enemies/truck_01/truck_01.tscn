@@ -39,6 +39,8 @@ progression_speed = 50.0
 metadata/_custom_type_script = "uid://c6x0vlshg7kfq"
 
 [node name="Enemy" type="AnimatableBody2D" parent="."]
+collision_layer = 32
+collision_mask = 4
 sync_to_physics = false
 script = ExtResource("2_opr3h")
 _health = SubResource("Resource_opr3h")
