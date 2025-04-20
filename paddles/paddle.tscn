@@ -52,3 +52,15 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightArea2D"]
 shape = SubResource("RectangleShape2D_i2dyn")
+
+[node name="LeftRayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-39, 0)
+rotation = 1.5708
+target_position = Vector2(4.37115e-08, 1)
+hit_from_inside = true
+
+[node name="RightRayCast2D" type="RayCast2D" parent="."]
+position = Vector2(39, 0)
+rotation = 4.71239
+target_position = Vector2(4.37115e-08, 1)
+hit_from_inside = true

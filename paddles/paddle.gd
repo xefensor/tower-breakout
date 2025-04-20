@@ -14,7 +14,7 @@ func _physics_process(delta: float) -> void:
 	var _direction = Input.get_axis("paddle_left", "paddle_right")
 	var _offset = _direction * speed * delta
 	
-	if (_offset < 0 and not $LeftArea2D.has_overlapping_bodies()) or (_offset > 0 and not $RightArea2D.has_overlapping_bodies()):
+	if (_offset < 0 and not $LeftRayCast2D.is_colliding()) or (_offset > 0 and not $RightRayCast2D.is_colliding()):
 		position.x += _offset
 	
 	
