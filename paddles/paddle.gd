@@ -13,11 +13,10 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var _direction = Input.get_axis("paddle_left", "paddle_right")
-	var _offset = _direction * _speed * delta
+	var _offset = Vector2(_direction * _speed * delta, 0)
 	
-	if (_offset < 0 and not $LeftRayCast2D.is_colliding()) or (_offset > 0 and not $RightRayCast2D.is_colliding()):
-		position.x += _offset
-
+	move_and_collide(_offset)
+	
 
 func _on_ball_hit(ball: Ball, position: Vector2) -> void:
 	ball.heal(1)
