@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cg1nqrd1e7p1d"]
+[gd_scene load_steps=9 format=3 uid="uid://cg1nqrd1e7p1d"]
 
 [ext_resource type="Script" uid="uid://c5epd81tvk5gi" path="res://paddles/paddle.gd" id="1_dmc7d"]
 [ext_resource type="Texture2D" uid="uid://c51g800bv4nh2" path="res://icon.svg" id="2_dyi0k"]
+[ext_resource type="AudioStream" uid="uid://kqgf22uwfx0j" path="res://balls/bounce.wav" id="3_w3xnb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w3xnb"]
 size = Vector2(78, 9)
@@ -15,10 +16,16 @@ size = Vector2(1, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i2dyn"]
 size = Vector2(1, 10)
 
-[node name="Paddle" type="AnimatableBody2D"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_m348f"]
+random_pitch = 1.28
+streams_count = 1
+stream_0/stream = ExtResource("3_w3xnb")
+
+[node name="Paddle" type="AnimatableBody2D" node_paths=PackedStringArray("ball_hit_audio_player")]
 collision_layer = 2
 sync_to_physics = false
 script = ExtResource("1_dmc7d")
+ball_hit_audio_player = NodePath("AudioStreamPlayer")
 metadata/_custom_type_script = "uid://c5epd81tvk5gi"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -65,3 +72,7 @@ position = Vector2(39, 0)
 rotation = 4.71239
 target_position = Vector2(4.37115e-08, 1)
 hit_from_inside = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_m348f")
+max_polyphony = 10

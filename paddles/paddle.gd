@@ -4,6 +4,7 @@ class_name Paddle
 
 @export var speed : float = 5
 @onready var _area_2d : Area2D = NodeUtils.get_child_by_class(self, Area2D)
+@export var ball_hit_audio_player : AudioStreamPlayer
 
 
 func _ready() -> void:
@@ -25,6 +26,7 @@ func _physics_process(delta: float) -> void:
 			
 func _on_ball_hit(ball: Ball, position: Vector2) -> void:
 	ball.heal(1)
+	ball_hit_audio_player.play()
 	
 	var relative_hit_pos = (position.x - global_position.x) / ($CollisionShape2D.shape.extents.x * 2 / 2.0)
 	relative_hit_pos = clamp(relative_hit_pos, -1.0, 1.0)
