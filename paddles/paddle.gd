@@ -2,7 +2,7 @@ extends AnimatableBody2D
 class_name Paddle
 
 
-@export var speed : float = 5
+@export var _speed : float = 5
 @onready var _area_2d : Area2D = NodeUtils.get_child_by_class(self, Area2D)
 @export var ball_hit_audio_player : AudioStreamPlayer
 
@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var _direction = Input.get_axis("paddle_left", "paddle_right")
-	var _offset = _direction * speed * delta
+	var _offset = _direction * _speed * delta
 	
 	if (_offset < 0 and not $LeftRayCast2D.is_colliding()) or (_offset > 0 and not $RightRayCast2D.is_colliding()):
 		position.x += _offset
