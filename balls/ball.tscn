@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4ko46xi0u27d"]
+[gd_scene load_steps=10 format=3 uid="uid://c4ko46xi0u27d"]
 
 [ext_resource type="Script" uid="uid://dqe2rhlr6ul7l" path="res://balls/ball.gd" id="1_ht7ih"]
 [ext_resource type="Script" uid="uid://1lv2acxyuxrg" path="res://systems/health.gd" id="2_5j7o3"]
 [ext_resource type="Texture2D" uid="uid://vtd73b733fi" path="res://balls/ball.png" id="2_ota7r"]
+[ext_resource type="Script" uid="uid://cvps06hxaajpg" path="res://systems/audio/audio_stream_wrapper.gd" id="3_dgrc4"]
+[ext_resource type="AudioStream" uid="uid://kqgf22uwfx0j" path="res://balls/hitHurt.wav" id="4_f1tw0"]
 
 [sub_resource type="Resource" id="Resource_ota7r"]
 resource_local_to_scene = true
@@ -14,6 +16,18 @@ is_killable = true
 is_healable = true
 metadata/_custom_type_script = "uid://1lv2acxyuxrg"
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_imx2v"]
+random_pitch = 1.22
+streams_count = 1
+stream_0/stream = ExtResource("4_f1tw0")
+
+[sub_resource type="Resource" id="Resource_ifebw"]
+script = ExtResource("3_dgrc4")
+stream = SubResource("AudioStreamRandomizer_imx2v")
+volume_db = 0.0
+pitch_scale = 1.0
+metadata/_custom_type_script = "uid://cvps06hxaajpg"
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_dgrc4"]
 radius = 2.0
 
@@ -22,6 +36,7 @@ collision_layer = 4
 collision_mask = 33
 script = ExtResource("1_ht7ih")
 _health = SubResource("Resource_ota7r")
+hit_sound = SubResource("Resource_ifebw")
 metadata/_custom_type_script = "uid://dqe2rhlr6ul7l"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

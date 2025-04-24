@@ -6,7 +6,7 @@ class_name Ball
 
 @export var _health : Health
 @onready var _visible_on_screen_notifier_2D : VisibleOnScreenNotifier2D = NodeUtils.get_child_by_class(self, VisibleOnScreenNotifier2D) as VisibleOnScreenNotifier2D
-
+@export var hit_sound : AudioStreamWrapper
 
 func _ready() -> void:
 	reset_physics_interpolation()
@@ -28,8 +28,9 @@ func _physics_process(delta) -> void:
 			(collision_info.get_collider() as Enemy).take_damage(1)
 
 		_health.take_damage(1)
+		AudioManager.create_and_play_audio(hit_sound)
 		var normal = collision_info.get_normal()
-		velocity = velocity.bounce(normal) + collision_info.get_collider_velocity()
+		velocity = velocity.bounce(normal) + collision_info.get_collider_velocity()*0.5
 		move_and_collide(velocity * delta)
 
 

@@ -17,14 +17,11 @@ func _physics_process(delta: float) -> void:
 	if (_offset < 0 and not $LeftRayCast2D.is_colliding()) or (_offset > 0 and not $RightRayCast2D.is_colliding()):
 		position.x += _offset
 	
-	
-	
 	#if _area_2d.has_overlapping_bodies():
 	#	for body in _area_2d.get_overlapping_bodies():
 	#		if body is Ball:
 	#			_on_ball_hit(body, body.global_position)
-	
-			
+
 			
 func _on_ball_hit(ball: Ball, position: Vector2) -> void:
 	ball.heal(1)
