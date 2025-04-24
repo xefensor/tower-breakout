@@ -1,6 +1,8 @@
-[gd_scene load_steps=30 format=3 uid="uid://bhk4x0ost1vxj"]
+[gd_scene load_steps=33 format=3 uid="uid://bhk4x0ost1vxj"]
 
+[ext_resource type="Script" uid="uid://dfg76t0rxt750" path="res://systems/level.gd" id="1_yfto5"]
 [ext_resource type="PackedScene" uid="uid://cg1nqrd1e7p1d" path="res://paddles/paddle.tscn" id="2_idgjc"]
+[ext_resource type="Script" uid="uid://1lv2acxyuxrg" path="res://systems/health.gd" id="2_wro8d"]
 [ext_resource type="Texture2D" uid="uid://c5ar4brlhu1yh" path="res://levels/Space Background.png" id="2_yfto5"]
 [ext_resource type="PackedScene" uid="uid://4i6twcajef7o" path="res://enemies/truck_01/truck_01.tscn" id="3_pdau6"]
 [ext_resource type="Texture2D" uid="uid://b7qelo73gdtqc" path="res://levels/light.png" id="5_op1qo"]
@@ -11,7 +13,16 @@
 [ext_resource type="Script" uid="uid://xoen60n578bp" path="res://systems/wave_system/wave_objects/wave_enemy.gd" id="10_q27hf"]
 [ext_resource type="PackedScene" uid="uid://c3bi5x7hapkg6" path="res://towers/tower.tscn" id="11_o3776"]
 [ext_resource type="Script" uid="uid://dauubwaumm3cu" path="res://systems/wave_system/wave_objects/wave_timer.gd" id="11_yfto5"]
-[ext_resource type="Script" uid="uid://ben5scgkcfflm" path="res://levels/area_2d.gd" id="12_q27hf"]
+[ext_resource type="Script" uid="uid://ben5scgkcfflm" path="res://levels/border.gd" id="12_q27hf"]
+
+[sub_resource type="Resource" id="Resource_wro8d"]
+script = ExtResource("2_wro8d")
+max_health = 100
+current_health = 100
+is_damageable = true
+is_killable = true
+is_healable = true
+metadata/_custom_type_script = "uid://1lv2acxyuxrg"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ueleu"]
 size = Vector2(760, 20)
@@ -105,9 +116,14 @@ _data = {
 point_count = 9
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o3776"]
-size = Vector2(639, 63)
+size = Vector2(639, 2)
 
-[node name="TestLevel01" type="Node2D"]
+[node name="TestLevel01" type="Node2D" node_paths=PackedStringArray("health_label", "border")]
+script = ExtResource("1_yfto5")
+_health = SubResource("Resource_wro8d")
+health_label = NodePath("LevelUI/Label")
+border = NodePath("Border")
+metadata/_custom_type_script = "uid://dfg76t0rxt750"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -128,7 +144,7 @@ shape = SubResource("RectangleShape2D_ueleu")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Paddle" parent="." instance=ExtResource("2_idgjc")]
-position = Vector2(0, 132)
+position = Vector2(-1, 162)
 speed = 500.0
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
@@ -158,26 +174,34 @@ region_enabled = true
 region_rect = Rect2(-5000, -5000, 10000, 10000)
 
 [node name="Tower" parent="." instance=ExtResource("11_o3776")]
-position = Vector2(-228, 170)
-rotation = 5.35816
+position = Vector2(-254, 141)
+rotation = -0.925025
 
 [node name="Tower2" parent="." instance=ExtResource("11_o3776")]
-position = Vector2(-66, 170)
-rotation = 4.45059
+position = Vector2(-92, 141)
+rotation = -1.8326
 
 [node name="Tower3" parent="." instance=ExtResource("11_o3776")]
-position = Vector2(103, 170)
-rotation = 4.38078
+position = Vector2(77, 141)
+rotation = -1.90241
 
 [node name="Tower4" parent="." instance=ExtResource("11_o3776")]
-position = Vector2(269, 170)
-rotation = 3.9619
+position = Vector2(243, 141)
+rotation = -2.32129
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Border" type="Area2D" parent="."]
+position = Vector2(-3, 55)
 collision_layer = 0
-collision_mask = 8
+collision_mask = 32
+monitorable = false
 script = ExtResource("12_q27hf")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0.5, 147.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border"]
+position = Vector2(4, 124)
 shape = SubResource("RectangleShape2D_o3776")
+
+[node name="LevelUI" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="LevelUI"]
+offset_right = 40.0
+offset_bottom = 23.0

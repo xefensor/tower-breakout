@@ -47,7 +47,6 @@ place_turret={
 2d_physics/layer_1="Default"
 2d_physics/layer_2="Paddle"
 2d_physics/layer_3="Ball"
-2d_physics/layer_4="Ball spawn area"
 2d_physics/layer_6="Enemy"
 
 [physics]

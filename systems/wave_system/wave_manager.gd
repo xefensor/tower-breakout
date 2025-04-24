@@ -2,6 +2,7 @@ class_name	WaveManager
 extends Node2D
 
 signal enemies_cleared
+signal wave_finished
 
 
 @export var paths : Array[Path2D]
@@ -21,7 +22,8 @@ var enemies_alive : int = 0:
 
 	
 func _ready() -> void:
-	start_wave(waves[0])	
+	#start_wave(waves[0])	
+	pass
 	
 
 func start_wave(wave : Wave):
@@ -31,7 +33,7 @@ func start_wave(wave : Wave):
 
 
 func start_next_wave():
-	if _current_wave_index >= waves.size()-1 or not autostart_nextwave:
+	if _current_wave_index >= waves.size()-1:
 		return
 	_current_wave_index += 1
 	await get_tree().create_timer(waves_transition_time, false).timeout
@@ -39,9 +41,12 @@ func start_next_wave():
 
 
 func _on_wave_finished():
+	wave_finished.emit()
 	if waves[_current_wave_index].wave_finished.is_connected(_on_wave_finished):
 		waves[_current_wave_index].wave_finished.disconnect(_on_wave_finished)
-	start_next_wave()
+		
+	if autostart_nextwave:
+		start_next_wave()
 	
 
 func on_enemy_freed():
