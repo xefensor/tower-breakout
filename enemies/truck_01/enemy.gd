@@ -7,6 +7,7 @@ signal died()
 
 @export var _health : Health = Health.new()
 @onready var _health_bar : TextureProgressBar = NodeUtils.get_child_by_class(self, TextureProgressBar) as TextureProgressBar
+@export var explosion_sound : AudioStreamWrapper
 
 
 func _ready() -> void:
@@ -22,6 +23,7 @@ func take_damage(amount: float) -> void:
 
 func _on_death() -> void:
 	died.emit()
+	AudioManager.create_and_play_audio(explosion_sound)
 	queue_free()
 
 

@@ -1,5 +1,6 @@
-#class_name AudioManager
+#class_name AudioManager - Autoload
 extends Node
+
 
 func create_and_play_audio(audio : AudioStreamWrapper):
 	var audio_player = AudioStreamPlayer.new()
