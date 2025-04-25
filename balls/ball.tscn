@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dqe2rhlr6ul7l" path="res://balls/ball.gd" id="1_ht7ih"]
 [ext_resource type="Script" uid="uid://1lv2acxyuxrg" path="res://systems/health.gd" id="2_5j7o3"]
 [ext_resource type="Texture2D" uid="uid://vtd73b733fi" path="res://balls/ball.png" id="2_ota7r"]
-[ext_resource type="Script" uid="uid://cvps06hxaajpg" path="res://systems/audio/audio_stream_wrapper.gd" id="3_dgrc4"]
+[ext_resource type="Script" uid="uid://cvps06hxaajpg" path="res://systems/effects/audio_stream_wrapper.gd" id="3_dgrc4"]
 [ext_resource type="AudioStream" uid="uid://kqgf22uwfx0j" path="res://balls/bounce.wav" id="4_f1tw0"]
 
 [sub_resource type="Resource" id="Resource_ota7r"]

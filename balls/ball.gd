@@ -28,7 +28,7 @@ func _physics_process(delta) -> void:
 			(collision_info.get_collider() as Enemy).take_damage(1)
 
 		_health.take_damage(1)
-		AudioManager.create_and_play_audio(bounce_sound)
+		EffectManager.create_and_play_audio(bounce_sound)
 		var normal = collision_info.get_normal()
 		velocity = velocity.bounce(normal) + collision_info.get_collider_velocity()*0.5
 		move_and_collide(velocity * delta)

@@ -4,11 +4,13 @@ class_name Paddle
 
 @export var _speed : float = 5
 @onready var _area_2d : Area2D = NodeUtils.get_child_by_class(self, Area2D)
+@export var health : Health
 @export var ball_hit_audio_player : AudioStreamPlayer
 
 
 func _ready() -> void:
 	_area_2d.body_entered.connect(_on_area_2d_body_entered)
+	health.health_changed.connect(_on_health_changed)
 
 
 func _physics_process(delta: float) -> void:
@@ -32,3 +34,13 @@ func _on_ball_hit(ball: Ball, position: Vector2) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Ball:
 		_on_ball_hit(body, body.global_position)
+	
+	if body is Enemy:
+		var _enemy = body as Enemy
+		health.take_damage(_enemy.paddle_damage)
+		_enemy._on_death()
+	
+	
+func _on_health_changed(new_health : int):
+	scale.x = new_health * 0.1
+	
