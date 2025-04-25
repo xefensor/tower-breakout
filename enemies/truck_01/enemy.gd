@@ -17,6 +17,8 @@ func _ready() -> void:
 	
 	_health.died.connect(_on_death)
 	_health.health_changed.connect(_on_health_changed)
+	
+	_health_bar.value = 100 /_health.max_health * _health.current_health
 
 
 func take_damage(amount: float) -> void:
