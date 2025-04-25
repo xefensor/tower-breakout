@@ -40,7 +40,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Enemy:
 		var _enemy = body as Enemy
 		health.take_damage(_enemy.paddle_damage)
-		_enemy._on_death()
+		_enemy.die()
 	
 	
 func _on_health_changed(new_health: int) -> void:

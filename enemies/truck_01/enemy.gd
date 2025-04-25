@@ -25,6 +25,11 @@ func take_damage(amount: float) -> void:
 	_health.take_damage(amount)
 
 
+
+func die():
+	_health.current_health = 0
+
+
 func _on_death() -> void:
 	died.emit()
 	EffectManager.create_and_play_audio(explosion_sound)
