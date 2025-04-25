@@ -8,12 +8,12 @@ class_name Ball
 @onready var _visible_on_screen_notifier_2D : VisibleOnScreenNotifier2D = NodeUtils.get_child_by_class(self, VisibleOnScreenNotifier2D) as VisibleOnScreenNotifier2D
 @export var bounce_sound : AudioStreamWrapper
 
+
 func _ready() -> void:
 	reset_physics_interpolation()
 	
 	_visible_on_screen_notifier_2D.screen_exited.connect(_on_death)
 	_health.died.connect(queue_free)
-	#velocity = Vector2.from_angle(rotation) * speed
 
 
 func _physics_process(delta) -> void:

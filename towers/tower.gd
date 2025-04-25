@@ -1,6 +1,7 @@
 class_name Tower
 extends Node2D
 
+
 @onready var _timer : Timer = NodeUtils.get_child_by_class(self, Timer)
 @export var ball : PackedScene
 @export var spawn_ball_marker : Marker2D

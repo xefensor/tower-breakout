@@ -1,6 +1,7 @@
 class_name Health
 extends Resource
 
+
 signal health_changed(new_health)
 signal died()
 

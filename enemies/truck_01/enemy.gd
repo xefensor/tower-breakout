@@ -4,7 +4,6 @@ extends AnimatableBody2D
 
 signal died()
 
-
 @export var _health : Health = Health.new()
 @export var paddle_damage : int = 1
 @onready var _health_bar : TextureProgressBar = NodeUtils.get_child_by_class(self, TextureProgressBar) as TextureProgressBar
@@ -32,5 +31,5 @@ func _on_death() -> void:
 	queue_free()
 
 
-func _on_health_changed(value:int):
-	_health_bar.value = 100 /_health.max_health * value
+func _on_health_changed(new_health : int):
+	_health_bar.value = 100 /_health.max_health * new_health

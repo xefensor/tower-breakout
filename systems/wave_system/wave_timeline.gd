@@ -4,7 +4,6 @@ extends Resource
 
 signal timeline_finished
 
-
 @export var timeline_objects : Array[WaveObject]
 var objects_index = 0:
 	set(new_val):

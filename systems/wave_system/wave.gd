@@ -5,7 +5,6 @@ extends Resource
 signal wave_finished
 signal timelines_finished
 
-
 @export var finish_condition : WaveFinishCondition = EnemiesClearedCondition.new()
 @export var wave_timelines : Array[WaveTimeline]
 var finished_timelines : int = 0:

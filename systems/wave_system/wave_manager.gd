@@ -4,7 +4,6 @@ extends Node2D
 signal enemies_cleared
 signal wave_finished
 
-
 @export var paths : Array[Path2D]
 @export var waves : Array[Wave]
 @export var autostart_nextwave : bool = true
