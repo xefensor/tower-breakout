@@ -5,6 +5,7 @@ class_name Paddle
 @export var _speed : float = 5
 @onready var _area_2d : Area2D = NodeUtils.get_child_by_class(self, Area2D)
 @export var health : Health
+@onready var default_health : int = health.current_health
 @export var ball_hit_audio_player : AudioStreamPlayer
 
 
@@ -42,5 +43,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	
 	
 func _on_health_changed(new_health : int):
-	scale.x = new_health * 0.1
+	scale.x = default_health / 100.0 * new_health
 	
