@@ -16,7 +16,7 @@
 resource_local_to_scene = true
 script = ExtResource("2_vqlok")
 max_health = 10
-current_health = 10
+current_health = 5
 is_damageable = true
 is_killable = true
 is_healable = true

@@ -26,7 +26,7 @@ func take_damage(amount: float) -> void:
 func _on_death() -> void:
 	died.emit()
 	EffectManager.create_and_play_audio(explosion_sound)
-	EffectManager.create_and_play_animatable_sprite(sprite_frames, "default", self.global_position)
+	EffectManager.create_and_play_animatable_sprite(sprite_frames, "default", self.global_position, 5)
 	queue_free()
 
 
