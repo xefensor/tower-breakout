@@ -2,7 +2,7 @@ class_name Health
 extends Resource
 
 
-signal health_changed(new_health)
+signal health_changed(new_health: int)
 signal died()
 
 @export var max_health: int = 10
@@ -17,11 +17,11 @@ signal died()
 @export var is_healable: bool = true
 
 
-func take_damage(amount: int):
+func take_damage(amount: int) -> void:
 	if is_damageable:
 		current_health = max(current_health - amount, 0)
 
 
-func heal(amount: int):
+func heal(amount: int) -> void:
 	if is_healable:
 		current_health = min(current_health + amount, max_health)

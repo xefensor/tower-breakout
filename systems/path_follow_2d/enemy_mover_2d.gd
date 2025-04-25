@@ -2,7 +2,7 @@ class_name EnemyMover2D
 extends PathMover2D
 
 
-@onready var _enemy : Enemy = NodeUtils.get_child_by_class(self, Enemy) as Enemy
+@onready var _enemy: Enemy = NodeUtils.get_child_by_class(self, Enemy)
 
 
 func _ready() -> void:
@@ -16,6 +16,6 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 
 
-func _on_died():
+func _on_died() -> void:
 	freed.emit()
 	queue_free()

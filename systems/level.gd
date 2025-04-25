@@ -2,11 +2,11 @@ class_name Level
 extends Node2D
 
 
-@export var _health : Health
-@export var health_label : Label
-@export var border : Area2D
+@export var _health: Health
+@export var health_label: Label
+@export var border: Area2D
 
-@onready var _wave_manager : WaveManager = NodeUtils.get_child_by_class(self, WaveManager)
+@onready var _wave_manager: WaveManager = NodeUtils.get_child_by_class(self, WaveManager)
 
 
 func _ready() -> void:
@@ -19,9 +19,9 @@ func _ready() -> void:
 	
 	
 
-func _on_crossed_border(damage : int):
+func _on_crossed_border(damage: int) -> void:
 	_health.take_damage(damage)
 
 
-func _health_changed(new_health : int):
+func _health_changed(new_health: int) -> void:
 	health_label.text = str(new_health)

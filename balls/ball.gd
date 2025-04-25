@@ -2,11 +2,11 @@ extends CharacterBody2D
 class_name Ball
 
 
-@export var start_speed : float = 200
+@export var start_speed: float = 200
+@export var _health: Health
+@export var bounce_sound: AudioStreamWrapper
 
-@export var _health : Health
-@onready var _visible_on_screen_notifier_2D : VisibleOnScreenNotifier2D = NodeUtils.get_child_by_class(self, VisibleOnScreenNotifier2D) as VisibleOnScreenNotifier2D
-@export var bounce_sound : AudioStreamWrapper
+@onready var _visible_on_screen_notifier_2D: VisibleOnScreenNotifier2D = NodeUtils.get_child_by_class(self, VisibleOnScreenNotifier2D)
 
 
 func _ready() -> void:

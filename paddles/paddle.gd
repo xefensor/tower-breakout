@@ -2,11 +2,12 @@ extends AnimatableBody2D
 class_name Paddle
 
 
-@export var _speed : float = 5
-@onready var _area_2d : Area2D = NodeUtils.get_child_by_class(self, Area2D)
-@export var health : Health
-@onready var default_health : int = health.current_health
-@export var ball_hit_audio_player : AudioStreamPlayer
+@export var _speed: float = 5
+@export var health: Health
+@export var ball_hit_audio_player: AudioStreamPlayer
+
+@onready var _area_2d: Area2D = NodeUtils.get_child_by_class(self, Area2D)
+@onready var default_health: int = health.current_health
 
 
 func _ready() -> void:
@@ -42,6 +43,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		_enemy._on_death()
 	
 	
-func _on_health_changed(new_health : int):
+func _on_health_changed(new_health: int) -> void:
 	scale.x = default_health / 100.0 * new_health
 	

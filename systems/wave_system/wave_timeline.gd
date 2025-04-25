@@ -4,24 +4,25 @@ extends Resource
 
 signal timeline_finished
 
-@export var timeline_objects : Array[WaveObject]
-var objects_index = 0:
+@export var timeline_objects: Array[WaveObject]
+
+var objects_index: int = 0:
 	set(new_val):
 		objects_index = clampi(new_val, 0, timeline_objects.size()-1)
 		
-var wave_manager : WaveManager
+var wave_manager: WaveManager
 
 
-func start():
+func start() -> void:
 	start_object(timeline_objects[0])
 
 
-func start_object(object : WaveObject):
+func start_object(object: WaveObject) -> void:
 	object.object_finished.connect(_on_object_finished)
 	object.start(wave_manager)
 
 
-func start_next_object():
+func start_next_object() -> void:
 	if objects_index >= timeline_objects.size()-1:
 		print("timeline finished")
 		timeline_finished.emit()
@@ -30,6 +31,6 @@ func start_next_object():
 	start_object(timeline_objects[objects_index])
 
 
-func _on_object_finished():
+func _on_object_finished() -> void:
 	timeline_objects[objects_index].object_finished.disconnect(_on_object_finished)
 	start_next_object()

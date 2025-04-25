@@ -6,9 +6,9 @@ signal end_reached
 signal freed
 
 
-@export var free_on_end : bool = true
+@export var free_on_end: bool = true
 @export var progression_speed: float = 10
-@export var is_moving : bool = true
+@export var is_moving: bool = true
 
 
 func _ready() -> void:
@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 		end_reached.emit()
 
 
-func _on_end_reached():
+func _on_end_reached() -> void:
 	if free_on_end:
 		freed.emit()
 		queue_free()

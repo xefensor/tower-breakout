@@ -4,11 +4,12 @@ extends AnimatableBody2D
 
 signal died()
 
-@export var _health : Health = Health.new()
-@export var paddle_damage : int = 1
-@onready var _health_bar : TextureProgressBar = NodeUtils.get_child_by_class(self, TextureProgressBar) as TextureProgressBar
-@export var explosion_sound : AudioStreamWrapper
-@export var sprite_frames : SpriteFrames
+@export var _health: Health = Health.new()
+@export var paddle_damage: int = 1
+@export var explosion_sound: AudioStreamWrapper
+@export var sprite_frames: SpriteFrames
+
+@onready var _health_bar: TextureProgressBar = NodeUtils.get_child_by_class(self, TextureProgressBar)
 
 
 func _ready() -> void:
@@ -31,5 +32,5 @@ func _on_death() -> void:
 	queue_free()
 
 
-func _on_health_changed(new_health : int):
+func _on_health_changed(new_health : int) -> void:
 	_health_bar.value = 100 /_health.max_health * new_health
