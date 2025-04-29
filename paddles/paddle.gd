@@ -1,13 +1,14 @@
-extends AnimatableBody2D
 class_name Paddle
+extends AnimatableBody2D
 
 
 @export var _speed: float = 5
 @export var health: Health
 @export var ball_hit_audio_player: AudioStreamPlayer
 
-@onready var _area_2d: Area2D = NodeUtils.get_child_by_class(self, Area2D)
 @onready var default_health: int = health.current_health
+@onready var _area_2d: Area2D = NodeUtils.get_child_by_class(self, Area2D)
+
 
 
 func _ready() -> void:
