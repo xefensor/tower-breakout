@@ -6,6 +6,7 @@ func one_shot_play(parent_node: Node = self):
 	var sprite = duplicate()
 	sprite.animation_finished.connect(sprite.queue_free)
 	sprite.global_position = global_position
-	parent_node.add_child(sprite)
 	sprite.visible = true
+	parent_node.add_child(sprite)
+	sprite.reset_physics_interpolation()
 	sprite.play()
