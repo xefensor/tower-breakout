@@ -8,7 +8,7 @@ signal freed
 
 @export var free_on_end: bool = true
 @export var progression_speed: float = 10
-@export var is_moving: bool = true
+@export var moving: bool = true
 
 
 func _ready() -> void:
@@ -17,7 +17,7 @@ func _ready() -> void:
 	
 
 func _physics_process(delta: float) -> void:
-	if is_moving:
+	if moving:
 		progress += progression_speed * delta
 
 	if progress_ratio >= 1:

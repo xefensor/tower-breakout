@@ -4,7 +4,7 @@ class_name Ball
 
 @export var start_speed: float = 200
 @export var _health: Health
-@export var bounce_sound: AudioStreamWrapper
+@export var bounce_audio_player: OneShotAudioPlayer
 
 @onready var _visible_on_screen_notifier_2D: VisibleOnScreenNotifier2D = NodeUtils.get_child_by_class(self, VisibleOnScreenNotifier2D)
 
@@ -28,7 +28,7 @@ func _physics_process(delta) -> void:
 			(collision_info.get_collider() as Enemy).take_damage(1)
 
 		_health.take_damage(1)
-		EffectManager.create_and_play_audio(bounce_sound)
+		bounce_audio_player.one_shot_play(Level.current_level)
 		var normal = collision_info.get_normal()
 		velocity = velocity.bounce(normal) + collision_info.get_collider_velocity()*0.5
 		move_and_collide(velocity * delta)

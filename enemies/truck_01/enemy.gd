@@ -6,8 +6,8 @@ signal died()
 
 @export var _health: Health = Health.new()
 @export var paddle_damage: int = 1
-@export var explosion_sound: AudioStreamWrapper
-@export var sprite_frames: SpriteFrames
+@export var explosion_audio_player: OneShotAudioPlayer
+@export var explosion_sprite: OneShotAnimatedSprite2D
 
 @onready var _health_bar: TextureProgressBar = NodeUtils.get_child_by_class(self, TextureProgressBar)
 
@@ -25,15 +25,14 @@ func take_damage(amount: float) -> void:
 	_health.take_damage(amount)
 
 
-
 func die():
 	_health.current_health = 0
 
 
 func _on_death() -> void:
 	died.emit()
-	EffectManager.create_and_play_audio(explosion_sound)
-	EffectManager.create_and_play_animatable_sprite(sprite_frames, "default", self.global_position, 5)
+	explosion_audio_player.one_shot_play(Level.current_level)
+	explosion_sprite.one_shot_play(Level.current_level)
 	queue_free()
 
 

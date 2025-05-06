@@ -10,18 +10,18 @@ signal died()
 	set(new_health):
 		current_health = new_health
 		health_changed.emit(current_health)
-		if current_health <= 0 and is_killable:
+		if current_health <= 0 and killable:
 			died.emit()
-@export var is_damageable: bool = true
-@export var is_killable: bool = true
-@export var is_healable: bool = true
+@export var damageable: bool = true
+@export var killable: bool = true
+@export var healable: bool = true
 
 
 func take_damage(amount: int) -> void:
-	if is_damageable:
+	if damageable:
 		current_health = max(current_health - amount, 0)
 
 
 func heal(amount: int) -> void:
-	if is_healable:
+	if healable:
 		current_health = min(current_health + amount, max_health)

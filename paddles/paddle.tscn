@@ -9,9 +9,9 @@
 script = ExtResource("2_m348f")
 max_health = 10
 current_health = 10
-is_damageable = true
-is_killable = true
-is_healable = true
+damageable = true
+killable = true
+healable = true
 metadata/_custom_type_script = "uid://1lv2acxyuxrg"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w3xnb"]

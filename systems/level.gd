@@ -6,6 +6,8 @@ extends Node2D
 @export var health_label: Label
 @export var border: Area2D
 
+static var current_level : Node
+
 @onready var _wave_manager: WaveManager = NodeUtils.get_child_by_class(self, WaveManager)
 
 
@@ -17,7 +19,8 @@ func _ready() -> void:
 	
 	_wave_manager.start_wave(_wave_manager.waves[0])
 	
-	
+	current_level = self
+
 
 func _on_crossed_border(damage: int) -> void:
 	_health.take_damage(damage)

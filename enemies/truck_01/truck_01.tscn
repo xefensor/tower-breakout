@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://4i6twcajef7o"]
+[gd_scene load_steps=22 format=3 uid="uid://4i6twcajef7o"]
 
 [ext_resource type="Script" uid="uid://c6x0vlshg7kfq" path="res://systems/path_follow_2d/enemy_mover_2d.gd" id="1_opr3h"]
 [ext_resource type="Script" uid="uid://5uy0prij3ijx" path="res://enemies/truck_01/enemy.gd" id="2_opr3h"]
@@ -6,33 +6,22 @@
 [ext_resource type="Texture2D" uid="uid://cmm03kanojvf" path="res://enemies/truck_01/sprites/spaceship.png" id="2_we41i"]
 [ext_resource type="Texture2D" uid="uid://cnjfe5o72rcve" path="res://enemies/truck_01/sprites/spaceship_n.png" id="3_rgy54"]
 [ext_resource type="Texture2D" uid="uid://pj7150qk3id3" path="res://enemies/truck_01/sprites/spaceship_s.png" id="4_3itgp"]
-[ext_resource type="Script" uid="uid://cvps06hxaajpg" path="res://systems/effects/audio_stream_wrapper.gd" id="4_dbbjs"]
 [ext_resource type="Texture2D" uid="uid://ud1y8kso1twb" path="res://enemies/truck_01/sprites/hp_bar.png" id="5_iuxom"]
 [ext_resource type="AudioStream" uid="uid://cgog8n67653br" path="res://enemies/truck_01/explosion.wav" id="5_xft4a"]
 [ext_resource type="Texture2D" uid="uid://dbtwt2yode478" path="res://enemies/truck_01/sprites/hp_bar_n.png" id="6_opr3h"]
-[ext_resource type="SpriteFrames" uid="uid://bxg3gvtlfal7w" path="res://assets/explosion.tres" id="6_xft4a"]
+[ext_resource type="Script" uid="uid://dxigfhjtcdruc" path="res://systems/effects/one_shot_audio_player.gd" id="12_b8tc5"]
+[ext_resource type="Texture2D" uid="uid://dgsbmjosxvuhx" path="res://assets/Red Effect Bullet Impact Explosion 32x32.png" id="12_sl7rh"]
+[ext_resource type="Script" uid="uid://cn0y0ecxoqg62" path="res://systems/effects/one_shot_animated_sprite_2d.gd" id="13_si0nv"]
 
 [sub_resource type="Resource" id="Resource_opr3h"]
 resource_local_to_scene = true
 script = ExtResource("2_vqlok")
 max_health = 5
 current_health = 5
-is_damageable = true
-is_killable = true
-is_healable = true
+damageable = true
+killable = true
+healable = true
 metadata/_custom_type_script = "uid://1lv2acxyuxrg"
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_b8tc5"]
-random_pitch = 1.29
-streams_count = 1
-stream_0/stream = ExtResource("5_xft4a")
-
-[sub_resource type="Resource" id="Resource_sl7rh"]
-script = ExtResource("4_dbbjs")
-stream = SubResource("AudioStreamRandomizer_b8tc5")
-volume_db = 0.0
-pitch_scale = 1.0
-metadata/_custom_type_script = "uid://cvps06hxaajpg"
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_iuxom"]
 diffuse_texture = ExtResource("2_we41i")
@@ -47,20 +36,57 @@ normal_texture = ExtResource("6_opr3h")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2yru0"]
 size = Vector2(32, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_576lq"]
+atlas = ExtResource("12_sl7rh")
+region = Rect2(512, 384, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81pqk"]
+atlas = ExtResource("12_sl7rh")
+region = Rect2(544, 384, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_702ac"]
+atlas = ExtResource("12_sl7rh")
+region = Rect2(576, 384, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhn01"]
+atlas = ExtResource("12_sl7rh")
+region = Rect2(608, 384, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kf7hn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_576lq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81pqk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_702ac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhn01")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="EnemyMover2D" type="PathFollow2D"]
 loop = false
 script = ExtResource("1_opr3h")
+free_on_end = null
 progression_speed = 50.0
 metadata/_custom_type_script = "uid://c6x0vlshg7kfq"
 
-[node name="Enemy" type="AnimatableBody2D" parent="."]
+[node name="Enemy" type="AnimatableBody2D" parent="." node_paths=PackedStringArray("explosion_audio_player", "explosion_sprite")]
 collision_layer = 32
 collision_mask = 4
 sync_to_physics = false
 script = ExtResource("2_opr3h")
 _health = SubResource("Resource_opr3h")
-explosion_sound = SubResource("Resource_sl7rh")
-sprite_frames = ExtResource("6_xft4a")
+explosion_audio_player = NodePath("OneShotAudioPlayer")
+explosion_sprite = NodePath("OneShotAnimatedSprite2D")
 metadata/_custom_type_script = "uid://5uy0prij3ijx"
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy"]
@@ -82,3 +108,15 @@ texture_progress = SubResource("CanvasTexture_h743x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
 shape = SubResource("RectangleShape2D_2yru0")
+
+[node name="OneShotAudioPlayer" type="AudioStreamPlayer" parent="Enemy"]
+stream = ExtResource("5_xft4a")
+script = ExtResource("12_b8tc5")
+metadata/_custom_type_script = "uid://dxigfhjtcdruc"
+
+[node name="OneShotAnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy"]
+visible = false
+z_index = 10
+sprite_frames = SubResource("SpriteFrames_kf7hn")
+script = ExtResource("13_si0nv")
+metadata/_custom_type_script = "uid://cn0y0ecxoqg62"
