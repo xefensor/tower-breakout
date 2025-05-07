@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://4i6twcajef7o"]
+[gd_scene load_steps=23 format=3 uid="uid://4i6twcajef7o"]
 
 [ext_resource type="Script" uid="uid://c6x0vlshg7kfq" path="res://systems/path_follow_2d/enemy_mover_2d.gd" id="1_opr3h"]
 [ext_resource type="Script" uid="uid://5uy0prij3ijx" path="res://enemies/truck_01/enemy.gd" id="2_opr3h"]
@@ -35,6 +35,11 @@ normal_texture = ExtResource("6_opr3h")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2yru0"]
 size = Vector2(32, 16)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_b8tc5"]
+random_pitch = 1.3
+streams_count = 1
+stream_0/stream = ExtResource("5_xft4a")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_576lq"]
 atlas = ExtResource("12_sl7rh")
@@ -110,7 +115,7 @@ texture_progress = SubResource("CanvasTexture_h743x")
 shape = SubResource("RectangleShape2D_2yru0")
 
 [node name="OneShotAudioPlayer" type="AudioStreamPlayer" parent="Enemy"]
-stream = ExtResource("5_xft4a")
+stream = SubResource("AudioStreamRandomizer_b8tc5")
 script = ExtResource("12_b8tc5")
 metadata/_custom_type_script = "uid://dxigfhjtcdruc"
 

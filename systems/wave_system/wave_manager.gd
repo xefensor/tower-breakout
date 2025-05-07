@@ -1,5 +1,5 @@
 class_name	WaveManager
-extends Node2D
+extends Node
 
 signal enemies_cleared
 signal wave_finished

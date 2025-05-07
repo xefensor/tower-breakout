@@ -1,12 +1,12 @@
 class_name Level
-extends Node2D
+extends Node
 
+
+static var current_level : Node
 
 @export var _health: Health
 @export var health_label: Label
 @export var border: Area2D
-
-static var current_level : Node
 
 @onready var _wave_manager: WaveManager = NodeUtils.get_child_by_class(self, WaveManager)
 

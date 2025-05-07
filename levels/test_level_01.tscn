@@ -119,7 +119,7 @@ point_count = 9
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o3776"]
 size = Vector2(639, 2)
 
-[node name="TestLevel01" type="Node2D" node_paths=PackedStringArray("health_label", "border")]
+[node name="TestLevel01" type="Node" node_paths=PackedStringArray("health_label", "border")]
 script = ExtResource("1_yfto5")
 _health = SubResource("Resource_wro8d")
 health_label = NodePath("LevelUI/Label")
@@ -158,7 +158,7 @@ range_item_cull_mask = 2
 texture = ExtResource("5_op1qo")
 texture_scale = 2.22
 
-[node name="WaveManager" type="Node2D" parent="." node_paths=PackedStringArray("paths")]
+[node name="WaveManager" type="Node" parent="." node_paths=PackedStringArray("paths")]
 script = ExtResource("6_tulbc")
 paths = [NodePath("Path2D")]
 waves = Array[ExtResource("7_s38kx")]([SubResource("Resource_5a3re"), SubResource("Resource_xqwrv"), SubResource("Resource_l3xee")])
