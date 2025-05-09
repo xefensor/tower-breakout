@@ -80,7 +80,6 @@ animations = [{
 [node name="EnemyMover2D" type="PathFollow2D"]
 loop = false
 script = ExtResource("1_opr3h")
-free_on_end = null
 progression_speed = 50.0
 metadata/_custom_type_script = "uid://c6x0vlshg7kfq"
 

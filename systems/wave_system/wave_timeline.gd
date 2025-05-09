@@ -9,8 +9,6 @@ signal timeline_finished
 var objects_index: int = 0:
 	set(new_val):
 		objects_index = clampi(new_val, 0, timeline_objects.size()-1)
-		
-var wave_manager: WaveManager
 
 
 func start() -> void:
@@ -19,7 +17,7 @@ func start() -> void:
 
 func start_object(object: WaveObject) -> void:
 	object.object_finished.connect(_on_object_finished)
-	object.start(wave_manager)
+	object.start()
 
 
 func start_next_object() -> void:

@@ -10,13 +10,10 @@ extends WaveObject
 var enemy_index = 0
 
 
-func start(manager: WaveManager) -> void:
+func start() -> void:
 	for i in amount:
 		var enemy = enemy.instantiate()
-		if enemy.has_signal("freed"):
-			enemy.freed.connect(manager.on_enemy_freed)
-		manager.paths[path].add_child(enemy)
-		manager.enemies_alive += 1
-		await manager.get_tree().create_timer(delay, false).timeout
+		Level.instance.paths[path].add_child(enemy)
+		await Level.instance.get_tree().create_timer(delay, false).timeout
 	
 	object_finished.emit()

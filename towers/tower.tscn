@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3bi5x7hapkg6"]
+[gd_scene load_steps=5 format=3 uid="uid://c3bi5x7hapkg6"]
 
 [ext_resource type="Script" uid="uid://detnputo7h1qo" path="res://towers/tower.gd" id="1_vedim"]
 [ext_resource type="PackedScene" uid="uid://c4ko46xi0u27d" path="res://balls/ball.tscn" id="2_stebd"]
 [ext_resource type="Texture2D" uid="uid://dwbvs1pqv5umy" path="res://towers/tower.png" id="3_b4iyp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b4iyp"]
+size = Vector2(16, 16)
 
 [node name="Tower" type="Node2D" node_paths=PackedStringArray("spawn_ball_marker")]
 script = ExtResource("1_vedim")
@@ -19,3 +22,10 @@ position = Vector2(9, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_b4iyp")
+
+[node name="Area2D" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_b4iyp")

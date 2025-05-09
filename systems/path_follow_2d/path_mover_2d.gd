@@ -3,7 +3,6 @@ extends PathFollow2D
 
 
 signal end_reached
-signal freed
 
 
 @export var free_on_end: bool = true
@@ -26,5 +25,4 @@ func _physics_process(delta: float) -> void:
 
 func _on_end_reached() -> void:
 	if free_on_end:
-		freed.emit()
 		queue_free()

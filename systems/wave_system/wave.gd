@@ -15,8 +15,6 @@ var finished_timelines: int = 0:
 			for timeline in wave_timelines:
 				timeline.timeline_finished.disconnect(_on_timeline_finished)
 			timelines_finished.emit()
-			
-var wave_manager: WaveManager
 
 
 func start() -> void:
@@ -28,7 +26,6 @@ func start() -> void:
 
 func start_timelines() -> void:
 	for timeline in wave_timelines:
-		timeline.wave_manager = wave_manager
 		timeline.timeline_finished.connect(_on_timeline_finished)
 		timeline.start()
 

@@ -1,10 +1,9 @@
-class_name	WaveManager
-extends Node
+class_name	WaveController
+extends Resource
 
-signal enemies_cleared
+
 signal wave_finished
 
-@export var paths: Array[Path2D]
 @export var waves: Array[Wave]
 @export var autostart_nextwave: bool = true
 @export var waves_transition_time: float = 5.0
@@ -13,20 +12,13 @@ var _current_wave_index: int = 0:
 	set(new_val):
 		_current_wave_index = clampi(new_val, 0, waves.size()-1)
 
-var enemies_alive: int = 0:
-	set(new_val):
-		enemies_alive = maxi(0, new_val)
-		if enemies_alive == 0:
-			enemies_cleared.emit()
 
-	
 func _ready() -> void:
-	#start_wave(waves[0])	
+	#start_wave(waves[0])
 	pass
 	
 
 func start_wave(wave: Wave) -> void:
-	wave.wave_manager = self
 	wave.wave_finished.connect(_on_wave_finished)
 	wave.start()
 
@@ -35,7 +27,7 @@ func start_next_wave() -> void:
 	if _current_wave_index >= waves.size()-1:
 		return
 	_current_wave_index += 1
-	await get_tree().create_timer(waves_transition_time, false).timeout
+	await Level.instance.get_tree().create_timer(waves_transition_time, false).timeout
 	start_wave(waves[_current_wave_index])
 
 
@@ -46,7 +38,3 @@ func _on_wave_finished() -> void:
 		
 	if autostart_nextwave:
 		start_next_wave()
-	
-
-func on_enemy_freed() -> void:
-	enemies_alive -= 1

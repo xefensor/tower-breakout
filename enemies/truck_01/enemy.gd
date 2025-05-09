@@ -12,6 +12,11 @@ signal died()
 @onready var _health_bar: TextureProgressBar = NodeUtils.get_child_by_class(self, TextureProgressBar)
 
 
+func _init() -> void:
+	tree_entered.connect(Level.instance.on_enemy_tree_entered)
+	tree_exited.connect(Level.instance.on_enemy_tree_exited)
+	
+
 func _ready() -> void:
 	reset_physics_interpolation()
 	
@@ -31,8 +36,8 @@ func die():
 
 func _on_death() -> void:
 	died.emit()
-	explosion_audio_player.one_shot_play(Level.current_level)
-	explosion_sprite.one_shot_play(Level.current_level)
+	explosion_audio_player.one_shot_play(Level.instance)
+	explosion_sprite.one_shot_play(Level.instance)
 	queue_free()
 
 

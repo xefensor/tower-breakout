@@ -5,5 +5,5 @@ extends Resource
 signal object_finished
 
 
-func start(manager: WaveManager) -> void:
+func start() -> void:
 	object_finished.emit()
