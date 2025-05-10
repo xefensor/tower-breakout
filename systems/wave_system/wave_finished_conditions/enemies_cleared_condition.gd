@@ -10,17 +10,15 @@ func setup(_wave: Wave) -> void:
 	wave.timelines_finished.connect(_on_timelines_finished)
 
 
-func _on_timelines_finished() -> void:
-	Level.instance.enemies_cleared.connect(check)
-	check()
-
-
 func check() -> void:
-	if Level.instance.instance.enemies_alive == 0:
-		_on_condition_met()
+	if Level.instance.enemies_alive == 0:
+
+		wave.timelines_finished.disconnect(_on_timelines_finished)
+		Level.instance.enemies_cleared.disconnect(check)
+		
 		condition_met.emit()
 
 
-func _on_condition_met() -> void:
-	wave.timelines_finished.disconnect(_on_timelines_finished)
-	Level.instance.enemies_cleared.disconnect(check)
+func _on_timelines_finished() -> void:
+	Level.instance.enemies_cleared.connect(check)
+	check()

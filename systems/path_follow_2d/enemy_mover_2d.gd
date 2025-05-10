@@ -9,12 +9,8 @@ func _ready() -> void:
 	super._ready()
 	
 	if _enemy:
-		_enemy.died.connect(_on_died)
+		_enemy.tree_exited.connect(queue_free)
 
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
-
-
-func _on_died() -> void:
-	queue_free()

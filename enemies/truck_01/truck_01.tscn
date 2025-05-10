@@ -1,8 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://4i6twcajef7o"]
+[gd_scene load_steps=21 format=3 uid="uid://4i6twcajef7o"]
 
 [ext_resource type="Script" uid="uid://c6x0vlshg7kfq" path="res://systems/path_follow_2d/enemy_mover_2d.gd" id="1_opr3h"]
 [ext_resource type="Script" uid="uid://5uy0prij3ijx" path="res://enemies/truck_01/enemy.gd" id="2_opr3h"]
-[ext_resource type="Script" uid="uid://1lv2acxyuxrg" path="res://systems/health.gd" id="2_vqlok"]
 [ext_resource type="Texture2D" uid="uid://cmm03kanojvf" path="res://enemies/truck_01/sprites/spaceship.png" id="2_we41i"]
 [ext_resource type="Texture2D" uid="uid://cnjfe5o72rcve" path="res://enemies/truck_01/sprites/spaceship_n.png" id="3_rgy54"]
 [ext_resource type="Texture2D" uid="uid://pj7150qk3id3" path="res://enemies/truck_01/sprites/spaceship_s.png" id="4_3itgp"]
@@ -12,16 +11,6 @@
 [ext_resource type="Script" uid="uid://dxigfhjtcdruc" path="res://systems/effects/one_shot_audio_player.gd" id="12_b8tc5"]
 [ext_resource type="Texture2D" uid="uid://dgsbmjosxvuhx" path="res://assets/Red Effect Bullet Impact Explosion 32x32.png" id="12_sl7rh"]
 [ext_resource type="Script" uid="uid://cn0y0ecxoqg62" path="res://systems/effects/one_shot_animated_sprite_2d.gd" id="13_si0nv"]
-
-[sub_resource type="Resource" id="Resource_opr3h"]
-resource_local_to_scene = true
-script = ExtResource("2_vqlok")
-max_health = 5
-current_health = 5
-damageable = true
-killable = true
-healable = true
-metadata/_custom_type_script = "uid://1lv2acxyuxrg"
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_iuxom"]
 diffuse_texture = ExtResource("2_we41i")
@@ -88,7 +77,6 @@ collision_layer = 32
 collision_mask = 4
 sync_to_physics = false
 script = ExtResource("2_opr3h")
-_health = SubResource("Resource_opr3h")
 explosion_audio_player = NodePath("OneShotAudioPlayer")
 explosion_sprite = NodePath("OneShotAnimatedSprite2D")
 metadata/_custom_type_script = "uid://5uy0prij3ijx"

@@ -22,6 +22,7 @@ func _physics_process(delta) -> void:
 	var collision_info = move_and_collide(velocity * delta)
 	if collision_info:
 		if collision_info.get_collider() is Paddle:
+			(collision_info.get_collider() as Paddle).ball_hit(self)
 			return
 
 		if collision_info.get_collider() is Enemy:

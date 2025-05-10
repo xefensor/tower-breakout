@@ -15,6 +15,14 @@ func _ready() -> void:
 	_area_2d.input_event.connect(_on_area_2d_input_event)
 
 
+func start() -> void:
+	_timer.start()
+	
+	
+func stop() -> void:
+	_timer.stop()
+
+
 func _on_timer_timeout() -> void:
 	var _inst: Ball = ball.instantiate()
 	_inst.global_position = spawn_ball_marker.global_position
@@ -22,7 +30,6 @@ func _on_timer_timeout() -> void:
 	_inst.velocity = Vector2.from_angle(rotation) * (_inst.start_speed * launch_power)
 	
 
-func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int):
+func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int)  -> void:
 	if event.is_action_pressed("click"):
 		pass
-	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cg1nqrd1e7p1d"]
+[gd_scene load_steps=9 format=3 uid="uid://cg1nqrd1e7p1d"]
 
 [ext_resource type="Script" uid="uid://c5epd81tvk5gi" path="res://paddles/paddle.gd" id="1_dmc7d"]
 [ext_resource type="Texture2D" uid="uid://c51g800bv4nh2" path="res://icon.svg" id="2_dyi0k"]
@@ -18,13 +18,7 @@ metadata/_custom_type_script = "uid://1lv2acxyuxrg"
 size = Vector2(78, 9)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dyi0k"]
-size = Vector2(78, 4.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m348f"]
-size = Vector2(1, 10)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i2dyn"]
-size = Vector2(1, 10)
+size = Vector2(78, 4)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_m348f"]
 random_pitch = 1.28
@@ -50,28 +44,12 @@ texture = ExtResource("2_dyi0k")
 [node name="TopArea2D" type="Area2D" parent="."]
 position = Vector2(0, -5)
 collision_layer = 0
-collision_mask = 36
+collision_mask = 32
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopArea2D"]
-position = Vector2(0, -1.75)
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_dyi0k")
-
-[node name="LeftArea2D" type="Area2D" parent="."]
-position = Vector2(-39, 0)
-collision_layer = 2
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArea2D"]
-shape = SubResource("RectangleShape2D_m348f")
-
-[node name="RightArea2D" type="Area2D" parent="."]
-position = Vector2(39, 0)
-collision_layer = 2
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightArea2D"]
-shape = SubResource("RectangleShape2D_i2dyn")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_m348f")

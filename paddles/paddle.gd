@@ -23,11 +23,11 @@ func _physics_process(delta: float) -> void:
 	move_and_collide(_offset)
 	
 
-func _on_ball_hit(ball: Ball, position: Vector2) -> void:
+func ball_hit(ball: Ball) -> void:
 	ball.heal(1)
 	ball_hit_audio_player.play()
 	
-	var relative_hit_pos = (position.x - global_position.x) / ($CollisionShape2D.shape.extents.x * 2 / 2.0)
+	var relative_hit_pos = (ball.global_position.x - global_position.x) / ($CollisionShape2D.shape.extents.x * 2 / 2.0)
 	relative_hit_pos = clamp(relative_hit_pos, -1.0, 1.0)
 
 	var angle = deg_to_rad(85 * relative_hit_pos)  # -85° až 85°
@@ -35,9 +35,6 @@ func _on_ball_hit(ball: Ball, position: Vector2) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body is Ball:
-		_on_ball_hit(body, body.global_position)
-	
 	if body is Enemy:
 		var _enemy = body as Enemy
 		health.take_damage(_enemy.paddle_damage)

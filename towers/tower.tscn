@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b4iyp"]
 size = Vector2(16, 16)
 
-[node name="Tower" type="Node2D" node_paths=PackedStringArray("spawn_ball_marker")]
+[node name="Tower" type="Node2D" node_paths=PackedStringArray("spawn_ball_marker") groups=["towers"]]
 script = ExtResource("1_vedim")
 ball = ExtResource("2_stebd")
 spawn_ball_marker = NodePath("Marker2D")
@@ -15,7 +15,6 @@ metadata/_custom_type_script = "uid://detnputo7h1qo"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
-autostart = true
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(9, 0)
