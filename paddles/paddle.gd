@@ -8,7 +8,7 @@ extends AnimatableBody2D
 
 @onready var default_health: int = health.current_health
 @onready var _area_2d: Area2D = NodeUtils.get_child_by_class(self, Area2D)
-
+@onready var collision_shape_2d: CollisionShape2D = NodeUtils.get_child_by_class(self, CollisionShape2D)
 
 
 func _ready() -> void:
@@ -27,7 +27,7 @@ func ball_hit(ball: Ball) -> void:
 	ball.heal(1)
 	ball_hit_audio_player.play()
 	
-	var relative_hit_pos = (ball.global_position.x - global_position.x) / ($CollisionShape2D.shape.extents.x * 2 / 2.0)
+	var relative_hit_pos = (ball.global_position.x - collision_shape_2d.global_position.x) / (collision_shape_2d.shape.size.x * collision_shape_2d.global_scale.x * 0.5)
 	relative_hit_pos = clamp(relative_hit_pos, -1.0, 1.0)
 
 	var angle = deg_to_rad(85 * relative_hit_pos)  # -85° až 85°
