@@ -38,4 +38,3 @@ func _on_condition_met() -> void:
 	finish_condition.condition_met.disconnect(_on_condition_met)
 	print("wave finished")
 	wave_finished.emit()
-	

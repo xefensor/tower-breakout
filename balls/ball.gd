@@ -28,6 +28,9 @@ func _physics_process(delta) -> void:
 		if collision_info.get_collider() is Enemy:
 			(collision_info.get_collider() as Enemy).take_damage(1)
 
+		if collision_info.get_collider() is DamageableStaticBody2D:
+			(collision_info.get_collider() as DamageableStaticBody2D).take_damage(1)
+
 		_health.take_damage(1)
 		bounce_audio_player.one_shot_play(Level.instance)
 		var normal = collision_info.get_normal()

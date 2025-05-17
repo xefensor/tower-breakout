@@ -20,21 +20,21 @@ func _init() -> void:
 func _ready() -> void:
 	reset_physics_interpolation()
 	
-	health.died.connect(_on_death)
+	health.died.connect(_on_health_died)
 	health.health_changed.connect(_onhealth_changed)
 	
-	health_bar.value = 100 /health.max_health * health.current_health
+	health_bar.value = 100 / health.max_health * health.current_health
 
 
 func take_damage(amount: float) -> void:
 	health.take_damage(amount)
 
 
-func die():
+func die() -> void:
 	health.current_health = 0
 
 
-func _on_death() -> void:
+func _on_health_died() -> void:
 	died.emit()
 	explosion_audio_player.one_shot_play(Level.instance)
 	explosion_sprite.one_shot_play(Level.instance)

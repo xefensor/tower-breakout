@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bhk4x0ost1vxj"]
+[gd_scene load_steps=31 format=3 uid="uid://bhk4x0ost1vxj"]
 
 [ext_resource type="Script" uid="uid://dfg76t0rxt750" path="res://systems/level.gd" id="1_yfto5"]
 [ext_resource type="PackedScene" uid="uid://cg1nqrd1e7p1d" path="res://paddles/paddle.tscn" id="2_idgjc"]
@@ -16,6 +16,8 @@
 [ext_resource type="Script" uid="uid://duppxpnexhjie" path="res://systems/wave_system/wave_group.gd" id="10_tbhd2"]
 [ext_resource type="PackedScene" uid="uid://c3bi5x7hapkg6" path="res://towers/tower.tscn" id="11_o3776"]
 [ext_resource type="Script" uid="uid://ben5scgkcfflm" path="res://levels/border.gd" id="12_q27hf"]
+[ext_resource type="Script" uid="uid://bklduw5whh3eu" path="res://systems/damageable_static_body_2d.gd" id="17_yg266"]
+[ext_resource type="Texture2D" uid="uid://c51g800bv4nh2" path="res://icon.svg" id="18_5a3re"]
 
 [sub_resource type="Resource" id="Resource_r1saj"]
 script = ExtResource("2_wro8d")
@@ -72,6 +74,17 @@ script = ExtResource("10_tbhd2")
 waves = Array[ExtResource("4_r1saj")]([SubResource("Resource_lx6yc"), SubResource("Resource_b6vke")])
 metadata/_custom_type_script = "uid://duppxpnexhjie"
 
+[sub_resource type="Resource" id="Resource_ospbt"]
+script = ExtResource("2_wro8d")
+max_health = 10
+current_health = 10
+damageable = true
+killable = true
+healable = false
+metadata/_custom_type_script = "uid://1lv2acxyuxrg"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6e6j7"]
+
 [node name="TestLevel01" type="Node" node_paths=PackedStringArray("health_label", "border", "paths")]
 script = ExtResource("1_yfto5")
 base_health = SubResource("Resource_r1saj")
@@ -102,7 +115,7 @@ texture = ExtResource("3_r1saj")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Paddle" parent="." instance=ExtResource("2_idgjc")]
-position = Vector2(-62, 161)
+position = Vector2(-62, 172)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(20, -554)
@@ -125,19 +138,19 @@ region_enabled = true
 region_rect = Rect2(-5000, -5000, 10000, 10000)
 
 [node name="Tower" parent="." instance=ExtResource("11_o3776")]
-position = Vector2(-254, 141)
+position = Vector2(-252, 152)
 rotation = -0.925025
 
 [node name="Tower2" parent="." instance=ExtResource("11_o3776")]
-position = Vector2(-150, 136)
+position = Vector2(-148, 147)
 rotation = -1.8326
 
 [node name="Tower3" parent="." instance=ExtResource("11_o3776")]
-position = Vector2(77, 141)
+position = Vector2(79, 152)
 rotation = -1.90241
 
 [node name="Tower4" parent="." instance=ExtResource("11_o3776")]
-position = Vector2(-55, 140)
+position = Vector2(-53, 151)
 rotation = -2.32129
 
 [node name="Border" type="Area2D" parent="."]
@@ -161,3 +174,16 @@ offset_bottom = 23.0
 script = ExtResource("6_tulbc")
 wave_group = SubResource("Resource_miuwn")
 metadata/_custom_type_script = "uid://cr77osinysypj"
+
+[node name="DamageableStaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-151, 2)
+script = ExtResource("17_yg266")
+health = SubResource("Resource_ospbt")
+metadata/_custom_type_script = "uid://bklduw5whh3eu"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableStaticBody2D"]
+shape = SubResource("RectangleShape2D_6e6j7")
+
+[node name="Sprite2D" type="Sprite2D" parent="DamageableStaticBody2D"]
+scale = Vector2(0.16, 0.16)
+texture = ExtResource("18_5a3re")

@@ -26,8 +26,9 @@ func stop() -> void:
 func _on_timer_timeout() -> void:
 	var _inst: Ball = ball.instantiate()
 	_inst.global_position = spawn_ball_marker.global_position
-	get_parent().add_child(_inst)
 	_inst.velocity = Vector2.from_angle(rotation) * (_inst.start_speed * launch_power)
+	get_parent().add_child(_inst)
+	
 	
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int)  -> void:
