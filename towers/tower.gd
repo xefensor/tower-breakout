@@ -30,7 +30,6 @@ func _on_timer_timeout() -> void:
 	get_parent().add_child(_inst)
 	
 	
-
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int)  -> void:
 	if event.is_action_pressed("click"):
 		pass

@@ -19,7 +19,7 @@ var enemies_alive: int = 0:
 @onready var wave_controller: WaveController = NodeUtils.get_child_by_class(self, WaveController)
 
 
-func _init() -> void:
+func _enter_tree() -> void:
 	instance = self
 	
 
