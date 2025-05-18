@@ -21,7 +21,7 @@ func _ready() -> void:
 	reset_physics_interpolation()
 	
 	health.died.connect(_on_health_died)
-	health.health_changed.connect(_onhealth_changed)
+	health.health_changed.connect(_on_health_changed)
 	
 	health_bar.value = 100 / health.max_health * health.current_health
 
@@ -41,5 +41,5 @@ func _on_health_died() -> void:
 	queue_free()
 
 
-func _onhealth_changed(newhealth : int) -> void:
+func _on_health_changed(newhealth : int) -> void:
 	health_bar.value = 100 /health.max_health * newhealth

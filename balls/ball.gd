@@ -44,9 +44,9 @@ func _on_death() -> void:
 	queue_free()
 
 
-func take_damage(amount:int):
+func take_damage(amount: int) -> void:
 	_health.take_damage(amount)
 
 
-func heal(amount:int):
+func heal(amount: int) -> void:
 	_health.heal(amount)
