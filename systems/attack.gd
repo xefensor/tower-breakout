@@ -2,7 +2,7 @@ class_name Attack
 extends Resource
 
 
-var damage
+var damage: int
 
 
 func apply_to(target: Node) -> void:

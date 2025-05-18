@@ -19,17 +19,19 @@ func _ready() -> void:
 func _physics_process(delta) -> void:
 	velocity += get_gravity()
 	
-	var collision_info = move_and_collide(velocity * delta)
+	var collision_info: KinematicCollision2D = move_and_collide(velocity * delta)
 	if collision_info:
-		if collision_info.get_collider() is Paddle:
-			(collision_info.get_collider() as Paddle).ball_hit(self)
+		var _collider: Object = collision_info.get_collider()
+		
+		if _collider is Paddle:
+			_collider.ball_hit(self)
 			return
 
-		if collision_info.get_collider() is Enemy:
-			(collision_info.get_collider() as Enemy).take_damage(1)
+		if _collider is Enemy:
+			_collider.take_damage(1)
 
-		if collision_info.get_collider() is DamageableStaticBody2D:
-			(collision_info.get_collider() as DamageableStaticBody2D).take_damage(1)
+		if _collider is DamageableStaticBody2D:
+			_collider.take_damage(1)
 
 		_health.take_damage(1)
 		bounce_audio_player.one_shot_play(Level.instance)

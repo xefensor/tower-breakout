@@ -26,7 +26,6 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	border.border_crossed.connect(_on_crossed_border)
 	base_health.health_changed.connect(_health_changed)
-	
 	wave_controller.wave_finished.connect(_on_wave_controller_wave_finished)
 	
 	health_label.text = str(base_health.current_health)

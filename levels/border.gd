@@ -11,6 +11,5 @@ func _ready() -> void:
 	
 func _on_body_exited(body: Node2D) -> void:
 	if body is Enemy:
-		var _enemy = body as Enemy
-		_enemy.health.damageable = false
-		border_crossed.emit(_enemy.health.current_health)
+		body.health.damageable = false
+		border_crossed.emit(body.health.current_health)
