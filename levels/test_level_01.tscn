@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bhk4x0ost1vxj"]
+[gd_scene load_steps=32 format=3 uid="uid://bhk4x0ost1vxj"]
 
 [ext_resource type="Script" uid="uid://dfg76t0rxt750" path="res://systems/level.gd" id="1_yfto5"]
 [ext_resource type="PackedScene" uid="uid://cg1nqrd1e7p1d" path="res://paddles/paddle.tscn" id="2_idgjc"]
@@ -52,9 +52,17 @@ path = 0
 delay = 0.7
 metadata/_custom_type_script = "uid://xoen60n578bp"
 
+[sub_resource type="Resource" id="Resource_cifij"]
+script = ExtResource("9_lx6yc")
+enemy = ExtResource("8_6e6j7")
+amount = 10
+path = 0
+delay = 0.5
+metadata/_custom_type_script = "uid://xoen60n578bp"
+
 [sub_resource type="Resource" id="Resource_6e6j7"]
 script = ExtResource("6_yg266")
-timeline_objects = Array[ExtResource("7_5a3re")]([SubResource("Resource_5a3re")])
+timeline_objects = Array[ExtResource("7_5a3re")]([SubResource("Resource_5a3re"), SubResource("Resource_cifij")])
 metadata/_custom_type_script = "uid://c5a4hf3tlrfbu"
 
 [sub_resource type="Resource" id="Resource_lx6yc"]
