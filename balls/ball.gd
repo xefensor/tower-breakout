@@ -26,11 +26,9 @@ func _physics_process(delta) -> void:
 		if _collider is Paddle:
 			_collider.ball_hit(self)
 			return
-
-		if _collider is Enemy:
+		elif _collider is Enemy:
 			_collider.take_damage(1)
-
-		if _collider is DamageableStaticBody2D:
+		elif _collider is DamageableStaticBody2D:
 			_collider.take_damage(1)
 
 		_health.take_damage(1)
