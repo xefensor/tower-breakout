@@ -12,8 +12,8 @@ var enemy_index = 0
 
 func start() -> void:
 	for i in amount:
-		var enemy = enemy.instantiate()
-		Level.instance.paths[path].add_child(enemy)
+		var _enemy_inst = enemy.instantiate()
+		Level.instance.paths[path].add_child(_enemy_inst)
 		await Level.instance.get_tree().create_timer(delay, false).timeout
 	
 	object_finished.emit()

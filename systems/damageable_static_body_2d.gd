@@ -9,7 +9,7 @@ func _ready() -> void:
 	health.died.connect(_on_health_died)
 
 
-func take_damage(amount: float) -> void:
+func take_damage(amount: int) -> void:
 	health.take_damage(amount)
 
 

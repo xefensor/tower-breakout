@@ -11,6 +11,7 @@ size = Vector2(16, 16)
 script = ExtResource("1_vedim")
 ball = ExtResource("2_stebd")
 spawn_ball_marker = NodePath("Marker2D")
+launch_power = 10
 metadata/_custom_type_script = "uid://detnputo7h1qo"
 
 [node name="Timer" type="Timer" parent="."]

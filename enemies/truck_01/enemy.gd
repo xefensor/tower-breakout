@@ -26,7 +26,7 @@ func _ready() -> void:
 	health_bar.value = 100 / health.max_health * health.current_health
 
 
-func take_damage(amount: float) -> void:
+func take_damage(amount: int) -> void:
 	health.take_damage(amount)
 
 
