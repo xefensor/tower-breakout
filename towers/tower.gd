@@ -9,12 +9,12 @@ const lauch_power_multiplier = 100
 @export var launch_power: int = 1
 
 @onready var _timer: Timer = NodeUtils.get_child_by_class(self, Timer)
-#@onready var _area_2d: Area2D = NodeUtils.get_child_by_class(self, Area2D)
+@onready var _area_2d: Area2D = NodeUtils.get_child_by_class(self, Area2D)
 
 
 func _ready() -> void:
 	_timer.timeout.connect(_on_timer_timeout)
-	#_area_2d.input_event.connect(_on_area_2d_input_event)
+	_area_2d.input_event.connect(_on_area_2d_input_event)
 
 
 func start() -> void:
@@ -32,6 +32,6 @@ func _on_timer_timeout() -> void:
 	get_parent().add_child(_inst)
 	
 	
-#func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int)  -> void:
-#	if event.is_action_pressed("click"):
-#		pass
+func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int)  -> void:
+	if event.is_action_pressed("click"):
+		pass
