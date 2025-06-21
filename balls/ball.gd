@@ -2,11 +2,15 @@ extends CharacterBody2D
 class_name Ball
 
 
+signal hitted_damageable(collision_info: KinematicCollision2D)
+
 @export var weight: int = 10
 @export var _health: Health
 @export var bounce_audio_player: OneShotAudioPlayer
 
 @onready var _visible_on_screen_notifier_2D: VisibleOnScreenNotifier2D = NodeUtils.get_child_by_class(self, VisibleOnScreenNotifier2D)
+
+var triggers: Array[Trigger]
 
 
 func _ready() -> void:
@@ -15,6 +19,11 @@ func _ready() -> void:
 	_visible_on_screen_notifier_2D.screen_exited.connect(_on_death)
 	_health.died.connect(queue_free)
 
+	triggers.append(TriggerDamageable.new())
+	triggers[0].bounce.ball = self
+	triggers[0].bounce.audio_player = $OneShotAudioPlayer
+	hitted_damageable.connect(triggers[0].trigger)
+	
 
 func _physics_process(delta) -> void:
 	velocity += get_gravity()
@@ -26,19 +35,11 @@ func _physics_process(delta) -> void:
 		if _collider is Paddle:
 			_collider.ball_hit(self)
 			return
-		elif _collider is Enemy:
-			_collider.take_damage(1)
-		elif _collider is DamageableStaticBody2D:
-			_collider.take_damage(1)
+		elif _collider.has_method("take_damage"):
+			hitted_damageable.emit(collision_info)
 
 		_health.take_damage(1)
 		
-		bounce_audio_player.one_shot_play(Level.instance)
-		
-		var normal: Vector2 = collision_info.get_normal()
-		velocity = velocity.bounce(normal) + collision_info.get_collider_velocity()*0.5
-		move_and_collide(velocity * delta)
-
 
 func _on_death() -> void:
 	queue_free()
