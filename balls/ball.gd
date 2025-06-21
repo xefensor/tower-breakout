@@ -32,7 +32,9 @@ func _physics_process(delta) -> void:
 			_collider.take_damage(1)
 
 		_health.take_damage(1)
+		
 		bounce_audio_player.one_shot_play(Level.instance)
+		
 		var normal: Vector2 = collision_info.get_normal()
 		velocity = velocity.bounce(normal) + collision_info.get_collider_velocity()*0.5
 		move_and_collide(velocity * delta)
