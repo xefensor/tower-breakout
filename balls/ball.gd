@@ -8,9 +8,9 @@ signal hitted_damageable(collision_info: KinematicCollision2D)
 @export var _health: Health
 @export var bounce_audio_player: OneShotAudioPlayer
 
-@onready var _visible_on_screen_notifier_2D: VisibleOnScreenNotifier2D = NodeUtils.get_child_by_class(self, VisibleOnScreenNotifier2D)
-
 var triggers: Array[Trigger]
+
+@onready var _visible_on_screen_notifier_2D: VisibleOnScreenNotifier2D = NodeUtils.get_child_by_class(self, VisibleOnScreenNotifier2D)
 
 
 func _ready() -> void:
@@ -39,7 +39,8 @@ func _physics_process(delta) -> void:
 			hitted_damageable.emit(collision_info)
 
 		_health.take_damage(1)
-		
+		move_and_collide(velocity * delta)
+
 
 func _on_death() -> void:
 	queue_free()
