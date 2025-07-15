@@ -14,6 +14,7 @@ extends AnimatableBody2D
 func _ready() -> void:
 	_area_2d.body_entered.connect(_on_area_2d_body_entered)
 	health.health_changed.connect(_on_health_changed)
+	health.died.connect(queue_free)
 
 
 func _physics_process(delta: float) -> void:
