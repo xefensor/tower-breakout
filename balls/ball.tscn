@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c4ko46xi0u27d"]
+[gd_scene load_steps=15 format=3 uid="uid://c4ko46xi0u27d"]
 
 [ext_resource type="Script" uid="uid://dqe2rhlr6ul7l" path="res://balls/ball.gd" id="1_ht7ih"]
 [ext_resource type="Script" uid="uid://1lv2acxyuxrg" path="res://systems/health.gd" id="2_5j7o3"]
@@ -20,13 +20,8 @@ killable = true
 healable = true
 metadata/_custom_type_script = "uid://1lv2acxyuxrg"
 
-[sub_resource type="Resource" id="Resource_nq7i2"]
-script = ExtResource("5_7pftd")
-metadata/_custom_type_script = "uid://ce1rc0edt52dn"
-
 [sub_resource type="Resource" id="Resource_5hrr2"]
 script = ExtResource("5_7pftd")
-next_effect = SubResource("Resource_nq7i2")
 metadata/_custom_type_script = "uid://ce1rc0edt52dn"
 
 [sub_resource type="Resource" id="Resource_o703g"]
