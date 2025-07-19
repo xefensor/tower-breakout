@@ -30,5 +30,6 @@ func start_next_object() -> void:
 
 
 func _on_object_finished() -> void:
-	timeline_objects[objects_index].object_finished.disconnect(_on_object_finished)
+	if timeline_objects[objects_index].object_finished.is_connected(_on_object_finished):
+		timeline_objects[objects_index].object_finished.disconnect(_on_object_finished)
 	start_next_object()
