@@ -1,10 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://c4ko46xi0u27d"]
+[gd_scene load_steps=16 format=3 uid="uid://c4ko46xi0u27d"]
 
 [ext_resource type="Script" uid="uid://dqe2rhlr6ul7l" path="res://balls/ball.gd" id="1_ht7ih"]
 [ext_resource type="Script" uid="uid://1lv2acxyuxrg" path="res://systems/health.gd" id="2_5j7o3"]
 [ext_resource type="Texture2D" uid="uid://vtd73b733fi" path="res://balls/ball.png" id="2_ota7r"]
+[ext_resource type="Script" uid="uid://cau3888oy20w3" path="res://balls/triggers/trigger.gd" id="3_ysyxj"]
 [ext_resource type="AudioStream" uid="uid://kqgf22uwfx0j" path="res://balls/bounce.wav" id="4_f1tw0"]
+[ext_resource type="Script" uid="uid://dj1uxgc1eib5s" path="res://balls/effects/effect.gd" id="4_yf0cp"]
+[ext_resource type="Script" uid="uid://ce1rc0edt52dn" path="res://balls/effects/effect_basic_hit.gd" id="5_7pftd"]
 [ext_resource type="Script" uid="uid://dxigfhjtcdruc" path="res://systems/effects/one_shot_audio_player.gd" id="5_f1tw0"]
+[ext_resource type="Script" uid="uid://b18pe2mp4uv2y" path="res://balls/triggers/trigger_damageable.gd" id="6_sdul6"]
 
 [sub_resource type="Resource" id="Resource_ota7r"]
 resource_local_to_scene = true
@@ -15,6 +19,20 @@ damageable = true
 killable = true
 healable = true
 metadata/_custom_type_script = "uid://1lv2acxyuxrg"
+
+[sub_resource type="Resource" id="Resource_nq7i2"]
+script = ExtResource("5_7pftd")
+metadata/_custom_type_script = "uid://ce1rc0edt52dn"
+
+[sub_resource type="Resource" id="Resource_5hrr2"]
+script = ExtResource("5_7pftd")
+next_effect = SubResource("Resource_nq7i2")
+metadata/_custom_type_script = "uid://ce1rc0edt52dn"
+
+[sub_resource type="Resource" id="Resource_o703g"]
+script = ExtResource("6_sdul6")
+effects = Array[ExtResource("4_yf0cp")]([SubResource("Resource_5hrr2")])
+metadata/_custom_type_script = "uid://b18pe2mp4uv2y"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dgrc4"]
 radius = 2.0
@@ -29,8 +47,9 @@ collision_layer = 4
 collision_mask = 35
 script = ExtResource("1_ht7ih")
 _health = SubResource("Resource_ota7r")
-bounce_type = 3
+bounce_type = 2
 bounce_audio_player = NodePath("OneShotAudioPlayer")
+triggers = Array[ExtResource("3_ysyxj")]([SubResource("Resource_o703g")])
 metadata/_custom_type_script = "uid://dqe2rhlr6ul7l"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

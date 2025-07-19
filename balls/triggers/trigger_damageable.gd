@@ -8,5 +8,7 @@ func _init() -> void:
 
 
 func trigger(collision_info: KinematicCollision2D):
+	var effect_mofifier = EffectModifier.new()
+	effect_mofifier.targets.append(collision_info.get_collider())
 	for effect in effects:
-		effect.play(collision_info.get_collider())
+		effect.do(effect_mofifier)

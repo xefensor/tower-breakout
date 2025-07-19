@@ -4,16 +4,16 @@ class_name Ball
 
 signal hitted_damageable(collision_info: KinematicCollision2D)
 
+enum BounceType {NORMAL, REVERSE, SNIPER, CANNON}
+
 @export var weight: int = 10
 @export var _health: Health
-@export var bounce_type: BOUNCE_TYPE
+@export var bounce_type: BounceType
 @export var bounce_audio_player: OneShotAudioPlayer
 
-var triggers: Array[Trigger]
+@export var triggers: Array[Trigger]
 
 @onready var _visible_on_screen_notifier_2D: VisibleOnScreenNotifier2D = NodeUtils.get_child_by_class(self, VisibleOnScreenNotifier2D)
-
-enum BOUNCE_TYPE {NORMAL, REVERSE, SNIPER, CANNON}
 
 
 func _ready() -> void:
@@ -22,7 +22,7 @@ func _ready() -> void:
 	_visible_on_screen_notifier_2D.screen_exited.connect(_on_death)
 	_health.died.connect(queue_free)
 
-	triggers.append(TriggerDamageable.new())
+	#triggers.append(TriggerDamageable.new())
 	hitted_damageable.connect(triggers[0].trigger)
 	
 
@@ -42,22 +42,24 @@ func _physics_process(delta) -> void:
 			hitted_enemy = true
 
 		bounce_audio_player.one_shot_play(Level.instance)
-		velocity = calculate_baunce(bounce_type, collision_info, hitted_enemy)
+		velocity = calculate_bounce(bounce_type, collision_info, hitted_enemy)
 
 		_health.take_damage(1)
 		move_and_collide(velocity * delta)
 
 
-func calculate_baunce(bounce_type: BOUNCE_TYPE, collision_info: KinematicCollision2D, hitted_enemy: bool) -> Vector2:
+func calculate_bounce(bounce_type: BounceType, collision_info: KinematicCollision2D, hitted_enemy: bool) -> Vector2:
 	var normal: Vector2 = collision_info.get_normal()
 	var bounce: Vector2 = velocity.bounce(normal)
 
 	match bounce_type:
-		BOUNCE_TYPE.NORMAL:
+		BounceType.NORMAL:
 			bounce = velocity.bounce(normal)
-		BOUNCE_TYPE.REVERSE:
+			
+		BounceType.REVERSE:
 			bounce = velocity.rotated(PI)
-		BOUNCE_TYPE.SNIPER:
+			
+		BounceType.SNIPER:
 			if not hitted_enemy:
 				var enemies := get_tree().get_nodes_in_group("enemies")
 				
@@ -72,7 +74,8 @@ func calculate_baunce(bounce_type: BOUNCE_TYPE, collision_info: KinematicCollisi
 							nearest_node = node
 
 					bounce = (nearest_node.global_position - global_position).normalized() * velocity.length()
-		BOUNCE_TYPE.CANNON:
+					
+		BounceType.CANNON:
 			if collision_info.get_collider().is_queued_for_deletion():
 				bounce = velocity
 

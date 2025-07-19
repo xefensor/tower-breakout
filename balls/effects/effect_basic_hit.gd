@@ -1,7 +1,10 @@
 class_name EffectBasicHit
 extends Effect
 
+var damage: int = 1
 
-func play(object: Object, damage: int = 1):
-	if object.has_method("take_damage"):
-		object.take_damage(damage)
+func do(effect_modifier: EffectModifier):
+	if effect_modifier.targets:
+		for target in effect_modifier.targets:
+			if target.has_method("take_damage"):
+				target.take_damage(damage)
