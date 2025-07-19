@@ -15,7 +15,7 @@ launch_power = 10
 metadata/_custom_type_script = "uid://detnputo7h1qo"
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 1.98
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(9, 0)

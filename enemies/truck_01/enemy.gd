@@ -1,15 +1,19 @@
 class_name Enemy
 extends AnimatableBody2D
 
-
 signal died()
 
 @export var health: Health = Health.new()
 @export var paddle_damage: int = 1
 @export var explosion_audio_player: OneShotAudioPlayer
 @export var explosion_sprite: OneShotAnimatedSprite2D
+@export var hit_color: Color = Color(1, 0.3, 0.3) # červený efekt
+@export var hit_duration: float = 0.1
+
+var tween : Tween
 
 @onready var health_bar: TextureProgressBar = NodeUtils.get_child_by_class(self, TextureProgressBar)
+@onready var sprite: CanvasItem = $Sprite2D # uprav podle toho, co používáš
 
 
 func _init() -> void:
@@ -28,6 +32,14 @@ func _ready() -> void:
 
 func take_damage(amount: int) -> void:
 	health.take_damage(amount)
+	_play_hit_effect()
+
+
+func _play_hit_effect() -> void:
+	tween = create_tween()
+	var original_color := sprite.modulate
+	sprite.modulate = hit_color
+	tween.tween_property(sprite, "modulate", original_color, hit_duration)
 
 
 func die() -> void:
@@ -42,4 +54,4 @@ func _on_health_died() -> void:
 
 
 func _on_health_changed(newhealth : int) -> void:
-	health_bar.value = 100 /health.max_health * newhealth
+	health_bar.value = 100 / health.max_health * newhealth

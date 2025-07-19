@@ -21,8 +21,8 @@
 
 [sub_resource type="Resource" id="Resource_r1saj"]
 script = ExtResource("2_wro8d")
-max_health = 10
-current_health = 10
+max_health = 5
+current_health = 5
 damageable = true
 killable = true
 healable = true
@@ -84,8 +84,8 @@ metadata/_custom_type_script = "uid://duppxpnexhjie"
 
 [sub_resource type="Resource" id="Resource_ospbt"]
 script = ExtResource("2_wro8d")
-max_health = 10
-current_health = 10
+max_health = 5
+current_health = 5
 damageable = true
 killable = true
 healable = false

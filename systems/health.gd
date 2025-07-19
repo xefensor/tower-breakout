@@ -5,8 +5,8 @@ extends Resource
 signal health_changed(new_health: int)
 signal died()
 
-@export var max_health: int = 10
-@export var current_health: int = 10:
+@export var max_health: int = 5
+@export var current_health: int = 5:
 	set(new_health):
 		current_health = new_health
 		health_changed.emit(current_health)
