@@ -2,6 +2,7 @@ class_name Level
 extends Node
 
 signal enemies_cleared
+signal died
 
 static var instance: Level
 
@@ -9,6 +10,7 @@ static var instance: Level
 @export var health_label: Label
 @export var border: Area2D
 @export var paths: Array[Path2D]
+
 
 var enemies_alive: int = 0:
 	set(new_val):
@@ -51,3 +53,4 @@ func on_enemy_tree_entered() -> void:
 
 func on_enemy_tree_exited() -> void:
 	enemies_alive -= 1
+	emit_signal("died")
