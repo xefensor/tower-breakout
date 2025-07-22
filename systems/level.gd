@@ -2,7 +2,6 @@ class_name Level
 extends Node
 
 signal enemies_cleared
-signal died
 
 static var instance: Level
 
@@ -11,7 +10,10 @@ static var instance: Level
 @export var border: Area2D
 @export var paths: Array[Path2D]
 
-
+var money: int = 0:
+	set(new_val):
+		money = new_val
+		level_ui.update_money_label(money)
 var enemies_alive: int = 0:
 	set(new_val):
 		enemies_alive = maxi(0, new_val)
@@ -19,6 +21,7 @@ var enemies_alive: int = 0:
 			enemies_cleared.emit()
 
 @onready var wave_controller: WaveController = NodeUtils.get_child_by_class(self, WaveController)
+@onready var level_ui: LevelUI = NodeUtils.get_child_by_class(self, LevelUI)
 
 
 func _enter_tree() -> void:
@@ -53,4 +56,3 @@ func on_enemy_tree_entered() -> void:
 
 func on_enemy_tree_exited() -> void:
 	enemies_alive -= 1
-	emit_signal("died")

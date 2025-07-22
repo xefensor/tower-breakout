@@ -5,6 +5,7 @@ signal died()
 
 @export var health: Health = Health.new()
 @export var paddle_damage: int = 1
+@export var money: int = 5
 @export var explosion_audio_player: OneShotAudioPlayer
 @export var explosion_sprite: OneShotAnimatedSprite2D
 @export var hit_color: Color = Color(1, 0.3, 0.3) # červený efekt
@@ -50,6 +51,7 @@ func _on_health_died() -> void:
 	died.emit()
 	explosion_audio_player.one_shot_play(Level.instance)
 	explosion_sprite.one_shot_play(Level.instance)
+	Level.instance.money += 5
 	queue_free()
 
 

@@ -184,8 +184,9 @@ script = ExtResource("12_q27hf")
 position = Vector2(4, 124)
 shape = SubResource("RectangleShape2D_o3776")
 
-[node name="LevelUI" type="CanvasLayer" parent="."]
+[node name="LevelUI" type="CanvasLayer" parent="." node_paths=PackedStringArray("money_label")]
 script = ExtResource("9_6e6j7")
+money_label = NodePath("Label_money")
 
 [node name="Label" type="Label" parent="LevelUI"]
 offset_right = 40.0

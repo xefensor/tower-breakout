@@ -1,11 +1,7 @@
+class_name LevelUI
 extends CanvasLayer
 
-@export var money = 0
-@onready var enemy = $".."
+@export var money_label: Label
 
-func _ready() -> void:
-	enemy.connect("died", _on_enemy_died)
-
-func _on_enemy_died():
-	money += 5
-	$Label_money.text = str(money)
+func update_money_label(new_val: int):
+	money_label.text = str(new_val)
