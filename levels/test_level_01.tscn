@@ -192,14 +192,15 @@ money_label = NodePath("Label_money")
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="Upgrade_ball" type="Button" parent="LevelUI"]
-offset_left = 521.0
-offset_top = 68.0
-offset_right = 633.0
-offset_bottom = 103.0
-theme_override_font_sizes/font_size = 15
+[node name="Upgrade_paddle_speed" type="Button" parent="LevelUI"]
+offset_left = 524.0
+offset_top = 48.0
+offset_right = 637.0
+offset_bottom = 96.0
+theme_override_font_sizes/font_size = 10
 theme_override_styles/normal = SubResource("StyleBoxFlat_5a3re")
-text = "Upgrade_1"
+text = "Upgrade Paddle Speed
+(cost 5)"
 
 [node name="Label_money" type="Label" parent="LevelUI"]
 offset_left = 563.0
@@ -226,3 +227,5 @@ shape = SubResource("RectangleShape2D_6e6j7")
 [node name="Sprite2D" type="Sprite2D" parent="DamageableStaticBody2D"]
 scale = Vector2(0.16, 0.16)
 texture = ExtResource("18_5a3re")
+
+[connection signal="pressed" from="LevelUI/Upgrade_paddle_speed" to="LevelUI" method="_on_upgrade_paddle_speed_pressed"]
