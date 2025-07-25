@@ -3,5 +3,5 @@ extends Resource
 
 @export var next_effect: Effect
 
-func do(effect_modifier: EffectModifier):
+func apply(effect_modifier: EffectModifier):
 	pass

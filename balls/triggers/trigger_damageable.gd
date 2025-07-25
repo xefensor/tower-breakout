@@ -11,4 +11,4 @@ func trigger(collision_info: KinematicCollision2D):
 	var effect_mofifier = EffectModifier.new()
 	effect_mofifier.targets.append(collision_info.get_collider())
 	for effect in effects:
-		effect.do(effect_mofifier)
+		effect.apply(effect_mofifier)
