@@ -15,6 +15,7 @@ func _ready() -> void:
 	_area_2d.body_entered.connect(_on_area_2d_body_entered)
 	health.health_changed.connect(_on_health_changed)
 	health.died.connect(queue_free)
+	_on_health_changed(health.current_health)
 
 
 func _physics_process(delta: float) -> void:
@@ -44,3 +45,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func _on_health_changed(new_health: int) -> void:
 	scale.x = default_health / 100.0 * new_health
 	
+
+func add_power(power: Power):
+	power.paddle = self
+	power.apply_effect()

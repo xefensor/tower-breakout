@@ -7,8 +7,8 @@
 
 [sub_resource type="Resource" id="Resource_i2dyn"]
 script = ExtResource("2_m348f")
-max_health = 5
-current_health = 5
+max_health = 15
+current_health = 10
 damageable = true
 killable = true
 healable = true

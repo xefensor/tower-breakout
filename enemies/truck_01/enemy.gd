@@ -7,6 +7,7 @@ signal died()
 @export var paddle_damage: int = 1
 @export var money: int = 5
 @export var power_drop_chance: int = 10
+@export var power_chooser: PowerChooser
 @export var explosion_audio_player: OneShotAudioPlayer
 @export var explosion_sprite: OneShotAnimatedSprite2D
 @export var hit_color: Color = Color(1, 0.3, 0.3) # červený efekt
@@ -57,6 +58,7 @@ func _on_health_died() -> void:
 	if randi_range(1, 100) <= power_drop_chance:
 		var power = preload("res://power_ups/falling_power.tscn")
 		var inst = power.instantiate()
+		inst.power = power_chooser.choose_power()
 		inst.global_position = global_position
 		Level.instance.add_child(inst)
 	
