@@ -4,7 +4,12 @@ class_name Ball
 
 signal hitted_damageable(collision_info: KinematicCollision2D)
 
-enum BounceType {NORMAL, REVERSE, SNIPER, CANNON}
+enum BounceType {
+	NORMAL,
+	REVERSE,
+	SNIPER,
+	CANNON,
+	}
 
 @export var weight: int = 10
 @export var _health: Health
