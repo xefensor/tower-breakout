@@ -9,6 +9,7 @@ script = ExtResource("2_rikml")
 health = 1
 type = 1
 spawn_chance = 1
+sprite = ExtResource("2_nrjfm")
 metadata/_custom_type_script = "uid://ci3758m8w06md"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rikml"]

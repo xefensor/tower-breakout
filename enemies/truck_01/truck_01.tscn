@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cnjfe5o72rcve" path="res://enemies/truck_01/sprites/spaceship_n.png" id="3_rgy54"]
 [ext_resource type="Script" uid="uid://dhptwklqja4wu" path="res://power_ups/power.gd" id="3_si0nv"]
 [ext_resource type="Texture2D" uid="uid://pj7150qk3id3" path="res://enemies/truck_01/sprites/spaceship_s.png" id="4_3itgp"]
-[ext_resource type="Script" uid="uid://ci3758m8w06md" path="res://power_ups/power_health.gd" id="4_576lq"]
+[ext_resource type="Script" uid="uid://8bx1so18egjq" path="res://power_ups/power_bounce.gd" id="4_576lq"]
 [ext_resource type="Script" uid="uid://myosjs2vfvly" path="res://power_ups/power_chooser.gd" id="5_81pqk"]
 [ext_resource type="Texture2D" uid="uid://c51g800bv4nh2" path="res://icon.svg" id="5_702ac"]
 [ext_resource type="Texture2D" uid="uid://ud1y8kso1twb" path="res://enemies/truck_01/sprites/hp_bar.png" id="5_iuxom"]
@@ -17,25 +17,27 @@
 [ext_resource type="Texture2D" uid="uid://dgsbmjosxvuhx" path="res://assets/Red Effect Bullet Impact Explosion 32x32.png" id="12_sl7rh"]
 [ext_resource type="Script" uid="uid://cn0y0ecxoqg62" path="res://systems/effects/one_shot_animated_sprite_2d.gd" id="13_si0nv"]
 
+[sub_resource type="Resource" id="Resource_81pqk"]
+script = ExtResource("4_576lq")
+strenght = 5.0
+time = 5.0
+type = 0
+spawn_chance = 1
+sprite = ExtResource("5_702ac")
+metadata/_custom_type_script = "uid://8bx1so18egjq"
+
 [sub_resource type="Resource" id="Resource_702ac"]
 script = ExtResource("4_576lq")
-health = 1
-type = 0
-spawn_chance = 3
-sprite = ExtResource("5_702ac")
-metadata/_custom_type_script = "uid://ci3758m8w06md"
-
-[sub_resource type="Resource" id="Resource_si0nv"]
-script = ExtResource("4_576lq")
-health = 1
+strenght = 0.1
+time = 5.0
 type = 1
 spawn_chance = 1
 sprite = ExtResource("6_qhn01")
-metadata/_custom_type_script = "uid://ci3758m8w06md"
+metadata/_custom_type_script = "uid://8bx1so18egjq"
 
 [sub_resource type="Resource" id="Resource_qhn01"]
 script = ExtResource("5_81pqk")
-powers = Array[ExtResource("3_si0nv")]([SubResource("Resource_702ac"), SubResource("Resource_si0nv")])
+powers = Array[ExtResource("3_si0nv")]([SubResource("Resource_81pqk"), SubResource("Resource_702ac")])
 metadata/_custom_type_script = "uid://myosjs2vfvly"
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_iuxom"]
