@@ -28,7 +28,6 @@ enabled=PackedStringArray("res://addons/debloat_array/plugin.cfg")
 
 [global_group]
 
-towers=""
 enemies=""
 
 [input]

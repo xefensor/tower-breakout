@@ -2,6 +2,8 @@ class_name Tower
 extends Node2D
 
 
+signal selected(tower: Tower)
+
 const lauch_power_multiplier = 100
 
 @export var ball: PackedScene
@@ -34,4 +36,5 @@ func _on_timer_timeout() -> void:
 	
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int)  -> void:
 	if event.is_action_pressed("click"):
-		pass
+		print("click")
+		selected.emit(self)

@@ -21,6 +21,7 @@ var enemies_alive: int = 0:
 
 @onready var wave_controller: WaveController = NodeUtils.get_child_by_class(self, WaveController)
 @onready var level_ui: LevelUI = NodeUtils.get_child_by_class(self, LevelUI)
+@onready var towers: Towers = NodeUtils.get_child_by_class(self, Towers)
 
 
 func _enter_tree() -> void:
@@ -30,6 +31,7 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	border.border_crossed.connect(_on_crossed_border)
 	health.health_changed.connect(_health_changed)
+	wave_controller.wave_started.connect(_on_wave_controller_wave_started)
 	wave_controller.wave_finished.connect(_on_wave_controller_wave_finished)
 	
 	level_ui.update_health_lavel(health.current_health)
@@ -37,8 +39,12 @@ func _ready() -> void:
 	wave_controller.start_wave(wave_controller.wave_group.waves[0])
 
 
+func _on_wave_controller_wave_started() -> void:
+	towers.start_towers()
+
+
 func _on_wave_controller_wave_finished() -> void:
-	pass
+	towers.stop_towers()
 
 
 func _on_crossed_border(damage: int) -> void:

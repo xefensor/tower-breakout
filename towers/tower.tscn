@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b4iyp"]
 size = Vector2(16, 16)
 
-[node name="Tower" type="Node2D" node_paths=PackedStringArray("spawn_ball_marker") groups=["towers"]]
+[node name="Tower" type="Node2D" node_paths=PackedStringArray("spawn_ball_marker")]
 script = ExtResource("1_vedim")
 ball = ExtResource("2_stebd")
 spawn_ball_marker = NodePath("Marker2D")
