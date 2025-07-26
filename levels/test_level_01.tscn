@@ -12,18 +12,19 @@
 [ext_resource type="Script" uid="uid://c5a4hf3tlrfbu" path="res://systems/wave_system/wave_timeline.gd" id="6_yg266"]
 [ext_resource type="Script" uid="uid://c2u61ayk03wuh" path="res://systems/wave_system/wave_objects/wave_object.gd" id="7_5a3re"]
 [ext_resource type="PackedScene" uid="uid://4i6twcajef7o" path="res://enemies/truck_01/truck_01.tscn" id="8_6e6j7"]
-[ext_resource type="Script" uid="uid://d06d0x41lvhiw" path="res://levels/level_ui.gd" id="9_6e6j7"]
+[ext_resource type="Script" uid="uid://d06d0x41lvhiw" path="res://levels/level_ui/level_ui.gd" id="9_6e6j7"]
 [ext_resource type="Script" uid="uid://xoen60n578bp" path="res://systems/wave_system/wave_objects/wave_enemy.gd" id="9_lx6yc"]
+[ext_resource type="Theme" uid="uid://brb7t8v5yk6cn" path="res://levels/level_ui/level_ui_theme.tres" id="10_lx6yc"]
 [ext_resource type="Script" uid="uid://duppxpnexhjie" path="res://systems/wave_system/wave_group.gd" id="10_tbhd2"]
 [ext_resource type="PackedScene" uid="uid://c3bi5x7hapkg6" path="res://towers/tower.tscn" id="11_o3776"]
 [ext_resource type="Script" uid="uid://ben5scgkcfflm" path="res://levels/border.gd" id="12_q27hf"]
 [ext_resource type="Script" uid="uid://bklduw5whh3eu" path="res://systems/damageable_static_body_2d.gd" id="17_yg266"]
 [ext_resource type="Texture2D" uid="uid://c51g800bv4nh2" path="res://icon.svg" id="18_5a3re"]
 
-[sub_resource type="Resource" id="Resource_r1saj"]
+[sub_resource type="Resource" id="Resource_dfj8t"]
 script = ExtResource("2_wro8d")
-max_health = 5
-current_health = 5
+max_health = 50
+current_health = 50
 damageable = true
 killable = true
 healable = true
@@ -40,17 +41,6 @@ point_count = 9
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o3776"]
 size = Vector2(639, 2)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5a3re"]
-bg_color = Color(0.317647, 0.682353, 1, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
 
 [sub_resource type="Resource" id="Resource_yg266"]
 script = ExtResource("5_tbhd2")
@@ -105,10 +95,9 @@ metadata/_custom_type_script = "uid://1lv2acxyuxrg"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6e6j7"]
 
-[node name="TestLevel01" type="Node" node_paths=PackedStringArray("health_label", "border", "paths")]
+[node name="TestLevel01" type="Node" node_paths=PackedStringArray("border", "paths")]
 script = ExtResource("1_yfto5")
-base_health = SubResource("Resource_r1saj")
-health_label = NodePath("LevelUI/Label")
+health = SubResource("Resource_dfj8t")
 border = NodePath("Border")
 paths = [NodePath("Path2D")]
 metadata/_custom_type_script = "uid://dfg76t0rxt750"
@@ -184,30 +173,140 @@ script = ExtResource("12_q27hf")
 position = Vector2(4, 124)
 shape = SubResource("RectangleShape2D_o3776")
 
-[node name="LevelUI" type="CanvasLayer" parent="." node_paths=PackedStringArray("money_label")]
+[node name="LevelUI" type="CanvasLayer" parent="." node_paths=PackedStringArray("money_label", "health_label")]
 script = ExtResource("9_6e6j7")
-money_label = NodePath("Label_money")
+money_label = NodePath("Panel/VBoxContainer/LevelStats/Money")
+health_label = NodePath("Panel/VBoxContainer/LevelStats/Health")
 
-[node name="Label" type="Label" parent="LevelUI"]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="Panel" type="Panel" parent="LevelUI"]
+anchors_preset = -1
+anchor_left = 0.757812
+anchor_right = 1.0
+anchor_bottom = 0.997222
+grow_horizontal = 0
+theme = ExtResource("10_lx6yc")
+metadata/_edit_use_anchors_ = true
 
-[node name="Upgrade_ball" type="Button" parent="LevelUI"]
-offset_left = 521.0
-offset_top = 68.0
-offset_right = 633.0
-offset_bottom = 103.0
-theme_override_font_sizes/font_size = 15
-theme_override_styles/normal = SubResource("StyleBoxFlat_5a3re")
-text = "Upgrade_1"
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelUI/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Label_money" type="Label" parent="LevelUI"]
-offset_left = 563.0
-offset_top = 23.0
-offset_right = 603.0
-offset_bottom = 46.0
-text = "0"
-horizontal_alignment = 1
+[node name="LevelStats" type="HBoxContainer" parent="LevelUI/Panel/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Health" type="Label" parent="LevelUI/Panel/VBoxContainer/LevelStats"]
+layout_mode = 2
+text = "5HP"
+
+[node name="Money" type="Label" parent="LevelUI/Panel/VBoxContainer/LevelStats"]
+layout_mode = 2
+text = "0$"
+
+[node name="Tower" type="MarginContainer" parent="LevelUI/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="SelectedTower" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower"]
+layout_mode = 2
+
+[node name="TowerPlace" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "#1"
+
+[node name="TowerSprite" type="TextureRect" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("18_5a3re")
+stretch_mode = 2
+
+[node name="TowerStats" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower"]
+layout_mode = 2
+
+[node name="LaunchPower" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower/TowerStats"]
+layout_mode = 2
+text = "Launch power: 10"
+
+[node name="Firerate" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower/TowerStats"]
+layout_mode = 2
+text = "Firerate: 1/s"
+
+[node name="Ball" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower"]
+layout_mode = 2
+
+[node name="BallSprite" type="TextureRect" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower/Ball"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("18_5a3re")
+stretch_mode = 2
+
+[node name="BallStats" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower/Ball"]
+layout_mode = 2
+
+[node name="Mass" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower/Ball/BallStats"]
+layout_mode = 2
+text = "Mass: 10"
+
+[node name="Health" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower/Ball/BallStats"]
+layout_mode = 2
+text = "HP: 10"
+
+[node name="BounceType" type="OptionButton" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower/Ball"]
+layout_mode = 2
+selected = 0
+item_count = 4
+popup/item_0/text = "Normal"
+popup/item_0/id = 0
+popup/item_1/text = "Reverse"
+popup/item_1/id = 1
+popup/item_2/text = "Snipper"
+popup/item_2/id = 2
+popup/item_3/text = "Cannon"
+popup/item_3/id = 3
+
+[node name="Upgrades" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower/Ball"]
+layout_mode = 2
+
+[node name="BallTriggers" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower/Ball"]
+layout_mode = 2
+
+[node name="Trigger" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower/Ball/BallTriggers"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower/Ball/BallTriggers/Trigger"]
+layout_mode = 2
+text = "Hit trigger"
+
+[node name="Effects" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower/Ball/BallTriggers/Trigger"]
+layout_mode = 2
+
+[node name="NoTowerSelected" type="CenterContainer" parent="LevelUI/Panel/VBoxContainer/Tower"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/NoTowerSelected"]
+layout_mode = 2
+text = "NO TOWER SELECTED"
+
+[node name="Paddle" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="PaddleHP" type="Label" parent="LevelUI/Panel/VBoxContainer/Paddle"]
+layout_mode = 2
+text = "10HP"
+
+[node name="NoActivePaddleBuyButton" type="Button" parent="LevelUI/Panel/VBoxContainer/Paddle"]
+visible = false
+layout_mode = 2
+text = "Buy"
 
 [node name="WaveController" type="Node" parent="."]
 script = ExtResource("6_tulbc")

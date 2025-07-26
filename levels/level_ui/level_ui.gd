@@ -1,0 +1,13 @@
+class_name LevelUI
+extends CanvasLayer
+
+@export var money_label: Label
+@export var health_label: Label
+
+
+func update_money_label(new_val: int):
+	money_label.text = str(new_val) + "$"
+
+
+func update_health_lavel(new_val: int):
+	health_label.text = str(new_val) + "HP"
