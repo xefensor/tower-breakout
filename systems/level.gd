@@ -5,7 +5,7 @@ signal enemies_cleared
 
 static var instance: Level
 
-@export var health: Health
+@export var health: Health = Health.new()
 @export var border: Area2D
 @export var paths: Array[Path2D]
 
