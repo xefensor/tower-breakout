@@ -18,7 +18,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Paddle:
-		body.add_power(power)
+		body.handle_power(power)
 		queue_free()
 
 

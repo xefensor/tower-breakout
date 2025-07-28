@@ -10,6 +10,8 @@ extends AnimatableBody2D
 		bounce_strenght = clamp(new_var, bounce_strenght_limit.x, bounce_strenght_limit.y)
 @export var ball_hit_audio_player: AudioStreamPlayer
 
+var powers: Powers = Powers.new(self)
+
 @onready var default_health: int = health.current_health
 @onready var _area_2d: Area2D = NodeUtils.get_child_by_class(self, Area2D)
 @onready var collision_shape_2d: CollisionShape2D = NodeUtils.get_child_by_class(self, CollisionShape2D)
@@ -17,10 +19,11 @@ extends AnimatableBody2D
 
 func _ready() -> void:
 	_area_2d.body_entered.connect(_on_area_2d_body_entered)
+	
 	health.health_changed.connect(_on_health_changed)
 	health.died.connect(queue_free)
 	_on_health_changed(health.current_health)
-
+	
 
 func _physics_process(delta: float) -> void:
 	var _direction: float = Input.get_axis("paddle_left", "paddle_right")
@@ -50,6 +53,5 @@ func _on_health_changed(new_health: int) -> void:
 	scale.x = default_health / 100.0 * new_health
 	
 
-func add_power(power: Power):
-	power.paddle = self
-	power.apply_effect()
+func handle_power(power: Power):
+	powers.handle_power(power)
