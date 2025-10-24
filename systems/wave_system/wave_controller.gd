@@ -1,6 +1,7 @@
 class_name	WaveController
 extends Node
 
+
 signal wave_started
 signal wave_finished
 

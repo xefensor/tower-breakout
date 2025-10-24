@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bhk4x0ost1vxj"]
+[gd_scene load_steps=36 format=3 uid="uid://bhk4x0ost1vxj"]
 
 [ext_resource type="Script" uid="uid://dfg76t0rxt750" path="res://systems/level.gd" id="1_yfto5"]
 [ext_resource type="PackedScene" uid="uid://cg1nqrd1e7p1d" path="res://paddles/paddle.tscn" id="2_idgjc"]
@@ -26,9 +26,6 @@
 script = ExtResource("2_wro8d")
 max_health = 50
 current_health = 50
-damageable = true
-killable = true
-healable = true
 metadata/_custom_type_script = "uid://1lv2acxyuxrg"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ueleu"]
@@ -36,7 +33,7 @@ size = Vector2(760, 20)
 
 [sub_resource type="Curve2D" id="Curve2D_q27hf"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -232, -242, -31.3026, -46.1842, 31.3026, 46.1842, -225, -129, -61.0658, 8.72369, 61.0658, -8.72369, -83, -103, -50.8026, -32.329, 50.8026, 32.329, 94, -103, 33.8684, -31.8158, -33.8684, 31.8158, 89, -5, 78.5132, -34.3816, -78.5132, 34.3816, -206, -51, -40.5395, -49.7763, 40.5395, 49.7763, -248, 54, -48.75, -67.7369, 48.75, 67.7369, 42, 121, 0, 0, 0, 0, 62, 248)
+"points": PackedVector2Array(0, 0, 0, 0, -232, -242, -31.3026, -46.1842, 31.3026, 46.1842, -225, -129, -61.0658, 8.72369, 61.0658, -8.72369, -83, -103, -50.8026, -32.329, 50.8026, 32.329, 51, -110, 33.8684, -31.8158, -33.8684, 31.8158, 63, -11, 78.5132, -34.3816, -78.5132, 34.3816, -206, -51, -40.5395, -49.7763, 40.5395, 49.7763, -248, 54, -48.75, -67.7369, 48.75, 67.7369, 42, 121, 0, 0, 0, 0, 62, 248)
 }
 point_count = 9
 
@@ -51,7 +48,6 @@ metadata/_custom_type_script = "uid://ncfqfbpsvcx2"
 script = ExtResource("9_lx6yc")
 enemy = ExtResource("8_6e6j7")
 amount = 5
-path = 0
 delay = 0.7
 metadata/_custom_type_script = "uid://xoen60n578bp"
 
@@ -59,7 +55,6 @@ metadata/_custom_type_script = "uid://xoen60n578bp"
 script = ExtResource("9_lx6yc")
 enemy = ExtResource("8_6e6j7")
 amount = 10
-path = 0
 delay = 0.5
 metadata/_custom_type_script = "uid://xoen60n578bp"
 
@@ -85,12 +80,11 @@ script = ExtResource("10_tbhd2")
 waves = Array[ExtResource("4_r1saj")]([SubResource("Resource_lx6yc"), SubResource("Resource_b6vke")])
 metadata/_custom_type_script = "uid://duppxpnexhjie"
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b6vke"]
+size = Vector2(435, 25)
+
 [sub_resource type="Resource" id="Resource_ospbt"]
 script = ExtResource("2_wro8d")
-max_health = 5
-current_health = 5
-damageable = true
-killable = true
 healable = false
 metadata/_custom_type_script = "uid://1lv2acxyuxrg"
 
@@ -115,7 +109,7 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_ueleu")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(169, 0)
+position = Vector2(130, 0)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_ueleu")
 
@@ -123,9 +117,10 @@ shape = SubResource("RectangleShape2D_ueleu")
 texture = ExtResource("3_r1saj")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+process_callback = 0
 
 [node name="Paddle" parent="." instance=ExtResource("2_idgjc")]
-position = Vector2(-62, 172)
+position = Vector2(-107, 170)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(20, -554)
@@ -165,7 +160,7 @@ health_label = NodePath("Panel/VBoxContainer/LevelStats/Health")
 
 [node name="Panel" type="Panel" parent="LevelUI"]
 anchors_preset = -1
-anchor_left = 0.757812
+anchor_left = 0.701563
 anchor_right = 1.0
 anchor_bottom = 0.997222
 grow_horizontal = 0
@@ -192,18 +187,26 @@ text = "5HP"
 layout_mode = 2
 text = "0$"
 
-[node name="Tower" type="MarginContainer" parent="LevelUI/Panel/VBoxContainer"]
+[node name="HSeparator3" type="HSeparator" parent="LevelUI/Panel/VBoxContainer"]
 layout_mode = 2
 
-[node name="SelectedTower" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower"]
+[node name="Tower" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer"]
 layout_mode = 2
 
-[node name="TowerPlace" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower"]
+[node name="Label" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower"]
 layout_mode = 2
-size_flags_horizontal = 4
-text = "#1"
+text = "Tower"
 
-[node name="TowerSprite" type="TextureRect" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower"]
+[node name="TabContainer" type="TabContainer" parent="LevelUI/Panel/VBoxContainer/Tower"]
+layout_mode = 2
+current_tab = 0
+drag_to_rearrange_enabled = true
+
+[node name="1" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="TowerSprite" type="TextureRect" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/1"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
@@ -211,21 +214,28 @@ size_flags_vertical = 0
 texture = ExtResource("18_5a3re")
 stretch_mode = 2
 
-[node name="TowerStats" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower"]
+[node name="TowerStats" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/1"]
 layout_mode = 2
 
-[node name="LaunchPower" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower/TowerStats"]
+[node name="LaunchPower" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/1/TowerStats"]
 layout_mode = 2
 text = "Launch power: 10"
 
-[node name="Firerate" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower/TowerStats"]
+[node name="Firerate" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/1/TowerStats"]
 layout_mode = 2
 text = "Firerate: 1/s"
 
-[node name="Ball" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower"]
+[node name="HSeparator5" type="HSeparator" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/1"]
 layout_mode = 2
 
-[node name="BallSprite" type="TextureRect" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower/Ball"]
+[node name="Ball" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/1"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/1/Ball"]
+layout_mode = 2
+text = "Ball"
+
+[node name="BallSprite" type="TextureRect" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/1/Ball"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
@@ -233,18 +243,18 @@ size_flags_vertical = 0
 texture = ExtResource("18_5a3re")
 stretch_mode = 2
 
-[node name="BallStats" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower/Ball"]
+[node name="BallStats" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/1/Ball"]
 layout_mode = 2
 
-[node name="Mass" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower/Ball/BallStats"]
+[node name="Mass" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/1/Ball/BallStats"]
 layout_mode = 2
 text = "Mass: 10"
 
-[node name="Health" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower/Ball/BallStats"]
+[node name="Health" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/1/Ball/BallStats"]
 layout_mode = 2
 text = "HP: 10"
 
-[node name="BounceType" type="OptionButton" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower/Ball"]
+[node name="BounceType" type="OptionButton" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/1/Ball"]
 layout_mode = 2
 selected = 0
 item_count = 4
@@ -257,20 +267,184 @@ popup/item_2/id = 2
 popup/item_3/text = "Cannon"
 popup/item_3/id = 3
 
-[node name="Upgrades" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower/Ball"]
+[node name="Upgrades" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/1/Ball"]
 layout_mode = 2
 
-[node name="BallTriggers" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower/Ball"]
+[node name="BallTriggers" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/1/Ball"]
 layout_mode = 2
 
-[node name="Trigger" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower/Ball/BallTriggers"]
+[node name="Trigger" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/1/Ball/BallTriggers"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower/Ball/BallTriggers/Trigger"]
+[node name="Label" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/1/Ball/BallTriggers/Trigger"]
 layout_mode = 2
 text = "Hit trigger"
 
-[node name="Effects" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/SelectedTower/Ball/BallTriggers/Trigger"]
+[node name="Effects" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/1/Ball/BallTriggers/Trigger"]
+layout_mode = 2
+
+[node name="2" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="TowerSprite" type="TextureRect" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/2"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("18_5a3re")
+stretch_mode = 2
+
+[node name="TowerStats" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/2"]
+layout_mode = 2
+
+[node name="LaunchPower" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/2/TowerStats"]
+layout_mode = 2
+text = "Launch power: 10"
+
+[node name="Firerate" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/2/TowerStats"]
+layout_mode = 2
+text = "Firerate: 1/s"
+
+[node name="HSeparator5" type="HSeparator" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/2"]
+layout_mode = 2
+
+[node name="Ball" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/2/Ball"]
+layout_mode = 2
+text = "Ball"
+
+[node name="BallSprite" type="TextureRect" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/2/Ball"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("18_5a3re")
+stretch_mode = 2
+
+[node name="BallStats" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/2/Ball"]
+layout_mode = 2
+
+[node name="Mass" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/2/Ball/BallStats"]
+layout_mode = 2
+text = "Mass: 10"
+
+[node name="Health" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/2/Ball/BallStats"]
+layout_mode = 2
+text = "HP: 10"
+
+[node name="BounceType" type="OptionButton" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/2/Ball"]
+layout_mode = 2
+selected = 0
+item_count = 4
+popup/item_0/text = "Normal"
+popup/item_0/id = 0
+popup/item_1/text = "Reverse"
+popup/item_1/id = 1
+popup/item_2/text = "Snipper"
+popup/item_2/id = 2
+popup/item_3/text = "Cannon"
+popup/item_3/id = 3
+
+[node name="Upgrades" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/2/Ball"]
+layout_mode = 2
+
+[node name="BallTriggers" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/2/Ball"]
+layout_mode = 2
+
+[node name="Trigger" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/2/Ball/BallTriggers"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/2/Ball/BallTriggers/Trigger"]
+layout_mode = 2
+text = "Hit trigger"
+
+[node name="Effects" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/2/Ball/BallTriggers/Trigger"]
+layout_mode = 2
+
+[node name="3" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="TowerSprite" type="TextureRect" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/3"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("18_5a3re")
+stretch_mode = 2
+
+[node name="TowerStats" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/3"]
+layout_mode = 2
+
+[node name="LaunchPower" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/3/TowerStats"]
+layout_mode = 2
+text = "Launch power: 10"
+
+[node name="Firerate" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/3/TowerStats"]
+layout_mode = 2
+text = "Firerate: 1/s"
+
+[node name="HSeparator5" type="HSeparator" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/3"]
+layout_mode = 2
+
+[node name="Ball" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/3/Ball"]
+layout_mode = 2
+text = "Ball"
+
+[node name="BallSprite" type="TextureRect" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/3/Ball"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("18_5a3re")
+stretch_mode = 2
+
+[node name="BallStats" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/3/Ball"]
+layout_mode = 2
+
+[node name="Mass" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/3/Ball/BallStats"]
+layout_mode = 2
+text = "Mass: 10"
+
+[node name="Health" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/3/Ball/BallStats"]
+layout_mode = 2
+text = "HP: 10"
+
+[node name="BounceType" type="OptionButton" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/3/Ball"]
+layout_mode = 2
+selected = 0
+item_count = 4
+popup/item_0/text = "Normal"
+popup/item_0/id = 0
+popup/item_1/text = "Reverse"
+popup/item_1/id = 1
+popup/item_2/text = "Snipper"
+popup/item_2/id = 2
+popup/item_3/text = "Cannon"
+popup/item_3/id = 3
+
+[node name="Upgrades" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/3/Ball"]
+layout_mode = 2
+
+[node name="BallTriggers" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/3/Ball"]
+layout_mode = 2
+
+[node name="Trigger" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/3/Ball/BallTriggers"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/3/Ball/BallTriggers/Trigger"]
+layout_mode = 2
+text = "Hit trigger"
+
+[node name="Effects" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer/Tower/TabContainer/3/Ball/BallTriggers/Trigger"]
 layout_mode = 2
 
 [node name="NoTowerSelected" type="CenterContainer" parent="LevelUI/Panel/VBoxContainer/Tower"]
@@ -281,8 +455,15 @@ layout_mode = 2
 layout_mode = 2
 text = "NO TOWER SELECTED"
 
+[node name="HSeparator" type="HSeparator" parent="LevelUI/Panel/VBoxContainer"]
+layout_mode = 2
+
 [node name="Paddle" type="VBoxContainer" parent="LevelUI/Panel/VBoxContainer"]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="LevelUI/Panel/VBoxContainer/Paddle"]
+layout_mode = 2
+text = "Paddle"
 
 [node name="PaddleHP" type="Label" parent="LevelUI/Panel/VBoxContainer/Paddle"]
 layout_mode = 2
@@ -300,11 +481,45 @@ metadata/_custom_type_script = "uid://cr77osinysypj"
 
 [node name="Towers" type="Node" parent="." node_paths=PackedStringArray("towers")]
 script = ExtResource("20_b6vke")
-towers = [NodePath("Tower")]
+towers = [NodePath("Tower"), NodePath("Tower8"), NodePath("Tower7"), NodePath("Tower6"), NodePath("Tower5"), NodePath("Tower4"), NodePath("Tower3"), NodePath("Tower2")]
 metadata/_custom_type_script = "uid://dpkopqxq8y2uy"
 
+[node name="PlaceableArea" type="Area2D" parent="Towers"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Towers/PlaceableArea"]
+position = Vector2(-100.5, 146.5)
+shape = SubResource("RectangleShape2D_b6vke")
+
 [node name="Tower" parent="Towers" groups=["towers"] instance=ExtResource("11_o3776")]
-position = Vector2(-308, 150)
+position = Vector2(-282, 144)
+rotation = -0.925025
+
+[node name="Tower8" parent="Towers" groups=["towers"] instance=ExtResource("11_o3776")]
+position = Vector2(72.9999, 147)
+rotation = -0.925025
+
+[node name="Tower7" parent="Towers" groups=["towers"] instance=ExtResource("11_o3776")]
+position = Vector2(20.9999, 146)
+rotation = -0.925025
+
+[node name="Tower6" parent="Towers" groups=["towers"] instance=ExtResource("11_o3776")]
+position = Vector2(-31, 146)
+rotation = -0.925025
+
+[node name="Tower5" parent="Towers" groups=["towers"] instance=ExtResource("11_o3776")]
+position = Vector2(-83, 145)
+rotation = -0.925025
+
+[node name="Tower4" parent="Towers" groups=["towers"] instance=ExtResource("11_o3776")]
+position = Vector2(-134, 145)
+rotation = -0.925025
+
+[node name="Tower3" parent="Towers" groups=["towers"] instance=ExtResource("11_o3776")]
+position = Vector2(-182, 146)
+rotation = -0.925025
+
+[node name="Tower2" parent="Towers" groups=["towers"] instance=ExtResource("11_o3776")]
+position = Vector2(-232, 147)
 rotation = -0.925025
 
 [node name="DamageableStaticBody2D" type="StaticBody2D" parent="."]

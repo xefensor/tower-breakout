@@ -3,7 +3,7 @@ extends AudioStreamPlayer
 
 
 func one_shot_play(parent_node: Node = self) -> void:
-	var player = duplicate()
+	var player: OneShotAudioPlayer = duplicate()
 	player.finished.connect(player.queue_free)
 	parent_node.add_child(player)
 	player.play()

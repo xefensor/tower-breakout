@@ -1,6 +1,7 @@
 class_name Level
 extends Node
 
+
 signal enemies_cleared
 
 static var instance: Level

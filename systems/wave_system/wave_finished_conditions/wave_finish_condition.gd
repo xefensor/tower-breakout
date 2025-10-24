@@ -1,3 +1,4 @@
+@abstract
 class_name WaveFinishCondition
 extends Resource
 
@@ -5,9 +6,9 @@ extends Resource
 signal condition_met
 
 
-func setup(_wave: Wave) -> void:
-	pass
+@abstract
+func setup(_wave: Wave) -> void
 
 
-func check() -> void:
-	pass
+@abstract
+func check() -> void

@@ -1,3 +1,4 @@
+@abstract
 class_name WaveObject
 extends Resource
 
@@ -5,5 +6,5 @@ extends Resource
 signal object_finished
 
 
-func start() -> void:
-	object_finished.emit()
+@abstract
+func start() -> void
