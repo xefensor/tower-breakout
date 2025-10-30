@@ -4,7 +4,13 @@ extends AnimatableBody2D
 
 @export var _speed: float = 5
 @export var health: Health
+@export var bounce_strenght_limit: Vector2 = Vector2(0.5, 3)
+@export var bounce_strenght: float = 1:
+	set(new_var):
+		bounce_strenght = clamp(new_var, bounce_strenght_limit.x, bounce_strenght_limit.y)
 @export var ball_hit_audio_player: AudioStreamPlayer
+
+var powers: Powers = Powers.new(self)
 
 @onready var default_health: int = health.current_health
 @onready var _area_2d: Area2D = NodeUtils.get_child_by_class(self, Area2D)
@@ -13,9 +19,11 @@ extends AnimatableBody2D
 
 func _ready() -> void:
 	_area_2d.body_entered.connect(_on_area_2d_body_entered)
+	
 	health.health_changed.connect(_on_health_changed)
 	health.died.connect(queue_free)
-
+	_on_health_changed(health.current_health)
+	
 
 func _physics_process(delta: float) -> void:
 	var _direction: float = Input.get_axis("paddle_left", "paddle_right")
@@ -32,7 +40,7 @@ func ball_hit(ball: Ball) -> void:
 	relative_hit_pos = clamp(relative_hit_pos, -1.0, 1.0)
 
 	var angle: float = deg_to_rad(85 * relative_hit_pos)  # -85° až 85°
-	ball.velocity = Vector2(sin(angle), -cos(angle)).normalized() * ball.velocity.length()
+	ball.velocity = Vector2(sin(angle), -cos(angle)).normalized() * ball.velocity.length() * bounce_strenght
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
@@ -44,3 +52,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func _on_health_changed(new_health: int) -> void:
 	scale.x = default_health / 100.0 * new_health
 	
+
+func handle_power(power: Power):
+	powers.handle_power(power)
