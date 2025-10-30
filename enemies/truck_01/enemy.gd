@@ -1,6 +1,7 @@
 class_name Enemy
 extends AnimatableBody2D
 
+
 signal died()
 
 @export var health: Health = Health.new()

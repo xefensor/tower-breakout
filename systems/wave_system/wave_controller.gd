@@ -2,6 +2,7 @@ class_name	WaveController
 extends Node
 
 
+signal wave_started
 signal wave_finished
 
 @export var wave_group: WaveGroup
@@ -14,9 +15,9 @@ var _current_wave_index: int = 0:
 
 
 func start_wave(wave: Wave) -> void:
-	get_tree().call_group("towers", "start")
 	wave.wave_finished.connect(_on_wave_finished)
 	wave.start()
+	wave_started.emit()
 
 
 func start_next_wave() -> void:
@@ -27,9 +28,7 @@ func start_next_wave() -> void:
 	start_wave(wave_group.waves[_current_wave_index])
 
 
-func _on_wave_finished() -> void:
-	get_tree().call_group("towers", "stop")
-	
+func _on_wave_finished() -> void:	
 	wave_finished.emit()
 	
 	if wave_group.waves[_current_wave_index].wave_finished.is_connected(_on_wave_finished):

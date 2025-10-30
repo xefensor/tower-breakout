@@ -1,3 +1,4 @@
+@abstract
 class_name Trigger
 extends Resource
 

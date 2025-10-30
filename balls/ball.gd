@@ -31,33 +31,35 @@ func _ready() -> void:
 	hitted_damageable.connect(triggers[0].trigger)
 	
 
-func _physics_process(delta) -> void:
+func _physics_process(delta: float) -> void:
 	velocity += get_gravity()
 	
 	var collision_info: KinematicCollision2D = move_and_collide(velocity * delta)
-	if collision_info:
-		var _collider: Object = collision_info.get_collider()
-		var hitted_enemy := false
+	if not collision_info:
+		return
 		
-		if _collider is Paddle:
-			_collider.ball_hit(self)
-			return
-		elif _collider.has_method("take_damage"):
-			hitted_damageable.emit(collision_info)
-			hitted_enemy = true
+	var _collider: Object = collision_info.get_collider()
+	var hitted_enemy := false
+	
+	if _collider is Paddle:
+		_collider.ball_hit(self)
+		return
+	elif _collider.has_method("take_damage"):
+		hitted_damageable.emit(collision_info)
+		hitted_enemy = true
 
-		bounce_audio_player.one_shot_play(Level.instance)
-		velocity = calculate_bounce(bounce_type, collision_info, hitted_enemy)
+	bounce_audio_player.one_shot_play(Level.instance)
+	velocity = calculate_bounce(bounce_type, collision_info, hitted_enemy)
 
-		_health.take_damage(1)
-		move_and_collide(velocity * delta)
+	_health.take_damage(1)
+	move_and_collide(velocity * delta)
 
 
-func calculate_bounce(bounce_type: BounceType, collision_info: KinematicCollision2D, hitted_enemy: bool) -> Vector2:
+func calculate_bounce(_bounce_type: BounceType, collision_info: KinematicCollision2D, hitted_enemy: bool) -> Vector2:
 	var normal: Vector2 = collision_info.get_normal()
 	var bounce: Vector2 = velocity.bounce(normal)
 
-	match bounce_type:
+	match _bounce_type:
 		BounceType.NORMAL:
 			bounce = velocity.bounce(normal)
 			
@@ -73,7 +75,7 @@ func calculate_bounce(bounce_type: BounceType, collision_info: KinematicCollisio
 					var nearest_distance: float = INF
 
 					for node in enemies:
-						var dist = global_position.distance_to(node.global_position)
+						var dist: float = global_position.distance_to(node.global_position)
 						if dist < nearest_distance:
 							nearest_distance = dist
 							nearest_node = node
