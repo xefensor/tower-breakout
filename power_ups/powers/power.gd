@@ -1,7 +1,9 @@
+@abstract
 class_name Power
 extends Resource
 
-enum Type { POWER_UP, POWER_DOWN}
+
+enum Type {POWER_UP, POWER_DOWN}
 
 @export var type: Type = Type.POWER_UP
 @export var spawn_chance: int = 1

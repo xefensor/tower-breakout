@@ -1,18 +1,22 @@
 class_name PowerChooser
 extends Resource
 
+
 @export var powers: Array[Power]
 
-func choose_power():
-	var chances_count: int
+
+func choose_power() -> Power:
+	var chances_count: int = 0
 	
-	for power in powers:
+	for power: Power in powers:
 		chances_count += power.spawn_chance
 
-	var rand = randi_range(0, chances_count-1)
+	var rand: int = randi_range(0, chances_count-1)
 	
-	var cumulative := 0
+	var cumulative: int = 0
 	for power in powers:
 		cumulative += power.spawn_chance
 		if rand < cumulative:
 			return power
+	
+	return null

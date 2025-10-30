@@ -31,7 +31,7 @@ func _ready() -> void:
 	health.died.connect(_on_health_died)
 	health.health_changed.connect(_on_health_changed)
 	
-	health_bar.value = 100 / health.max_health * health.current_health
+	health_bar.value = 100.0 / health.max_health * health.current_health
 
 
 func take_damage(amount: int) -> void:
@@ -57,8 +57,8 @@ func _on_health_died() -> void:
 	Level.instance.money += 5
 	
 	if randi_range(1, 100) <= power_drop_chance:
-		var power = preload("res://power_ups/falling_power.tscn")
-		var inst = power.instantiate()
+		var scene: PackedScene = preload("res://power_ups/falling_power.tscn")
+		var inst: FallingPower = scene.instantiate()
 		inst.power = power_chooser.choose_power()
 		inst.global_position = global_position
 		Level.instance.add_child(inst)
@@ -67,4 +67,4 @@ func _on_health_died() -> void:
 
 
 func _on_health_changed(newhealth : int) -> void:
-	health_bar.value = 100 / health.max_health * newhealth
+	health_bar.value = 100.0 / health.max_health * newhealth

@@ -53,5 +53,5 @@ func _on_health_changed(new_health: int) -> void:
 	scale.x = default_health / 100.0 * new_health
 	
 
-func handle_power(power: Power):
+func handle_power(power: Power) -> void:
 	powers.handle_power(power)

@@ -37,7 +37,6 @@ collision_layer = 4
 collision_mask = 35
 script = ExtResource("1_ht7ih")
 _health = SubResource("Resource_ota7r")
-bounce_type = 2
 bounce_audio_player = NodePath("OneShotAudioPlayer")
 triggers = Array[ExtResource("3_ysyxj")]([SubResource("Resource_o703g")])
 metadata/_custom_type_script = "uid://dqe2rhlr6ul7l"

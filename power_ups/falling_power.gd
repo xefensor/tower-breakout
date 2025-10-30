@@ -1,6 +1,7 @@
 class_name FallingPower
 extends Area2D
 
+
 @export var fall_speed: float = 40
 @export var power: Power
 
