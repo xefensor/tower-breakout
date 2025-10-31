@@ -9,9 +9,5 @@ extends Resource
 var paddle: Paddle
 
 
-func apply_effect() -> void:
-	pass
-	
-	
-func remove_effect() -> void:
-	pass
+@abstract
+func apply_effect() -> void
