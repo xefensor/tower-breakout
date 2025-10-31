@@ -7,7 +7,7 @@ extends Power
 
 
 func apply_effect() -> void:
-	if type == Type.POWER_UP:
+	if positive:
 		paddle.bounce_strenght += strenght
 	else:
 		paddle.bounce_strenght -= strenght
@@ -17,7 +17,7 @@ func apply_effect() -> void:
 	
 	
 func remove_effect() -> void:
-	if type == Type.POWER_UP:
+	if positive:
 		paddle.bounce_strenght -= strenght
 	else:
 		paddle.bounce_strenght += strenght

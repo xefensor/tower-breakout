@@ -1,15 +1,30 @@
 class_name Powers
-extends RefCounted
+extends Resource
 
 
-var powers: Array[Power]
-var paddle: Paddle
+@export var powers: Array[PowerAndChance]
 
 
-func _init(_paddle: Paddle) -> void:
-	paddle = _paddle
+func calc_combined_chance(_powers: Array[PowerAndChance]) -> int:
+	var chance: int = 0
+	
+	for power_and_change: PowerAndChance in _powers:
+		chance += power_and_change.spawn_chance
 
+	return chance
+	
 
-func handle_power(power: Power) -> void:
-	power.paddle = paddle
-	power.apply_effect()
+func choose_power(_powers: Array[PowerAndChance]) -> Power:
+	var combined_chance: int =  calc_combined_chance(_powers)
+	var spawn_chance: int = randi_range(1, 100)
+	
+	if spawn_chance > combined_chance:
+		return
+	
+	var finding_power: int = 0
+	for power_and_chance in _powers:
+		finding_power += power_and_chance.spawn_chance
+		if spawn_chance <= finding_power:
+			return power_and_chance.power
+		
+	return null

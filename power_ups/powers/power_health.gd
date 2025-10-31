@@ -6,7 +6,7 @@ extends Power
 
 
 func apply_effect() -> void:
-	if type == Type.POWER_UP:
+	if positive:
 		paddle.health.heal(health)
 	else:
 		paddle.health.take_damage(health)
