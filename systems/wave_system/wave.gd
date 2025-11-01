@@ -11,10 +11,11 @@ signal timelines_finished
 var finished_timelines: int = 0:
 	set(new_val):
 		finished_timelines = new_val
-		if finished_timelines == wave_timelines.size():
-			for timeline in wave_timelines:
-				timeline.timeline_finished.disconnect(_on_timeline_finished)
-			timelines_finished.emit()
+		if finished_timelines != wave_timelines.size():
+			return
+		for timeline in wave_timelines:
+			timeline.timeline_finished.disconnect(_on_timeline_finished)
+		timelines_finished.emit()
 
 
 func start() -> void:

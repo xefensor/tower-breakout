@@ -44,7 +44,8 @@ func _physics_process(delta: float) -> void:
 	if _collider is Paddle:
 		_collider.ball_hit(self)
 		return
-	elif _collider.has_method("take_damage"):
+		
+	if _collider.has_method("take_damage"):
 		hitted_damageable.emit(collision_info)
 		hitted_enemy = true
 
