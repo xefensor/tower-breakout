@@ -4,16 +4,9 @@ class_name Ball
 
 signal hitted_damageable(collision_info: KinematicCollision2D)
 
-enum BounceType {
-	NORMAL,
-	REVERSE,
-	SNIPER,
-	CANNON,
-	}
-
 @export var weight: int = 10
 @export var _health: Health
-@export var bounce_type: BounceType
+@export var bounce: Bounce
 @export var bounce_audio_player: OneShotAudioPlayer
 
 @export var triggers: Array[Trigger]
@@ -50,44 +43,10 @@ func _physics_process(delta: float) -> void:
 		hitted_enemy = true
 
 	bounce_audio_player.one_shot_play(Level.instance)
-	velocity = calculate_bounce(bounce_type, collision_info, hitted_enemy)
+	velocity = bounce.calculate_bounce(self, collision_info, hitted_enemy) + collision_info.get_collider_velocity() * 0.5
 
 	_health.take_damage(1)
 	move_and_collide(velocity * delta)
-
-
-func calculate_bounce(_bounce_type: BounceType, collision_info: KinematicCollision2D, hitted_enemy: bool) -> Vector2:
-	var normal: Vector2 = collision_info.get_normal()
-	var bounce: Vector2 = velocity.bounce(normal)
-
-	match _bounce_type:
-		BounceType.NORMAL:
-			bounce = velocity.bounce(normal)
-			
-		BounceType.REVERSE:
-			bounce = velocity.rotated(PI)
-			
-		BounceType.SNIPER:
-			if not hitted_enemy:
-				var enemies := get_tree().get_nodes_in_group("enemies")
-				
-				if enemies:
-					var nearest_node: Node2D = null
-					var nearest_distance: float = INF
-
-					for node in enemies:
-						var dist: float = global_position.distance_to(node.global_position)
-						if dist < nearest_distance:
-							nearest_distance = dist
-							nearest_node = node
-
-					bounce = (nearest_node.global_position - global_position).normalized() * velocity.length()
-					
-		BounceType.CANNON:
-			if collision_info.get_collider().is_queued_for_deletion():
-				bounce = velocity
-
-	return bounce + collision_info.get_collider_velocity() * 0.5
 
 
 func _on_death() -> void:
