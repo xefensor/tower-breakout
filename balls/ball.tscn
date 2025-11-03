@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dqe2rhlr6ul7l" path="res://balls/ball.gd" id="1_ht7ih"]
 [ext_resource type="Script" uid="uid://1lv2acxyuxrg" path="res://systems/health.gd" id="2_5j7o3"]
 [ext_resource type="Texture2D" uid="uid://vtd73b733fi" path="res://balls/ball.png" id="2_ota7r"]
-[ext_resource type="Script" uid="uid://trv008xtwxj8" path="res://balls/bounces/reverse_bounce.gd" id="3_yf0cp"]
+[ext_resource type="Script" uid="uid://j8yc8pc85ng6" path="res://balls/bounces/sniper_bounce.gd" id="3_yf0cp"]
 [ext_resource type="Script" uid="uid://cau3888oy20w3" path="res://balls/triggers/trigger.gd" id="3_ysyxj"]
 [ext_resource type="AudioStream" uid="uid://kqgf22uwfx0j" path="res://balls/bounce.wav" id="4_f1tw0"]
 [ext_resource type="Script" uid="uid://dj1uxgc1eib5s" path="res://balls/effects/effect.gd" id="4_yf0cp"]
@@ -16,9 +16,9 @@ resource_local_to_scene = true
 script = ExtResource("2_5j7o3")
 metadata/_custom_type_script = "uid://1lv2acxyuxrg"
 
-[sub_resource type="Resource" id="Resource_7pftd"]
+[sub_resource type="Resource" id="Resource_yf0cp"]
 script = ExtResource("3_yf0cp")
-metadata/_custom_type_script = "uid://trv008xtwxj8"
+metadata/_custom_type_script = "uid://j8yc8pc85ng6"
 
 [sub_resource type="Resource" id="Resource_5hrr2"]
 script = ExtResource("5_7pftd")
@@ -42,7 +42,7 @@ collision_layer = 4
 collision_mask = 35
 script = ExtResource("1_ht7ih")
 _health = SubResource("Resource_ota7r")
-bounce = SubResource("Resource_7pftd")
+bounce = SubResource("Resource_yf0cp")
 bounce_audio_player = NodePath("OneShotAudioPlayer")
 triggers = Array[ExtResource("3_ysyxj")]([SubResource("Resource_o703g")])
 metadata/_custom_type_script = "uid://dqe2rhlr6ul7l"

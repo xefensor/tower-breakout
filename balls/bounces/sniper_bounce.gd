@@ -2,12 +2,11 @@ class_name SniperBounce
 extends Bounce
 
 
-func calculate_bounce(ball: Ball, collision_info: KinematicCollision2D,
- hitted_enemy: bool) -> Vector2:
+func calculate_bounce(ball: Ball, collision_info: KinematicCollision2D) -> Vector2:
 	var normal: Vector2 = collision_info.get_normal()
 	var bounce: Vector2 = ball.velocity.bounce(normal)
 	
-	if hitted_enemy:
+	if collision_info.get_collider().has_method("take_damage"):
 		return bounce
 	
 	var enemies := ball.get_tree().get_nodes_in_group("enemies")

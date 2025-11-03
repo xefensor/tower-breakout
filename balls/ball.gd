@@ -31,19 +31,17 @@ func _physics_process(delta: float) -> void:
 	if not collision_info:
 		return
 		
-	var _collider: Object = collision_info.get_collider()
-	var hitted_enemy := false
+	var collider: Object = collision_info.get_collider()
 	
-	if _collider is Paddle:
-		_collider.ball_hit(self)
+	if collider is Paddle:
+		collider.ball_hit(self)
 		return
 		
-	if _collider.has_method("take_damage"):
+	if collider.has_method("take_damage"):
 		hitted_damageable.emit(collision_info)
-		hitted_enemy = true
 
 	bounce_audio_player.one_shot_play(Level.instance)
-	velocity = bounce.calculate_bounce(self, collision_info, hitted_enemy) + collision_info.get_collider_velocity() * 0.5
+	velocity = bounce.calculate_bounce(self, collision_info) + collision_info.get_collider_velocity() * 0.5
 
 	_health.take_damage(1)
 	move_and_collide(velocity * delta)
