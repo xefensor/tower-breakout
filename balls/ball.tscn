@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://j8yc8pc85ng6" path="res://balls/bounces/sniper_bounce.gd" id="3_yf0cp"]
 [ext_resource type="AudioStream" uid="uid://kqgf22uwfx0j" path="res://balls/bounce.wav" id="4_f1tw0"]
 [ext_resource type="Script" uid="uid://dj1uxgc1eib5s" path="res://balls/effects/effect.gd" id="4_yf0cp"]
-[ext_resource type="Script" uid="uid://ce1rc0edt52dn" path="res://balls/effects/effect_basic_hit.gd" id="5_7pftd"]
+[ext_resource type="Script" uid="uid://ce1rc0edt52dn" path="res://balls/effects/basic_hit_effect.gd" id="5_7pftd"]
 [ext_resource type="Script" uid="uid://dxigfhjtcdruc" path="res://systems/effects/one_shot_audio_player.gd" id="5_f1tw0"]
 
 [sub_resource type="Resource" id="Resource_yf0cp"]
@@ -28,9 +28,10 @@ stream_0/stream = ExtResource("4_f1tw0")
 collision_layer = 4
 collision_mask = 35
 script = ExtResource("1_f1tw0")
+weight = null
 bounce = SubResource("Resource_yf0cp")
-bounce_audio_player = NodePath("OneShotAudioPlayer")
 effects = Array[ExtResource("4_yf0cp")]([SubResource("Resource_ifebw")])
+bounce_audio_player = NodePath("OneShotAudioPlayer")
 metadata/_custom_type_script = "uid://fc8nc7dop70w"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

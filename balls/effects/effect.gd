@@ -4,4 +4,4 @@ extends Resource
 
 
 @abstract
-func apply(_effect_modifier: EffectModifier) -> EffectModifier
+func apply(effect_modifiers: Dictionary) -> Dictionary

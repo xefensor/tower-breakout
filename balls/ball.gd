@@ -32,6 +32,6 @@ func heal(amount: int) -> void:
 	_health.heal(amount)
 	
 	
-func apply_effects(effect_mofifier: EffectModifier) -> void:
+func apply_effects(effect_mofifiers: Dictionary) -> void:
 	for effect in effects:
-		effect_mofifier = effect.apply(effect_mofifier)
+		effect_mofifiers = effect.apply(effect_mofifiers)
