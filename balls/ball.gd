@@ -1,15 +1,14 @@
+@abstract
 extends CharacterBody2D
 class_name Ball
 
 
-signal hitted_damageable(collision_info: KinematicCollision2D)
-
 @export var weight: int = 10
-@export var _health: Health
+@export var _health: Health = Health.new()
 @export var bounce: Bounce
 @export var bounce_audio_player: OneShotAudioPlayer
 
-@export var triggers: Array[Trigger]
+@export var effects: Array[Effect]
 
 @onready var _visible_on_screen_notifier_2D: VisibleOnScreenNotifier2D = NodeUtils.get_child_by_class(self, VisibleOnScreenNotifier2D)
 
@@ -19,32 +18,6 @@ func _ready() -> void:
 	
 	_visible_on_screen_notifier_2D.screen_exited.connect(_on_death)
 	_health.died.connect(queue_free)
-
-	#triggers.append(TriggerDamageable.new())
-	hitted_damageable.connect(triggers[0].trigger)
-	
-
-func _physics_process(delta: float) -> void:
-	velocity += get_gravity()
-	
-	var collision_info: KinematicCollision2D = move_and_collide(velocity * delta)
-	if not collision_info:
-		return
-		
-	var collider: Object = collision_info.get_collider()
-	
-	if collider is Paddle:
-		collider.ball_hit(self)
-		return
-		
-	if collider.has_method("take_damage"):
-		hitted_damageable.emit(collision_info)
-
-	bounce_audio_player.one_shot_play(Level.instance)
-	velocity = bounce.calculate_bounce(self, collision_info) + collision_info.get_collider_velocity() * 0.5
-
-	_health.take_damage(1)
-	move_and_collide(velocity * delta)
 
 
 func _on_death() -> void:
@@ -57,3 +30,8 @@ func take_damage(amount: int) -> void:
 
 func heal(amount: int) -> void:
 	_health.heal(amount)
+	
+	
+func apply_effects(effect_mofifier: EffectModifier) -> void:
+	for effect in effects:
+		effect_mofifier = effect.apply(effect_mofifier)
