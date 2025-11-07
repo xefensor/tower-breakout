@@ -1,19 +1,26 @@
-[gd_scene load_steps=12 format=3 uid="uid://c4ko46xi0u27d"]
+[gd_scene load_steps=14 format=3 uid="uid://c4ko46xi0u27d"]
 
 [ext_resource type="Script" uid="uid://fc8nc7dop70w" path="res://balls/ball_types/basic_ball.gd" id="1_f1tw0"]
+[ext_resource type="Script" uid="uid://1lv2acxyuxrg" path="res://systems/health.gd" id="2_ea85i"]
 [ext_resource type="Texture2D" uid="uid://vtd73b733fi" path="res://balls/ball.png" id="2_ota7r"]
-[ext_resource type="Script" uid="uid://j8yc8pc85ng6" path="res://balls/bounces/sniper_bounce.gd" id="3_yf0cp"]
+[ext_resource type="Script" uid="uid://5hfd5cba0k3i" path="res://balls/bounces/basic_bounce.gd" id="3_ea85i"]
 [ext_resource type="AudioStream" uid="uid://kqgf22uwfx0j" path="res://balls/bounce.wav" id="4_f1tw0"]
 [ext_resource type="Script" uid="uid://dj1uxgc1eib5s" path="res://balls/effects/effect.gd" id="4_yf0cp"]
 [ext_resource type="Script" uid="uid://ce1rc0edt52dn" path="res://balls/effects/basic_hit_effect.gd" id="5_7pftd"]
 [ext_resource type="Script" uid="uid://dxigfhjtcdruc" path="res://systems/effects/one_shot_audio_player.gd" id="5_f1tw0"]
 
-[sub_resource type="Resource" id="Resource_yf0cp"]
-script = ExtResource("3_yf0cp")
-metadata/_custom_type_script = "uid://j8yc8pc85ng6"
+[sub_resource type="Resource" id="Resource_ea85i"]
+resource_local_to_scene = true
+script = ExtResource("2_ea85i")
+metadata/_custom_type_script = "uid://1lv2acxyuxrg"
+
+[sub_resource type="Resource" id="Resource_ysyxj"]
+script = ExtResource("3_ea85i")
+metadata/_custom_type_script = "uid://5hfd5cba0k3i"
 
 [sub_resource type="Resource" id="Resource_ifebw"]
 script = ExtResource("5_7pftd")
+fire_rate_mod = 4.0
 metadata/_custom_type_script = "uid://ce1rc0edt52dn"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dgrc4"]
@@ -28,10 +35,10 @@ stream_0/stream = ExtResource("4_f1tw0")
 collision_layer = 4
 collision_mask = 35
 script = ExtResource("1_f1tw0")
-weight = null
-bounce = SubResource("Resource_yf0cp")
-effects = Array[ExtResource("4_yf0cp")]([SubResource("Resource_ifebw")])
+_health = SubResource("Resource_ea85i")
+bounce = SubResource("Resource_ysyxj")
 bounce_audio_player = NodePath("OneShotAudioPlayer")
+effects = Array[ExtResource("4_yf0cp")]([SubResource("Resource_ifebw")])
 metadata/_custom_type_script = "uid://fc8nc7dop70w"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

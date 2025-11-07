@@ -28,7 +28,7 @@ func start_next_wave() -> void:
 	start_wave(wave_group.waves[_current_wave_index])
 
 
-func _on_wave_finished() -> void:	
+func _on_wave_finished() -> void:
 	wave_finished.emit()
 	
 	if wave_group.waves[_current_wave_index].wave_finished.is_connected(_on_wave_finished):

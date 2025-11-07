@@ -19,9 +19,9 @@ signal died()
 
 func take_damage(amount: int) -> void:
 	if damageable:
-		current_health = max(current_health - amount, 0)
+		current_health = clampi(current_health - amount, 0, max_health)
 
 
 func heal(amount: int) -> void:
 	if healable:
-		current_health = min(current_health + amount, max_health)
+		current_health = clampi(current_health + amount, 0, max_health)

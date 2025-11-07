@@ -3,7 +3,8 @@ extends CharacterBody2D
 class_name Ball
 
 
-@export var weight: int = 10
+@export var fire_rate: float = 1
+@export var launch_speed: int = 10
 @export var _health: Health = Health.new()
 @export var bounce: Bounce
 @export var bounce_audio_player: OneShotAudioPlayer
