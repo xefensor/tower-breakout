@@ -26,7 +26,7 @@ func _init() -> void:
 	
 
 func _ready() -> void:
-	reset_physics_interpolation()
+	#reset_physics_interpolation()
 	
 	health.died.connect(_on_health_died)
 	health.health_changed.connect(_on_health_changed)

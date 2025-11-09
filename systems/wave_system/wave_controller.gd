@@ -1,4 +1,4 @@
-class_name	WaveController
+class_name WaveController
 extends Node
 
 

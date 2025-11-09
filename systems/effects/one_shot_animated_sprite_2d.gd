@@ -8,5 +8,5 @@ func one_shot_play(parent_node: Node = self) -> void:
 	sprite.global_position = global_position
 	sprite.visible = true
 	parent_node.add_child(sprite)
-	sprite.reset_physics_interpolation()
+	#sprite.reset_physics_interpolation()
 	sprite.play()

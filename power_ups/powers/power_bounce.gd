@@ -17,6 +17,9 @@ func apply_effect() -> void:
 	
 	
 func remove_effect() -> void:
+	if not paddle:
+		return
+	
 	if positive:
 		paddle.bounce_strenght -= strenght
 	else:
