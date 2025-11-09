@@ -1,7 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://8s20h4u4cdht"]
+[gd_scene load_steps=3 format=3 uid="uid://8s20h4u4cdht"]
 
 [ext_resource type="PackedScene" uid="uid://bhk4x0ost1vxj" path="res://levels/test_level_01.tscn" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://c5bkloqenuehc" path="res://game.gd" id="1_e2o6t"]
 
 [node name="Game" type="Node"]
+script = ExtResource("1_e2o6t")
+metadata/_custom_type_script = "uid://c5bkloqenuehc"
 
 [node name="TestLevel01" parent="." instance=ExtResource("1_80nbo")]

@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="Registry" load_steps=9 format=3 uid="uid://744nvu3wukk4"]
+
+[ext_resource type="Script" uid="uid://be3n7wqsin4qr" path="res://systems/registry/ball_registry.gd" id="1_5w2rn"]
+[ext_resource type="Script" uid="uid://dr25dlyb3s4mt" path="res://systems/registry/effect_registry.gd" id="2_fb8lq"]
+[ext_resource type="PackedScene" uid="uid://c4ko46xi0u27d" path="res://balls/ball.tscn" id="2_x7jgs"]
+[ext_resource type="Script" uid="uid://c3u602m1up08q" path="res://systems/registry/registry.gd" id="3_x7jgs"]
+[ext_resource type="Script" uid="uid://ce1rc0edt52dn" path="res://balls/effects/basic_hit_effect.gd" id="4_x7jgs"]
+
+[sub_resource type="Resource" id="Resource_2i4su"]
+script = ExtResource("1_5w2rn")
+scene = ExtResource("2_x7jgs")
+launch_speed = 6
+health = 5
+metadata/_custom_type_script = "uid://be3n7wqsin4qr"
+
+[sub_resource type="Resource" id="Resource_ugkfx"]
+script = ExtResource("4_x7jgs")
+metadata/_custom_type_script = "uid://ce1rc0edt52dn"
+
+[sub_resource type="Resource" id="Resource_2ebpm"]
+script = ExtResource("2_fb8lq")
+effect = SubResource("Resource_ugkfx")
+metadata/_custom_type_script = "uid://dr25dlyb3s4mt"
+
+[resource]
+script = ExtResource("3_x7jgs")
+balls = Dictionary[StringName, ExtResource("1_5w2rn")]({
+&"basic_ball": SubResource("Resource_2i4su")
+})
+effects = Dictionary[StringName, ExtResource("2_fb8lq")]({
+&"basic_hit": SubResource("Resource_2ebpm")
+})
+metadata/_custom_type_script = "uid://c3u602m1up08q"
