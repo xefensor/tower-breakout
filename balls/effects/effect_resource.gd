@@ -1,4 +1,4 @@
-class_name EffectRegistry
+class_name EffectResource
 extends Resource
 
 

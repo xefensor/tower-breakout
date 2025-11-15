@@ -2,7 +2,7 @@ class_name BasicHitEffect
 extends Effect
 
 
-var damage: int = 1
+@export var damage: int = 1
 
 
 func apply(effect_modifiers: Dictionary) -> Dictionary:

@@ -1,4 +1,4 @@
-class_name BallRegistry
+class_name BallResource
 extends Resource
 
 

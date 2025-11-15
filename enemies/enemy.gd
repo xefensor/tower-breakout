@@ -7,7 +7,6 @@ signal died()
 @export var health: Health = Health.new()
 @export var paddle_damage: int = 1
 @export var money: int = 5
-@export var power_drop_chance: int = 10
 @export var powers: Powers
 @export var explosion_audio_player: OneShotAudioPlayer
 @export var explosion_sprite: OneShotAnimatedSprite2D

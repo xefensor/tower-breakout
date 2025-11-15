@@ -1,7 +1,7 @@
 [gd_scene load_steps=28 format=3 uid="uid://4i6twcajef7o"]
 
 [ext_resource type="Script" uid="uid://c6x0vlshg7kfq" path="res://systems/path_follow_2d/enemy_mover_2d.gd" id="1_opr3h"]
-[ext_resource type="Script" uid="uid://5uy0prij3ijx" path="res://enemies/truck_01/enemy.gd" id="2_opr3h"]
+[ext_resource type="Script" uid="uid://5uy0prij3ijx" path="res://enemies/enemy.gd" id="2_opr3h"]
 [ext_resource type="Texture2D" uid="uid://cmm03kanojvf" path="res://enemies/truck_01/sprites/spaceship.png" id="2_we41i"]
 [ext_resource type="Script" uid="uid://myosjs2vfvly" path="res://power_ups/powers.gd" id="3_b8tc5"]
 [ext_resource type="Texture2D" uid="uid://cnjfe5o72rcve" path="res://enemies/truck_01/sprites/spaceship_n.png" id="3_rgy54"]
@@ -88,7 +88,7 @@ animations = [{
 [node name="EnemyMover2D" type="PathFollow2D"]
 loop = false
 script = ExtResource("1_opr3h")
-progression_speed = 30.0
+progression_speed = 25.0
 metadata/_custom_type_script = "uid://c6x0vlshg7kfq"
 
 [node name="Enemy" type="AnimatableBody2D" parent="." node_paths=PackedStringArray("explosion_audio_player", "explosion_sprite") groups=["enemies"]]
@@ -96,7 +96,6 @@ collision_layer = 32
 collision_mask = 4
 sync_to_physics = false
 script = ExtResource("2_opr3h")
-power_drop_chance = 80
 powers = SubResource("Resource_576lq")
 explosion_audio_player = NodePath("OneShotAudioPlayer")
 explosion_sprite = NodePath("OneShotAnimatedSprite2D")

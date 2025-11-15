@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://duppxpnexhjie" path="res://systems/wave_system/wave_group.gd" id="10_tbhd2"]
 [ext_resource type="PackedScene" uid="uid://c3bi5x7hapkg6" path="res://towers/tower.tscn" id="11_o3776"]
 [ext_resource type="Script" uid="uid://ben5scgkcfflm" path="res://levels/border.gd" id="12_q27hf"]
+[ext_resource type="Script" uid="uid://diofxs2v3ndnb" path="res://enemies/enemy_resource.gd" id="16_b6vke"]
 [ext_resource type="Script" uid="uid://bklduw5whh3eu" path="res://systems/damageable_static_body_2d.gd" id="17_yg266"]
 [ext_resource type="Texture2D" uid="uid://c51g800bv4nh2" path="res://icon.svg" id="18_5a3re"]
 [ext_resource type="Script" uid="uid://dpkopqxq8y2uy" path="res://towers/towers.gd" id="20_b6vke"]
@@ -43,23 +44,21 @@ size = Vector2(639, 2)
 script = ExtResource("5_tbhd2")
 metadata/_custom_type_script = "uid://ncfqfbpsvcx2"
 
+[sub_resource type="Resource" id="Resource_b6vke"]
+script = ExtResource("16_b6vke")
+scene = ExtResource("8_6e6j7")
+metadata/_custom_type_script = "uid://diofxs2v3ndnb"
+
 [sub_resource type="Resource" id="Resource_5a3re"]
 script = ExtResource("9_lx6yc")
-enemy = ExtResource("8_6e6j7")
-amount = 5
-delay = 1.0
-metadata/_custom_type_script = "uid://xoen60n578bp"
-
-[sub_resource type="Resource" id="Resource_cifij"]
-script = ExtResource("9_lx6yc")
-enemy = ExtResource("8_6e6j7")
-amount = 10
-delay = 1.0
+enemy_resource = SubResource("Resource_b6vke")
+amount = 7
+delay = 2.0
 metadata/_custom_type_script = "uid://xoen60n578bp"
 
 [sub_resource type="Resource" id="Resource_6e6j7"]
 script = ExtResource("6_yg266")
-timeline_objects = Array[ExtResource("7_5a3re")]([SubResource("Resource_5a3re"), SubResource("Resource_cifij")])
+timeline_objects = Array[ExtResource("7_5a3re")]([SubResource("Resource_5a3re")])
 metadata/_custom_type_script = "uid://c5a4hf3tlrfbu"
 
 [sub_resource type="Resource" id="Resource_lx6yc"]
@@ -68,15 +67,9 @@ finish_condition = SubResource("Resource_yg266")
 wave_timelines = Array[ExtResource("6_yg266")]([SubResource("Resource_6e6j7")])
 metadata/_custom_type_script = "uid://cxnjwmh0faiw5"
 
-[sub_resource type="Resource" id="Resource_b6vke"]
-script = ExtResource("4_r1saj")
-finish_condition = SubResource("Resource_yg266")
-wave_timelines = Array[ExtResource("6_yg266")]([SubResource("Resource_6e6j7")])
-metadata/_custom_type_script = "uid://cxnjwmh0faiw5"
-
 [sub_resource type="Resource" id="Resource_miuwn"]
 script = ExtResource("10_tbhd2")
-waves = Array[ExtResource("4_r1saj")]([SubResource("Resource_lx6yc"), SubResource("Resource_b6vke")])
+waves = Array[ExtResource("4_r1saj")]([SubResource("Resource_lx6yc")])
 metadata/_custom_type_script = "uid://duppxpnexhjie"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b6vke"]
